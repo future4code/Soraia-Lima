@@ -1,0 +1,10 @@
+1 Lasanha;
+2 Strogonoff de carne;
+3 Pizza de calabresa;
+4 Pão de queijo;
+5 Cuscuz;
+6 Tapioca;
+7 Suco de cupuaçu;
+8 Ovo;
+9 Macarronada;
+10 Açaí.
