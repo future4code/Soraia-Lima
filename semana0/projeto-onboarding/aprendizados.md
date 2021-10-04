@@ -1,0 +1,3 @@
+# Aprendizados da semana
+
+Essa semana inicie o curso de desenvolvimento web Full Stack na Labenu. O intuito desse curso e formar profissionais, que possam atuar tanto no front-end quanto no back-end. Estou aprendendo novos conceitos e matérias, dentre elas, usar o terminal, através do **GitBash**. Nele aprendi comandos que nos auxiliam a criar e remover pastas, mudar de diretório, criar arquivos e etc. Até agora tenho gostado bastante do curso e acredito que a experiência será única e com bastante crescimento pessoal e profissional. 
