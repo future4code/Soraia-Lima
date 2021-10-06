@@ -3,9 +3,9 @@
 a) undefined
 b) null
 c) 11
-d) 
-e) 
-f)
+d) 3
+e) [3, 19, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+f) 9
 
 2."SUBI NUM ÔNIBUS EM MIRROCOS" // 27
 */
