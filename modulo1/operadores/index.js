@@ -12,27 +12,27 @@ d) Boolean
 
 // 1. 
 /*
-const idadeUsuario = prompt ("Informe sua idade:")
-const idadeMelhorAmigo = prompt ("Informe a idade do seu melhor amigo(a)")
+const idadeUsuario = Number(prompt("Informe sua idade:"))
+const idadeMelhorAmigo = Number(prompt("Informe a idade do seu melhor amigo(a)"))
 
 console.log("Sua idade é maior do que do seu amigo(a)", idadeUsuario > idadeMelhorAmigo)
-console.log ("A diferença de idade entre vocês é:", Number(idadeUsuario) - Number(idadeMelhorAmigo))
+console.log ("A diferença de idade entre vocês é:", idadeUsuario - idadeMelhorAmigo)
 */
 
 //2.
 
-// let numeroPar = prompt ("Informe um número par:") 
-// let resposta = numeroPar % 2
+// let numeroPar = prompt ("Informe um número par:")
+// let resposta = Number(numeroPar) % 2
 
 // console.log ("O resto da divisão do", numeroPar, "por 2 é:", resposta)
 // c) o resto da davisão sempre é zero.
 // d) a divisão terá resto. 
 
 //3.
-// const idadeUsuario = prompt ("Quantos anos você tem?")
-// const idadeMeses = Number(idadeUsuario) * 12
-// const idadeDias = Number(idadeUsuario) * 365
-// const idadeHoras = Number(idadeUsuario) * 8760
+// const idadeUsuario = Number(prompt("Quantos anos você tem?"))
+// const idadeMeses = idadeUsuario * 12
+// const idadeDias = idadeUsuario * 365
+// const idadeHoras = idadeUsuario * 8760
 
 // console.log ("Sua iades em meses é:", idadeMeses)
 // console.log("Sua idade em dias é:", idadeDias)
@@ -40,13 +40,13 @@ console.log ("A diferença de idade entre vocês é:", Number(idadeUsuario) - Nu
 
 /*4.
 
-const numero1 = prompt ("Informe o primeiro número")
-const numero2 = prompt ("Informe o segundo número")
-const resultado1 =  Number(numero1) % Number(numero2)
-const resultado2 =  Number(numero2) % Number(numero1)
+const numero1 = Number(prompt ("Informe o primeiro número"))
+const numero2 = Number(prompt ("Informe o segundo número"))
+const resultado1 =  numero1 % numero2
+const resultado2 =  numero2 % numero1
 
-console.log ("O primeiro numero é maior que segundo?", Number(numero1) > Number(numero2))
-console.log ("O primeiro numero é igual ao segundo?", Number(numero1) === Number(numero2))
+console.log ("O primeiro numero é maior que segundo?", numero1 > numero2)
+console.log ("O primeiro numero é igual ao segundo?", numero1 === numero2)
 console.log ("O primeiro numero é divisível pelo segundo?", resultado1 === 0) 
 console.log ("O segundo numero é divisível pelo primeiro?", resultado2 === 0) 
 */
@@ -61,8 +61,8 @@ let temp2CemF = 80 * (9/5) + 32
 let temp3C = 30
 let temp3CemF = 30 * (9/5) + 32
 let temp3CemK = 30 + 273.15
-let temp4C = prompt("Insira uma temperatura em grau Celsius para a conversão em Fahrenheit e Kelvin:")
-let temp4CemK = Number(temp4C) + 273.15
+let temp4C = Number(prompt("Insira uma temperatura em grau Celsius para a conversão em Fahrenheit e Kelvin:"))
+let temp4CemK = temp4C + 273.15
 let temp4CemF = temp4C * (9/5) + 32
 
 console.log("A temperatura 77ºF em Kelvin é:", temp1FemK,"K")
