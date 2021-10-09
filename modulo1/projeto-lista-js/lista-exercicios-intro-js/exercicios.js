@@ -102,9 +102,14 @@ function imprimeMensagem() {
 // }
 
 // EXERCÍCIO 11
-function trocaPrimeiroEUltimo(array) {
-  // implemente sua lógica aqui
-}
+// function trocaPrimeiroEUltimo(array) {
+//   // implemente sua lógica aqui
+// const indicePrimeiro = array[0] 
+// const ultimoIndice = array[array.length-1] 
+// array[0] = ultimoIndice
+// array[array.length-1]  = indicePrimeiro
+// return array
+// }
 
 // EXERCÍCIO 12
 // function checaIgualdadeDesconsiderandoCase(string1, string2) {
