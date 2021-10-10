@@ -1,18 +1,18 @@
 // EXEMPLOS DE IMPLEMENTAÇÃO ---------------------------------------------------------------
 
-// EXERCÍCIO 0A
-function soma(num1, num2) {
-  // implemente sua lógica aqui
-  return num1 + num2
-}
+// // EXERCÍCIO 0A
+// function soma(num1, num2) {
+//   // implemente sua lógica aqui
+//   return num1 + num2
+// }
 
-// EXERCÍCIO 0B
-function imprimeMensagem() {
-  // implemente sua lógica aqui
-  const mensagem = prompt('Digite uma mensagem!')
+// // EXERCÍCIO 0B
+// function imprimeMensagem() {
+//   // implemente sua lógica aqui
+//   const mensagem = prompt('Digite uma mensagem!')
 
-  console.log(mensagem)
-}
+//   console.log(mensagem)
+// }
 
 // EXERCÍCIOS PARA FAZER ------------------------------------------------------------------
 
@@ -121,19 +121,39 @@ function imprimeMensagem() {
 //}
 
 // EXERCÍCIO 13
-function checaRenovacaoRG() {
-  // implemente sua lógica aqui
+// function checaRenovacaoRG() {
+//   // implemente sua lógica aqui
+// const anoAtual = Number(prompt("Informe o ano atual:"))
+// const anoNascimento = Number(prompt("Infome seu ano de nascimento:"))
+// const anoRg = Number(prompt("Informe o ano de expedição do seu RG:"))
 
-}
+// const primeiraCondicao = ((anoAtual-anoNascimento)<= 20) && ((anoAtual-anoRg)>= 5)
+// const segundaCondicao = ((anoAtual-anoNascimento)> 20 && (anoAtual-anoNascimento) <= 50) && ((anoAtual-anoRg)>= 10)
+// const terceiraCondicao = ((anoAtual-anoNascimento)> 50) && ((anoAtual-anoRg)>= 15)
 
-// EXERCÍCIO 14
-function checaAnoBissexto(ano) {
-  // implemente sua lógica aqui
+// console.log(primeiraCondicao || segundaCondicao || terceiraCondicao)
+// }
+// console.log(checaRenovacaoRG())
 
-}
+// // EXERCÍCIO 14
+//   function checaAnoBissexto(ano) {
+//   // implemente sua lógica aqui
+// const multiplo400 = (ano % 400) === 0
+// const multiplo4 = (ano % 4) === 0 
+// const multiplo100 = (ano % 100) === 0 
+// return multiplo400 || (multiplo4 && !multiplo100)
 
-// EXERCÍCIO 15
-function checaValidadeInscricaoLabenu() {
-  // implemente sua lógica aqui
+// }
 
-}
+// // EXERCÍCIO 15
+// function checaValidadeInscricaoLabenu() {
+//    // implemente sua lógica aqui
+// const idade = prompt("Você tem mais de 18 anos? Sim ou Não")
+// const ensinoMedio = prompt("Você possui mais de 18 anos? Sim ou Não")
+// const disponibilidade = prompt("Você possui disponibilidade exclusiva durante os horários do curso? Sim ou Não")
+// const pergunta1 = idade === "sim"
+// const pergunta2 = ensinoMedio === "sim"
+// const pergunta3 = disponibilidade ==="sim"
+// console.log(pergunta1 && pergunta2 && pergunta3)
+
+//  }
