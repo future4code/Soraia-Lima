@@ -99,20 +99,19 @@
 // imprimirDados()
 
 // 2.
-// function imprimirFilmes () {
-//     const filme1 = {
-//         anoDeLançamento: 2017,
-//         nome: "Thor - Ragnarok"
-//         }
-//     const filme2 = {
-//         anoDeLançamento: 2014,
-//         nome: "Malévola"
-//         }
-//         const anoAntes = (filme1.anoDeLançamento < filme2.anoDeLançamento)
-//         const anoLancamento = (filme1.anoDeLançamento === filme2.anoDeLançamento)
-//         console.log(`O primeiro filme foi lançado antes do segundo? ${anoAntes}`)
-//         console.log(`O primeiro filme foi lançado no mesmo ano do segundo? ${anoLancamento}`)
-//     }
-// imprimirFilmes()
+function imprimirFilmes () {
+    const filme1 = {
+        anoDeLançamento: 2017,
+        nome: "Thor - Ragnarok"
+        }
+    const filme2 = {
+        anoDeLançamento: 2014,
+        nome: "Malévola"
+        }
+        const anoAntes = (filme1.anoDeLançamento < filme2.anoDeLançamento)
+        const anoLancamento = (filme1.anoDeLançamento === filme2.anoDeLançamento)
+        console.log(`O primeiro filme foi lançado antes do segundo? ${anoAntes}`)
+        console.log(`O primeiro filme foi lançado no mesmo ano do segundo? ${anoLancamento}`)
+    }
+imprimirFilmes()
 
-//3.
