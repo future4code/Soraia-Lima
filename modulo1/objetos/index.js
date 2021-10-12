@@ -99,19 +99,53 @@
 // imprimirDados()
 
 // 2.
-function imprimirFilmes () {
-    const filme1 = {
-        anoDeLançamento: 2017,
-        nome: "Thor - Ragnarok"
-        }
-    const filme2 = {
-        anoDeLançamento: 2014,
-        nome: "Malévola"
-        }
-        const anoAntes = (filme1.anoDeLançamento < filme2.anoDeLançamento)
-        const anoLancamento = (filme1.anoDeLançamento === filme2.anoDeLançamento)
-        console.log(`O primeiro filme foi lançado antes do segundo? ${anoAntes}`)
-        console.log(`O primeiro filme foi lançado no mesmo ano do segundo? ${anoLancamento}`)
-    }
-imprimirFilmes()
+// function imprimirFilmes () {
+//     const filme1 = {
+//         anoDeLançamento: 2017,
+//         nome: "Thor - Ragnarok"
+//         }
+//     const filme2 = {
+//         anoDeLançamento: 2014,
+//         nome: "Malévola"
+//         }
+//         const anoAntes = (filme1.anoDeLançamento < filme2.anoDeLançamento)
+//         const anoLancamento = (filme1.anoDeLançamento === filme2.anoDeLançamento)
+//         console.log(`O primeiro filme foi lançado antes do segundo? ${anoAntes}`)
+//         console.log(`O primeiro filme foi lançado no mesmo ano do segundo? ${anoLancamento}`)
+//     }
+// imprimirFilmes()
 
+// 3.
+
+const carrinho = []
+
+const fruta1 = {
+    nome:"Uva",
+    disponibilidade: true
+    }
+const fruta2 = {
+    nome:"Morango",
+    disponibilidade: true
+    }
+const fruta3 = {
+    nome:"Banana",
+    disponibilidade: true
+    }
+function sacolao(fruta) {
+    fruta = carrinho.push(fruta)
+}
+
+sacolao(fruta1)
+sacolao(fruta2)
+sacolao(fruta3)
+
+function disponibilidadeFruta (fruta) {
+    const disponibilidadeSacolao = {
+        ...fruta, disponibilidade: false
+    }    
+    return disponibilidadeSacolao
+}
+
+console.log(disponibilidadeFruta(fruta1))
+console.log(disponibilidadeFruta(fruta2))
+console.log(disponibilidadeFruta(fruta3))
