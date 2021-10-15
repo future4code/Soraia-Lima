@@ -21,7 +21,7 @@
 //     console.log("Que pena! Você pode adotar um pet!")
 // }
 //2.
-const arrayOriginal = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
+// const arrayOriginal = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 
 // function imprimirArray() {
 //     for (let num of arrayOriginal) {
