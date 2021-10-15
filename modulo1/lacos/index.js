@@ -97,12 +97,13 @@
 
 // let i = 0
 // while(num2 != num1){
-//     alert("entrou no while")
 //     if(num2 < num1){
-//         console.log(`O número chutado foi ${num2} :(`)
+//         console.log(`O número chutado foi ${num2} :(
+//             Errou... O número escolhido é menor`)
 //     }
 //     else if(num2 > num1){
-//         console.log(`O número chutado foi ${num2} :(`)
+//         console.log(`O número chutado foi ${num2} :(
+//             Errou... O número escolhido é maior`)
 //     }
 //  num2 = Number(prompt("Chute outro número"))
 // i++
@@ -111,3 +112,26 @@
 // console.log(`Acertou!! O número de tentativas foi: ${i}`)
 
 // 2
+
+// alert("Vamos jogar!!")
+// const num1 = Math.floor((Math.random() * 100) + 1)
+// let num2 = Number(prompt("Chute um número"))
+
+// let i = 0
+// while (num2 != num1) {
+//     if (num2 < num1) {
+//         console.log(`O número chutado foi ${num2} :(
+//             Errou... O número escolhido é menor`)
+//     }
+//     else if (num2 > num1) {
+//         console.log(`O número chutado foi ${num2} :(
+//             Errou... O número escolhido é maior`)
+//     }
+//     num2 = Number(prompt("Chute outro número"))
+//     i++
+// }
+
+// console.log(`Acertou!! O número de tentativas foi: ${i}`)
+
+// Não foi fácil, pois tive muita dificuldade em entender o conteúdo. 
+// Mas pelo link que você deixaram, já tinha os exemplos de bibliotecas, para usarmos.
