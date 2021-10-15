@@ -89,3 +89,25 @@
 
 // console.log(`O maior número é ${maiorArray} e o menor é ${menorArray}`)
 
+// DESAFIO
+// 1
+
+// const num1 = Number(prompt("Vamos jogar!!\nInforme um número:"))
+// let num2 = Number(prompt("Chute um número"))
+
+// let i = 0
+// while(num2 != num1){
+//     alert("entrou no while")
+//     if(num2 < num1){
+//         console.log(`O número chutado foi ${num2} :(`)
+//     }
+//     else if(num2 > num1){
+//         console.log(`O número chutado foi ${num2} :(`)
+//     }
+//  num2 = Number(prompt("Chute outro número"))
+// i++
+// }
+
+// console.log(`Acertou!! O número de tentativas foi: ${i}`)
+
+// 2
