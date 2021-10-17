@@ -135,3 +135,21 @@
 
 // Não foi fácil, pois tive muita dificuldade em entender o conteúdo. 
 // Mas pelo link que você deixaram, já tinha os exemplos de bibliotecas, para usarmos.
+
+
+
+
+/*
+if (valorUsuario <= 21){
+    confirm("Quer comprar outra carta?")
+    while(valorUsuario < valorComputador && valorComputador <= 21){
+       jogadorUsuario.push(comprarCarta())
+       jogadorUsuario.valor = 0
+       jogadorUsuario.texto = ""
+       for(let valorUsuario of valorUsuario){
+          valorUsuario += valorUsuario
+          jogadorUsuario.texto += jogadorUsuario.texto +""
+       }
+    }
+ }
+ */
