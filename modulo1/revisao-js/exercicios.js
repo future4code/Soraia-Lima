@@ -11,17 +11,23 @@ retornaTamanhoArray(array)
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
-  
+  return array.reverse()
 }
+retornaArrayInvertido(array)
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-  
+    function comparaNumeros(a, b){
+        return a - b;
+    }
+    return array.sort(comparaNumeros)
 }
 
+
+retornaArrayOrdenado(array)
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+
 }
 
 // EXERCÍCIO 05
