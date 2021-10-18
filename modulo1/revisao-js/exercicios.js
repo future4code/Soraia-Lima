@@ -44,19 +44,35 @@ function retornaNumerosParesElevadosADois(array) {
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
     let maior = -Infinity
-    for(let numero of array){
-         if(numero > maior){ 
+    for (let numero of array) {
+        if (numero > maior) {
             maior = numero
-         }
-     }
-return maior
+        }
+    }
+    return maior
 }
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
+    let maior
+    let menor
 
+    if (num1 < num2) {
+        maior = num2
+        menor = num1
+    } else {
+        maior = num1
+        menor = num2
+    }
+
+    let objeto = {
+        maiorNumero: maior,
+        maiorDivisivelPorMenor: maior % menor === 0,
+        diferenca: maior - menor
+    }
+
+    return objeto
 }
-
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
 
