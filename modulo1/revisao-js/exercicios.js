@@ -75,8 +75,14 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
 }
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-    let elemntos = []
-
+    let array = []
+    let numero = n
+    let cont = 0
+    for(i = 0; i < numero; i++){
+        array.push(cont)
+        cont = cont + 2
+    }
+    return array
 }
 
 // EXERCÍCIO 09
@@ -98,8 +104,9 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-
+    
 }
+
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
