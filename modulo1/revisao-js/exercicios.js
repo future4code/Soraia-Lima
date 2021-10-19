@@ -7,13 +7,11 @@
 function retornaTamanhoArray(array) {
     return array.length
 }
-retornaTamanhoArray(array)
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
     return array.reverse()
 }
-retornaArrayInvertido(array)
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
@@ -22,9 +20,6 @@ function retornaArrayOrdenado(array) {
     }
     return array.sort(comparaNumeros)
 }
-
-
-retornaArrayOrdenado(array)
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
     const novoArray = array.filter((numero) => {
@@ -78,7 +73,7 @@ function retornaNPrimeirosPares(n) {
     let array = []
     let numero = n
     let cont = 0
-    for(i = 0; i < numero; i++){
+    for (i = 0; i < numero; i++) {
         array.push(cont)
         cont = cont + 2
     }
@@ -87,53 +82,58 @@ function retornaNPrimeirosPares(n) {
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-if(ladoA === ladoB && ladoA === ladoC){
-    return "Equilátero"
+    if (ladoA === ladoB && ladoA === ladoC) {
+        return "Equilátero"
+    }
+    else if (ladoA === ladoB || ladoA === ladoC || ladoB === ladoC) {
+        return "Isósceles"
+    }
+    else {
+        return "Escaleno"
+    }
+
+    // EXERCÍCIO 10
+    function retornaSegundoMaiorESegundoMenor(array) {
+
+    }
+
+    // EXERCÍCIO 11
+    function retornaChamadaDeFilme(filme) {
+
+        return `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.join(", ")}.`
+    }
+
+    // EXERCÍCIO 12
+    function retornaPessoaAnonimizada(pessoa) {
+        const novoArray = {...pessoa, nome: "ANÔNIMO"
+        }
+        return novoArray
+    }
+
+    // EXERCÍCIO 13A
+    function retornaPessoasAutorizadas(pessoas) {
+
+    }
+
+    // EXERCÍCIO 13B
+    function retornaPessoasNaoAutorizadas(pessoas) {
+
+    }
+
+    // EXERCÍCIO 14
+    function retornaContasComSaldoAtualizado(contas) {
+
+    }
+
+    // EXERCÍCIO 15A
+    function retornaArrayOrdenadoAlfabeticamente(consultas) {
+
+    }
+
+    // EXERCÍCIO 15B
+    function retornaArrayOrdenadoPorData(consultas) {
+
+    }
 }
-else if(ladoA === ladoB || ladoA === ladoC || ladoB === ladoC){
-    return "Isósceles"
-}
-else{
-return "Escaleno"
-}
-
-// EXERCÍCIO 10
-function retornaSegundoMaiorESegundoMenor(array) {
-
-}
-
-// EXERCÍCIO 11
-function retornaChamadaDeFilme(filme) {
-    
-}
 
 
-// EXERCÍCIO 12
-function retornaPessoaAnonimizada(pessoa) {
-
-}
-
-// EXERCÍCIO 13A
-function retornaPessoasAutorizadas(pessoas) {
-
-}
-
-// EXERCÍCIO 13B
-function retornaPessoasNaoAutorizadas(pessoas) {
-
-}
-
-// EXERCÍCIO 14
-function retornaContasComSaldoAtualizado(contas) {
-
-}
-
-// EXERCÍCIO 15A
-function retornaArrayOrdenadoAlfabeticamente(consultas) {
-
-}
-
-// EXERCÍCIO 15B
-function retornaArrayOrdenadoPorData(consultas) {
-
-}}
