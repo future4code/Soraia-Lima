@@ -105,8 +105,10 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
     // EXERCÍCIO 12
     function retornaPessoaAnonimizada(pessoa) {
-        
+        const novoArray = {...pessoa, nome: "ANÔNIMO"
     }
+    return novoArray
+}
 
     // EXERCÍCIO 13A
     function retornaPessoasAutorizadas(pessoas) {
