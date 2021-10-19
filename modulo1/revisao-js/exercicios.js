@@ -91,7 +91,7 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
     else {
         return "Escaleno"
     }
-
+}
     // EXERCÍCIO 10
     function retornaSegundoMaiorESegundoMenor(array) {
 
@@ -105,9 +105,7 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
     // EXERCÍCIO 12
     function retornaPessoaAnonimizada(pessoa) {
-        const novoArray = {...pessoa, nome: "ANÔNIMO"
-        }
-        return novoArray
+        
     }
 
     // EXERCÍCIO 13A
@@ -134,6 +132,5 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
     function retornaArrayOrdenadoPorData(consultas) {
 
     }
-}
 
 
