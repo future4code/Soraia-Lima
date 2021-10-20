@@ -112,9 +112,13 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
     // EXERCÍCIO 13A
     function retornaPessoasAutorizadas(pessoas) {
-
+        const novoArray = pessoas.filter((pessoas) => { 
+        if(pessoas.altura > 1.5 && pessoas.idade > 14 && pessoas.idade < 60)   {
+              return true
+          }
+        })
+        return novoArray
     }
-
     // EXERCÍCIO 13B
     function retornaPessoasNaoAutorizadas(pessoas) {
 
@@ -134,5 +138,3 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
     function retornaArrayOrdenadoPorData(consultas) {
 
     }
-
-
