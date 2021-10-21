@@ -36,7 +36,10 @@ div>p:first-child {
 div img {
     background: black;
 }
-
+.boraComecar{
+    text-align: center;
+    position: sticky;
+}
 .botao-amarelo {
     background-color: #ffaf43;
     width: 250px;
@@ -44,6 +47,9 @@ div img {
     border-radius: 5px;
     font-size: 20px;
     color: white;
+    position: relative;
+    left: -400px;
+    top: 50px;
 }
 
 .botao-amarelo:hover {
@@ -85,7 +91,6 @@ div img {
     font-size: 60px;
 }
 
-
 /**
   *
   *  ESTILOS COMPRAR 
@@ -126,5 +131,11 @@ td button {
 }
 
 #back-button:hover {
-    background-color: #635a3d
+    background-color: #635a3d;
+}
+/* Criada para solucuinar os problemas */
+/* BOTAO BORA COMEÇAR */
+.boraComecar{
+    text-align: center;
+    position: sticky;
 }
