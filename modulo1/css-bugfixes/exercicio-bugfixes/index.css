@@ -7,6 +7,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto';
 }
 
 h2 {
@@ -140,11 +141,12 @@ td button {
     height: 100px;
 }
 
-button:active{
-    color: white;
-}
 button:hover{
     background-color:#b39820 ;
+}
+
+button:active{
+    color: white;
 }
 
 #back-button {
