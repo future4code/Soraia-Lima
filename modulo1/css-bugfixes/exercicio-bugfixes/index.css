@@ -56,7 +56,7 @@ div img {
     color: white;
     position: relative;
     left: -430px;
-    top: 50px;
+    top: 100px;
 }
 
 .botao-amarelo:hover {
@@ -124,8 +124,8 @@ div:last-child {
 }
 
 table {
-    width: 60%;
-    margin: auto;
+    width: 70%;
+    margin:0 25vw;
 }
 
 td button {
@@ -157,6 +157,10 @@ button:active{
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    margin: 200px 47vw;
+
+    
+
 }
 
 #back-button:hover {
