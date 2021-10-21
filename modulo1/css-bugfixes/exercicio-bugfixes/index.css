@@ -59,7 +59,14 @@ div img {
 .container {
     height: 500px;
     text-align: center;
+    
 }
+.mensagem-empresa{
+    position: relative;
+    top:15px;
+    bottom: 100px;
+}
+
 
 .icone {
     height: 15px;
@@ -132,10 +139,4 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d;
-}
-/* Criada para solucuinar os problemas */
-/* BOTAO BORA COMEÇAR */
-.boraComecar{
-    text-align: center;
-    position: sticky;
 }
