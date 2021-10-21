@@ -1,0 +1,60 @@
+*{ margin:0; padding:0; box-sizing:0;}
+
+.topicos-da-pagina{
+    background-color: #86bef3;
+    padding: 15px;
+    text-align: center;
+}
+.texto-branco{
+color: white;
+font-weight:bold;
+text-decoration: none;
+margin-left: 30px;
+}
+.container{
+    text-align: center;
+    background-color: #86bef3;
+    color: white;
+    padding: 1px;
+}
+
+#rodape{
+    position: absolute;
+    bottom: 0;
+    background-color: #86bef3;
+    font-size: 10px; 
+    text-align: center;
+    width: 100vw;
+    
+}
+form{
+    text-align: left;
+    width: 12.5%;
+    margin: auto;
+    display: block;
+    
+}
+table{
+    width: 50%;
+    min-width: 300px;
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse ;
+    margin-top: 30px;
+    border-top: 1px solid rgb(98, 149, 224);
+    font-size: 20px;
+}
+h2{
+    text-align: center;
+}
+.imagem-rodape{
+    width:2%;
+}
+.lista{
+    list-style-position: inside;
+    text-align: center;
+}
+.titulo-tabela{
+    font-size: 18px;
+
+}
