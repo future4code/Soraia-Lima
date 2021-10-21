@@ -84,127 +84,145 @@ else {
 }*/
 
 // 2.
-const nome = prompt("Informe seu nome completo:")
-const tipoJogo = prompt("Informe o tipo de jogo que deseja assistir: IN indica internacional; e DO indica doméstico").toUpperCase ()
-const etapaJogo = prompt("Informe a estapa do jogo que deseja assistir: SF indica semi-final; DT indica decisão de terceiro lugar; e FI indica final").toUpperCase ()
-const categoria = Number(prompt("Informe a categoria do jogo: 1, 2, 3 ou 4"))
-const quantidade = Number(prompt("Informe a quantidade de ingressos que deseja comprar:"))
+// const nome = prompt("Informe seu nome completo:")
+// const tipoJogo = prompt("Informe o tipo de jogo que deseja assistir: IN indica internacional; e DO indica doméstico").toUpperCase ()
+// const etapaJogo = prompt("Informe a estapa do jogo que deseja assistir: SF indica semi-final; DT indica decisão de terceiro lugar; e FI indica final").toUpperCase ()
+// const categoria = Number(prompt("Informe a categoria do jogo: 1, 2, 3 ou 4"))
+// const quantidade = Number(prompt("Informe a quantidade de ingressos que deseja comprar:"))
 
-console.log("----Dados da compra---")
-console.log(`Nome do cliente: ${nome}`)
-console.log(`Tipo de jogo: ${tipoJogo}`)
-console.log(`Etapa do jogo: ${etapaJogo}`)
-console.log(`Categoria: ${categoria}`)
-console.log(`Quantidade de ingressos: ${quantidade}`)
-console.log('----Valores----')
+// console.log("----Dados da compra---")
+// console.log(`Nome do cliente: ${nome}`)
+// console.log(`Tipo de jogo: ${tipoJogo}`)
+// console.log(`Etapa do jogo: ${etapaJogo}`)
+// console.log(`Categoria: ${categoria}`)
+// console.log(`Quantidade de ingressos: ${quantidade}`)
+// console.log('----Valores----')
 
-if(tipoJogo==="DO"){
-switch (etapaJogo === "SF" || etapaJogo === "DT" || etapaJogo === "FI") {
-    case etapaJogo === "SF" && categoria === 1:
-    console.log(`Valor do ingresso: R$ 1320
-    Valor total R$:`, 1320 * quantidade)
-    break
-    case etapaJogo === "SF" && categoria === 2:
-    console.log(`Valor do ingresso: R$ 880
-    Valor total R$:`, 880 * quantidade)
-    break
-    case etapaJogo === "SF" && categoria === 3:
-    console.log(`Valor do ingresso: R$ 550
-    Valor total R$:`, 550 * quantidade)
-    break
-    case etapaJogo === "SF" && categoria === 4:
-    console.log(`Valor do ingresso: R$ 220
-    Valor total R$:`, 220 * quantidade)
-    break
-    case etapaJogo === "DT" && categoria === 1:
-    console.log(`Valor do ingresso: R$ 880
-    Valor total R$:`, 660 * quantidade)
-    break
-    case etapaJogo === "DT" && categoria === 2:
-    console.log(`Valor do ingresso: R$ 440
-    Valor total R$:`, 440 * quantidade)
-    break
-    case etapaJogo === "DT" && categoria === 3:
-    console.log(`Valor do ingresso: R$ 330
-    Valor total R$:`, 330 * quantidade)
-    break
-    case etapaJogo === "DT" && categoria === 4:
-    console.log(`Valor do ingresso: R$ 170
-    Valor total R$:`, 170 * quantidade)
-    break
-    case etapaJogo === "FI" && categoria === 1:
-    console.log(`Valor do ingresso: R$ 1980
-    Valor total R$:`, 1980 * quantidade)
-    break
-    case etapaJogo === "FI" && categoria === 2:
-    console.log(`Valor do ingresso: R$ 1320
-    Valor total R$:`, 1320 * quantidade)
-    break
-    case etapaJogo === "FI" && categoria === 3:
-    console.log(`Valor do ingresso: R$ 880
-    Valor total R$:`, 880 * quantidade)
-    break
-    case etapaJogo === "FI" && categoria === 4:
-    console.log(`Valor do ingresso: R$ 330
-    Valor total R$:`, 330 * quantidade)
-    break
-    default:
-    console.log("Informe a categoria correta")
-    break
-}
-}
-else if(tipoJogo==="IN") {
-switch (etapaJogo === "SF" || etapaJogo === "DT" || etapaJogo === "FI") {
-    case etapaJogo === "SF" && categoria === 1:
-    console.log(`Valor do ingresso: R$ ${(1320 * 4.10)}
-    Valor total R$:`, (1320 * 4.10) * quantidade)
-    break
-    case etapaJogo === "SF" && categoria === 1:
-    console.log(`Valor do ingresso: R$ ${(880 * 4.10)}
-    Valor total R$:`, (880 * 4.10) * quantidade)
-    break
-    case etapaJogo === "SF" && categoria === 1:
-    console.log(`Valor do ingresso: R$ ${(550 * 4.10)}
-    Valor total R$:`, (550 * 4.10) * quantidade)
-    break
-    case etapaJogo === "SF" && categoria === 1:
-    console.log(`Valor do ingresso: R$ ${(220 * 4.10)}
-    Valor total R$:`, (220 * 4.10) * quantidade)
-    break
-    case etapaJogo === "DT" && categoria === 1:
-    console.log(`Valor do ingresso: R$ ${(620 * 4.10)}
-    Valor total R$:`, (620 * 4.10) * quantidade)
-    break   
-    case etapaJogo === "DT" && categoria === 2:
-    console.log(`Valor do ingresso: R$ ${(440 * 4.10)}
-    Valor total R$:`, (440 * 4.10) * quantidade)
-    break
-    case etapaJogo === "DT" && categoria === 3:
-    console.log(`Valor do ingresso: R$ ${(330 * 4.10)}
-    Valor total R$:`, (330 * 4.10) * quantidade)
-    break      
-    case etapaJogo === "DT" && categoria === 4:
-    console.log(`Valor do ingresso: R$ ${(170 * 4.10)}
-    Valor total R$:`, (170 * 4.10) * quantidade)
-    break   
-    case etapaJogo === "FI" && categoria === 1:
-    console.log(`Valor do ingresso: R$ ${(1980 * 4.10)}
-    Valor total R$:`, (1980 * 4.10) * quantidade)
-    break 
-    case etapaJogo === "FI" && categoria === 2:
-    console.log(`Valor do ingresso: R$ ${(1320 * 4.10)}
-    Valor total R$:`, (1320 * 4.10) * quantidade)
-    break 
-    case etapaJogo === "FI" && categoria === 3:
-    console.log(`Valor do ingresso: R$ ${(880 * 4.10)}
-    Valor total R$:`, (880 * 4.10) * quantidade)
-    break 
-    case etapaJogo === "FI" && categoria === 4:
-    console.log(`Valor do ingresso: R$ ${(330 * 4.10)}
-    Valor total R$:`, (330 * 4.10) * quantidade)
-    break 
-    default:
-    console.log("Informe a categoria correta")
-    break
-}
-}
+// if(tipoJogo==="DO"){
+// switch (etapaJogo === "SF" || etapaJogo === "DT" || etapaJogo === "FI") {
+//     case etapaJogo === "SF" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ 1320
+//     Valor total R$:`, 1320 * quantidade)
+//     break
+//     case etapaJogo === "SF" && categoria === 2:
+//     console.log(`Valor do ingresso: R$ 880
+//     Valor total R$:`, 880 * quantidade)
+//     break
+//     case etapaJogo === "SF" && categoria === 3:
+//     console.log(`Valor do ingresso: R$ 550
+//     Valor total R$:`, 550 * quantidade)
+//     break
+//     case etapaJogo === "SF" && categoria === 4:
+//     console.log(`Valor do ingresso: R$ 220
+//     Valor total R$:`, 220 * quantidade)
+//     break
+//     case etapaJogo === "DT" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ 880
+//     Valor total R$:`, 660 * quantidade)
+//     break
+//     case etapaJogo === "DT" && categoria === 2:
+//     console.log(`Valor do ingresso: R$ 440
+//     Valor total R$:`, 440 * quantidade)
+//     break
+//     case etapaJogo === "DT" && categoria === 3:
+//     console.log(`Valor do ingresso: R$ 330
+//     Valor total R$:`, 330 * quantidade)
+//     break
+//     case etapaJogo === "DT" && categoria === 4:
+//     console.log(`Valor do ingresso: R$ 170
+//     Valor total R$:`, 170 * quantidade)
+//     break
+//     case etapaJogo === "FI" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ 1980
+//     Valor total R$:`, 1980 * quantidade)
+//     break
+//     case etapaJogo === "FI" && categoria === 2:
+//     console.log(`Valor do ingresso: R$ 1320
+//     Valor total R$:`, 1320 * quantidade)
+//     break
+//     case etapaJogo === "FI" && categoria === 3:
+//     console.log(`Valor do ingresso: R$ 880
+//     Valor total R$:`, 880 * quantidade)
+//     break
+//     case etapaJogo === "FI" && categoria === 4:
+//     console.log(`Valor do ingresso: R$ 330
+//     Valor total R$:`, 330 * quantidade)
+//     break
+//     default:
+//     console.log("Informe a categoria correta")
+//     break
+// }
+// }
+// else if(tipoJogo==="IN") {
+// switch (etapaJogo === "SF" || etapaJogo === "DT" || etapaJogo === "FI") {
+//     case etapaJogo === "SF" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ ${(1320 * 4.10)}
+//     Valor total R$:`, (1320 * 4.10) * quantidade)
+//     break
+//     case etapaJogo === "SF" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ ${(880 * 4.10)}
+//     Valor total R$:`, (880 * 4.10) * quantidade)
+//     break
+//     case etapaJogo === "SF" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ ${(550 * 4.10)}
+//     Valor total R$:`, (550 * 4.10) * quantidade)
+//     break
+//     case etapaJogo === "SF" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ ${(220 * 4.10)}
+//     Valor total R$:`, (220 * 4.10) * quantidade)
+//     break
+//     case etapaJogo === "DT" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ ${(620 * 4.10)}
+//     Valor total R$:`, (620 * 4.10) * quantidade)
+//     break   
+//     case etapaJogo === "DT" && categoria === 2:
+//     console.log(`Valor do ingresso: R$ ${(440 * 4.10)}
+//     Valor total R$:`, (440 * 4.10) * quantidade)
+//     break
+//     case etapaJogo === "DT" && categoria === 3:
+//     console.log(`Valor do ingresso: R$ ${(330 * 4.10)}
+//     Valor total R$:`, (330 * 4.10) * quantidade)
+//     break      
+//     case etapaJogo === "DT" && categoria === 4:
+//     console.log(`Valor do ingresso: R$ ${(170 * 4.10)}
+//     Valor total R$:`, (170 * 4.10) * quantidade)
+//     break   
+//     case etapaJogo === "FI" && categoria === 1:
+//     console.log(`Valor do ingresso: R$ ${(1980 * 4.10)}
+//     Valor total R$:`, (1980 * 4.10) * quantidade)
+//     break 
+//     case etapaJogo === "FI" && categoria === 2:
+//     console.log(`Valor do ingresso: R$ ${(1320 * 4.10)}
+//     Valor total R$:`, (1320 * 4.10) * quantidade)
+//     break 
+//     case etapaJogo === "FI" && categoria === 3:
+//     console.log(`Valor do ingresso: R$ ${(880 * 4.10)}
+//     Valor total R$:`, (880 * 4.10) * quantidade)
+//     break 
+//     case etapaJogo === "FI" && categoria === 4:
+//     console.log(`Valor do ingresso: R$ ${(330 * 4.10)}
+//     Valor total R$:`, (330 * 4.10) * quantidade)
+//     break 
+//     default:
+//     console.log("Informe a categoria correta")
+//     break
+// }
+// }
+
+const array = [
+    { nome: "Paula", idade: 12, altura: 1.8},
+    { nome: "João", idade: 20, altura: 1.3},
+    { nome: "Pedro", idade: 15, altura: 1.9},
+    { nome: "Luciano", idade: 22, altura: 1.8},
+    { nome: "Artur", idade: 10, altura: 1.2},
+    { nome: "Soter", idade: 70, altura: 1.9}
+]
+function retornaPessoasAutorizadas(pessoas) {
+    const pegarAlturaIdadeMininima = (pessoas) => {
+        if(pessoas.altura <= 1.5 && pessoas.idade < 14 && pessoas.idade > 60){
+            return true
+        }
+    }
+    }
+    const resultado = pessoas.filter(pegarAlturaIdadeMininima)   
+    console.log(resultado)
