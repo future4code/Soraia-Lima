@@ -132,9 +132,7 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
     // EXERCÍCIO 14
     function retornaContasComSaldoAtualizado(contas) {
-        
 
-        
     }
 
     // EXERCÍCIO 15A
