@@ -39,6 +39,14 @@ header button{
     margin-right: -70px;
     padding: 0 8px;;
 }
+footer{
+    display: flex;
+    background-color: mediumvioletred;
+    align-items: center;
+    height: 40px;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
 
 
 
