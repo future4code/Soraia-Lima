@@ -1,0 +1,45 @@
+*{margin: 0; padding: 0;}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 114vh;
+    justify-content: space-between;
+}
+header{
+    display: flex;
+    background-color: mediumvioletred;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 auto;
+}
+header div{
+    display: flex;
+    align-items: center;
+    width: 150px;
+    justify-content: space-evenly;
+
+}
+header img{
+    width: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 10px;
+}
+
+.img-bolinho{
+    margin-top: 3px;
+}
+header p{
+    font-weight: bold;
+    font-size: 23px;
+}
+header button{
+    margin-right: -70px;
+    padding: 0 8px;;
+}
+
+
+
+
