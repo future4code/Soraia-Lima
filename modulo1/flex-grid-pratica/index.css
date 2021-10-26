@@ -15,3 +15,11 @@ header button{
     padding: 0 10px;
     color: grey;
 }
+footer{
+    background-color: darkslategray;
+    color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid darkorange;
+}
