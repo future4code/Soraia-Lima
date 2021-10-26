@@ -1,85 +1,49 @@
 *{margin: 0; padding: 0;}
 
-.container{
+.incone-e-texto{
     display: flex;
-    flex-direction: column;
-    height: 114vh;
-    justify-content: space-between;
+    align-items: center;
+}
+.incone{
+    width: 20px;
+    margin-right: 10px;
 }
 header{
+    /* border: 1px solid black; */
     display: flex;
-    background-color: mediumvioletred;
-    height: 60px;
     justify-content: space-between;
+    height: 60px;
+    padding: 0 20px;
     align-items: center;
-    padding: 0 auto;
-}
-header div{
-    display: flex;
-    align-items: center;
-    width: 150px;
-    justify-content: space-evenly;
-
-}
-header img{
-    width: 20px;
-    margin-left: 2px;
-    margin-right: 2px;
-    margin-bottom: 10px;
-}
-
-.img-bolinho{
-    margin-top: 3px;
+    background-color: mediumvioletred;
 }
 header p{
     font-weight: bold;
-    font-size: 23px;
+    font-size: 20px;
 }
-header button{
-    margin-right: -70px;
-    padding: 0 8px;;
+button{
+    width: 55px;
 }
 footer{
     display: flex;
-    background-color: mediumvioletred;
+    /* border: 1px solid red; */
+    justify-content: center;
+    height: 60px;
     align-items: center;
-    height: 50px;
-    justify-content: space-evenly;
+    background-color: mediumvioletred;
 }
-
-main{
-    display: grid;
-    background-color: #f2d0e0;
-    grid-template-columns: 60px 150px 100px;
-    width: 220px;
-    height: 1200px;
-    padding: 0 10px;
-    align-items: star;
+nav{
+    background-color: #f2d0f2;
+    width: 300px;
+    padding: 10px;
 }
-
-div img{
-    width: 18px;
-}
-
-#home{
-    display: grid;
-    grid-template-columns: 40px 150px 50px;
-    margin-top: 20px;
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
+.img-home{
+    display: flex;
 
-#produtos{
-    display: grid;
-    grid-template-columns: 40px 150px 50px ;
-    margin-bottom: 20px;
-}
-#carrinho{
-    display: grid;
-    grid-template-columns: 40px 150px 50px ;
-    margin-bottom: 20px;
-}
-#perfil{
-    display: grid;
-    grid-template-columns: 40px 150px 50px ;
-    margin-bottom: 20px;
 }
