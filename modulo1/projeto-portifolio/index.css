@@ -1,0 +1,94 @@
+*{margin: 0; padding: 0; box-sizing:0;}
+
+.cabecalho{
+    position: sticky;
+    width: 100%;
+    background-color: #ffcbdb ;
+    padding: 15px;
+    text-align: center;
+}
+.texto-branco{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+.nome{
+    margin-top:30px ;
+    position: relative;
+    text-align: center;
+    top: 50px;
+    padding-top: 60px;
+}
+
+.imagem-nome{
+    margin-top:150px ;
+    position: relative;
+    text-align: center;
+    top: 50px;
+    margin: 0;
+}
+.apresentacao{
+    margin-top:20px ;
+    position: relative;
+    text-align: center;
+
+    padding: 45px;
+}
+.habilidades{
+    margin-top:80px ;
+    position: relative;
+    text-align: center;
+    padding: 5px;
+}
+.tabela{
+    margin: 25px auto;
+    width: 70%;
+
+}
+.escolas{
+    margin-top:100px ;
+    position: relative;
+    text-align: center;
+    padding: 5px;
+
+}
+.tabela-escola{
+    margin: 0px auto;
+    width: 70%;
+    text-align: center;
+    position: relative;
+    left: 190px;
+    top: 50px;
+}
+.projeto{
+    margin-top:120px ;
+    position: relative;
+    text-align: center;
+    padding: 5px;
+}
+.botoes{
+    text-align: center;
+    position: relative;
+    top: 20px;
+    margin-bottom: 100px;
+    width: 100%;
+    display: block;
+}
+
+button:hover{
+    background-color: crimson;
+}
+button:active{
+    background-color: #ffcbdb;
+}
+footer{
+    position: static;
+    bottom: 0px;
+    background-color: #ffcbdb;
+    font-size: 11px; 
+    text-align: center;
+    width: 100.3vw;
+    padding: 4px;
+}
