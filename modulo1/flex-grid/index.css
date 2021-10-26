@@ -16,6 +16,7 @@ header{
     padding: 0 20px;
     align-items: center;
     background-color: mediumvioletred;
+    grid-column: 1/-1;
 }
 header p{
     font-weight: bold;
@@ -31,10 +32,10 @@ footer{
     height: 60px;
     align-items: center;
     background-color: mediumvioletred;
+    grid-column: 1/-1;
 }
 nav{
     background-color: #f2d0f2;
-    width: 300px;
     padding: 10px;
 }
 .menu{
@@ -45,5 +46,30 @@ nav{
 }
 .img-home{
     display: flex;
+
+}
+.produtos{
+    display: flex;
+    /* border: 1px solid red; */
+    flex-direction: column;
+    box-shadow: 2px 2px 5px darkgray;
+    align-items: center;
+}
+.img-produtos{
+    width: 100%;
+}
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    width: 80%;
+    margin: 20px;
+    margin-left: 90px;
+}
+.container{
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 60px 1fr;
+    height: 100%;
 
 }
