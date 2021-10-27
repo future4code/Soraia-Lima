@@ -66,6 +66,12 @@ body{
     }
 }
 
-
+@media screen and (min-device-width : 801px) and (max-device-width : 1199px) {
+    /* tablets IPAD pró */
+    main{
+        display: flex;
+        flex-direction: column;
+    }
+}
    
     
