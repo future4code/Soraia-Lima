@@ -53,22 +53,20 @@ body{
     /* celulares */
 body{
     width: 96%;
+    
 }
 header{
-    width: 54%;
+    width: 64%;
 }
-
-    main{
-    width: 65%;
-    margin-left: 5px;
-    margin-right: 5px;
+main{
+    width: 70%;
 }
-    video{
-        width: 100%;
-    }
-
+video{
+    width: 100%;
 }
 footer{
-    width: 70%;
-    margin-top: 56px;
+    width: 80%;
+    margin-top: 26%;
 }
+}
+   
