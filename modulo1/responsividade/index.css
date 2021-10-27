@@ -58,5 +58,14 @@ body{
         flex-direction: column;
     }
 }
+@media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+    /* tablets */
+    main{
+        display: flex;
+        flex-direction: column;
+    }
+}
 
+
+   
     
