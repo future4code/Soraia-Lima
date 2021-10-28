@@ -1,0 +1,72 @@
+*{margin:0; padding: 0;}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    padding-right: 70px;
+    height: 60px;
+    background-color: darkorange;
+    grid-column: 1/-1;
+}
+header button{
+    width: 300px;
+    height: 30px;
+    text-align: left;
+    padding: 0 10px;
+    color: grey;
+}
+footer{
+    background-color: darkslategray;
+    color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid darkorange;
+    grid-column: 1/-1;
+}
+
+
+h3{
+    font-weight: bold;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+video{
+    margin-bottom: 180px;
+    width: 100%;
+    
+}
+main{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+body{
+    display: grid;
+    grid-auto-rows: 70px 1fr 70px;
+}
+
+@media screen and (max-device-width : 480px) {
+    /* celulares */
+body{
+    width: 96%;
+    
+}
+header{
+    width: 64%;
+}
+main{
+    width: 70%;
+}
+video{
+    width: 100%;
+}
+footer{
+    width: 80%;
+    margin-top: 26%;
+}
+}
+   
