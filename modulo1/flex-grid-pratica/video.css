@@ -1,0 +1,43 @@
+*{margin:0; padding: 0;}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    padding-right: 70px;
+    height: 60px;
+    background-color: darkorange;
+}
+header button{
+    width: 300px;
+    height: 30px;
+    text-align: left;
+    padding: 0 10px;
+    color: grey;
+}
+footer{
+    background-color: darkslategray;
+    color: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid darkorange;
+}
+
+h3{
+    font-weight: bold;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+video{
+    display: flex;
+    margin-bottom: 180px;
+    
+}
+main{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+}
