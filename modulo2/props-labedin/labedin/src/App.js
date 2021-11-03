@@ -5,6 +5,7 @@ import ImagemButton from './components/ImagemButton/ImagemButton';
 import imagemSoraia from "./imagemSoraia/Soraia1.jpg";
 import imagemClinica from "./imagemClinica/clinicaPsicologia.jpg";
 import imagemFaculdade from './imagemFaculdade/unicesumar.png'
+import imagemDiploma from './imagemDiploma/imagemDiploma.png'
 import CardPequeno from './components/CardPequeno/CardPequeno';
 import { createGlobalStyle } from 'styled-components';
 
@@ -79,6 +80,24 @@ function App() {
           descricao="Coordenadora de Polo." 
         />
       </PageSectionContainer>
+
+      <PageSectionContainer>
+        <TitulosContainer>Grau de Escolaridade</TitulosContainer>
+        <CardGrande 
+          imagem={imagemDiploma}
+          nome="Graduação"
+          descricao="Gestão de Recursos Humanos - UniCesumar." 
+        />
+
+        <CardGrande 
+          imagem={imagemDiploma}
+          nome="Pós-Graduação"
+          descricao="Gestão Estratégica de Pessoas - UniCesumar." 
+        />
+
+      </PageSectionContainer>
+
+
 
       <PageSectionContainer>
         <TitulosContainer>Minhas redes sociais</TitulosContainer>
