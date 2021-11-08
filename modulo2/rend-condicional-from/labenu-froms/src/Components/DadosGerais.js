@@ -1,4 +1,6 @@
 import React from "react";
+import PerguntasAbertas from './PerguntasAbertas'
+import PerguntaOpcoes from "./PerguntaOpcoes";
 
 class DadosGerais extends React.Component{
     render () {
@@ -7,20 +9,12 @@ class DadosGerais extends React.Component{
 
                 <h2>ESTAPA 1 - DADOS GERAIS</h2>
                 <from>
-                    <p> 1. Qual o seu nome?</p>
-                    <input/>
-                    <p> 2. Qual a sua idade?</p>
-                    <input/>
-                    <p>3. Qual seu e-mail?</p>
-                    <input/>
-                    <p>4. Qual a sua escolaridade?</p>
-                    <select>
-                        <option value="Ensino médio incompleto">Ensino médio incompleto</option>
-                        <option value="Ensino médio completo">Ensino médio completo</option>
-                        <option value="Ensino superior incompleto">Ensino superior incompleto</option>
-                        <option value="Ensino superior completo">Ensino superior completo</option>
-                    </select>
-
+                <PerguntasAbertas pergunta ={' 1. Qual o seu nome?'}/>
+                <PerguntasAbertas pergunta ={'2. Qual a sua idade?'}/>
+                <PerguntasAbertas pergunta ={'3. Qual seu e-mail?'}/>
+                <PerguntaOpcoes perguntaOp= {'Qual a sua escolaridade?'}
+                opcoes= {['Ensino médio completo', 'Ensino médio incompleto ', 'Ensino superior completo', 'Ensino superior incompleto']}
+                />   
                 </from>
             </div>
         )

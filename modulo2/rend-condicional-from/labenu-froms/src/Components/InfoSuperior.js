@@ -1,4 +1,5 @@
 import React from 'react';
+import PerguntasAbertas from './PerguntasAbertas';
 
 class InfoSuperior extends React.Component {
     render(){
@@ -6,10 +7,8 @@ class InfoSuperior extends React.Component {
             <div>
                 <h2>ETAPA 2 - INFORMAÇÕES DO ENSINO SUPERIOR</h2>
                 <from>
-                    <p> 5. Qual curso?</p>
-                    <input/>
-                    <p> 6. Qual a unidade de ensino?</p>
-                    <input/>
+                <PerguntasAbertas pergunta ={' 5. Qual curso?'}/>
+                <PerguntasAbertas pergunta ={' 6. Qual a unidade de ensino?'}/>
                 </from>
                 </div>
         )

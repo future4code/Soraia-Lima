@@ -39,7 +39,7 @@ class App extends React.Component {
     }
   }
 
-  proximaEtapa = () => {
+  proximaEtapa = () => { 
     this.setState({
       etapa: this.state.etapa + 1
     })
@@ -50,11 +50,11 @@ class App extends React.Component {
     return (
       <Container >
         {/* <DadosGerais/> */}
-        {/* <InfoSuperior/> */}
+        {/* <InfoSuperior/> */} 
         {/* <InfoNSuperior/> */}
         {/* <Final/> */}
         {this.renderizaEtapa()}
-        {this.state.etapa < 4 && (<Botao onClick={this.proximaEtapa}>Próxima Etapa</Botao>)}
+        {this.state.etapa < 4 && (<Botao onClick={this.proximaEtapa}>Próxima Etapa</Botao>)} 
 
       </Container>
     );
