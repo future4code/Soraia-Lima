@@ -9,7 +9,7 @@ const TarefaList = styled.ul`
 
 const Tarefa = styled.li`
   text-align: left;
-  text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
+  text-decoration: ${({ completa }) => (completa ? 'line-through' : 'none')};
 `
 
 const InputsContainer = styled.div`
@@ -19,59 +19,71 @@ const InputsContainer = styled.div`
 `
 
 class App extends React.Component {
-    state = {
-      tarefas: [
-        {id: Date.now(),
+  state = {
+    tarefas: [
+      {
+        id: Date.now(),
         texto: 'Lavar',
-        completa: false},
-    
-        {id: Date.now(),
+        completa: false
+      },
+
+      {
+        id: Date.now(),
         texto: 'Cozinhar',
-        completa: true}
-      ],
-      inputValue: '',
-      filtro: ''
-    }
+        completa: true
+      }
+    ],
+    inputValue: '',
+    filtro: ''
+  }
 
+  salvarLocalStorange = () => {
+    localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas))
+  }
   componentDidUpdate() {
-
+    this.salvarLocalStorange()
   };
 
   componentDidMount() {
-
+    const tarefasStorange = localStorage.getItem("tarefas")
+    const tarefasParse = JSON.parse(tarefasStorange)
+    this.setState({ tarefas: tarefasParse })
   };
 
   onChangeInput = (event) => {
-    this.setState({inputValue: event.target.value})
+    this.setState({ inputValue: event.target.value })
+
   }
 
   criaTarefa = () => {
-    const novaTarefa = 
-        {id: Date.now(),
-        texto: this.state.inputValue,
-        completa: false}
+    const novaTarefa =
+    {
+      id: Date.now(),
+      texto: this.state.inputValue,
+      completa: false
+    }
 
     const novoEstado = [...this.state.tarefas, novaTarefa]
 
-    this.setState({tarefas: novoEstado})
+    this.setState({ tarefas: novoEstado })
+    this.setState({ inputValue: "" })
+
   }
 
   selectTarefa = (id) => {
-    const tarefaCompleta = this.state.tarefas.map((tarefa) =>{
-      if (id === tarefa.id){
-        const tarefaNova = {
-          ...tarefa, completa: !tarefa.completa
-        }
+    const tarefaCompleta = this.state.tarefas.map((tarefa) => {
+      if (id === tarefa.id) {
+        const tarefaNova = { ...tarefa, completa: !tarefa.completa }
         return tarefaNova
-      } else{
+      } else {
         return tarefa
       }
     })
-  this.setState({tarefas: tarefaCompleta})
+    this.setState({ tarefas: tarefaCompleta })
   }
 
   onChangeFilter = (event) => {
-    this.setState({filtro: event.target.value})
+    this.setState({ filtro: event.target.value })
 
   }
 
@@ -91,10 +103,10 @@ class App extends React.Component {
       <div className="App">
         <h1>Lista de tarefas</h1>
         <InputsContainer>
-          <input value={this.state.inputValue} onChange={this.onChangeInput}/>
+          <input value={this.state.inputValue} onChange={this.onChangeInput} />
           <button onClick={this.criaTarefa}>Adicionar</button>
         </InputsContainer>
-        <br/>
+        <br />
 
         <InputsContainer>
           <label>Filtro</label>
