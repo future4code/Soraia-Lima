@@ -47,7 +47,8 @@ class App extends React.Component {
   componentDidMount() {
     const tarefasStorange = localStorage.getItem("tarefas")
     const tarefasParse = JSON.parse(tarefasStorange)
-    this.setState({ tarefas: tarefasParse || []})
+    this.setState({ tarefas: tarefasParse || [this.state.tarefas]})
+    // console.log("tarefas Parse", tarefasParse)
   };
 
   onChangeInput = (event) => {
@@ -119,7 +120,7 @@ class App extends React.Component {
         <TarefaList>
           {listaFiltrada.map(tarefa => {
             return (
-              <Tarefa
+              <Tarefa 
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
               >
