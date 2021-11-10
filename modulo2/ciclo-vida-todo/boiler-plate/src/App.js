@@ -46,9 +46,8 @@ class App extends React.Component {
 
   componentDidMount() {
     const tarefasStorange = localStorage.getItem("tarefas")
-    const tarefasParse = JSON.parse(tarefasStorange)
-    this.setState({ tarefas: tarefasParse || [this.state.tarefas]})
-    // console.log("tarefas Parse", tarefasParse)
+    const tarefasParse = tarefasStorange ? JSON.parse(tarefasStorange) : this.state.tarefas
+    this.setState({ tarefas: tarefasParse })
   };
 
   onChangeInput = (event) => {
