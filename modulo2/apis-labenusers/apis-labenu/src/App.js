@@ -4,6 +4,25 @@ import ListaUsuarios from "./components/ListaUsuarios";
 import axios from "axios";
 import styled from "styled-components";
 
+const Cadastro = styled.div `
+border: 1px solid black;
+margin: 0 auto; 
+display: flex;
+align-items: center;
+flex-direction: column;
+width: 400px;
+padding: 10px;
+margin-top: 30px;
+`
+const Inputs = styled.input`
+margin-bottom: 10px;`
+
+const ListaDeUsuarios = styled.div`
+align-items: center;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+`
 
 class App extends React.Component {
 
@@ -11,7 +30,7 @@ class App extends React.Component {
     listaDeUsuarios: [],
     nome: "",
     email: "",
-    pagina: "Dados"
+    pagina: "true"
   }
   componentDidMount() {
     this.getAllUsers()
@@ -95,44 +114,40 @@ class App extends React.Component {
     })
   }
 
+  mudarPagina =() =>{
+    this.setState({pagina: !this.state.pagina})
+  }
   render() {
-    // let paginaEscolhida
-    // switch (this.state.pagina) {
-    //   case "Dados":
-    //     paginaEscolhida = <DadosUsuario/>
-    //     break;
-    //   case "Lista":
-    //     paginaEscolhida = <ListaUsuarios/>
-
-    //   default:
-    //     paginaEscolhida = <p>Pagina não encontrada</p>
-    //     break;
-    // }
-    // console.log(paginaEscolhida)
+    
+    const pagina = this.state.pagina? <DadosUsuario/> : <ListaUsuarios/>
     const lista = this.state.listaDeUsuarios.map((item) => <li key={item.id}>{item.name} <button value={item.id} onClick={this.deleteUser}>Deletar</button> </li>)
+    
     return (
       <div>
-        {/* <button onClick ={this.alteraPagina}>Ir para página de listas</button> */}
+        <button onClick ={this.mudarPagina}>{this.state.pagina? 'Ir para lista de usuários': 'Voltar para cadastro'}</button>
+        {pagina}
 
-        {/* {paginaEscolhida} */}
+        
 
-
+        <Cadastro>
         <h3>Cadastro:</h3>
-        <input
+        <Inputs
           placeholder={"Nome"}
           value={this.state.nome}
           onChange={this.renderizaNome} />
-        <input
+        <Inputs
           placeholder={"email"}
           value={this.state.email}
           onChange={this.renderizaEmail} />
-        <button onClick={this.createUser}>Cadastrar novo usuarios</button>
-
+        <button onClick={this.createUser}>Cadastrar</button>
+        </Cadastro>
+        <ListaDeUsuarios>
       <h3>Lista de usuários cadastrados:</h3>
         <ul>
           {lista}
         </ul>
-
+        </ListaDeUsuarios>
+        
       </div>
     );
   }
