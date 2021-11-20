@@ -31,7 +31,7 @@ class PagCadastro extends React.Component {
     render() {
         return (
             <div>
-                <h1>Cadastro:</h1>
+                <h1>Criar playlist:</h1>
                 <p>Aqui você pode criar varias playlist dahora, para escutar quando e onde quiser :)</p>
 
                 <input
