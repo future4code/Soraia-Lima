@@ -8,7 +8,7 @@ class PagLista extends React.Component {
     name: "",
     artist: "",
     url: "",
-    addmusica: 0,
+    addmusica: false,
     id: "",
   }
 
@@ -33,16 +33,16 @@ class PagLista extends React.Component {
 
   // ------------------HABILITAR BOTÃO DE ADICIONAR MUSICA----
   addmusicas = () => {
-    if (this.state.addmusica === 0) {
-      return this.setState({ addmusica: 1 })
+    if (this.state.addmusica === false) {
+      return this.setState({ addmusica: true })
     } else {
-      return this.setState({ addmusica: 0 })
+      return this.setState({ addmusica: false })
     }
   }
 
   // -----------------MOSTRAR INPUT ---------------
   InputAddmusica = () => {
-    if (this.state.addmusica === 1) {
+    if (this.state.addmusica === true) {
       return (
         <div>
           <input placeholder={"Nome da música"} value={this.state.name} onChange={this.nomeMusica} />
@@ -138,9 +138,9 @@ class PagLista extends React.Component {
     }).then((resposta) => {
       console.log(resposta.data)
       this.setState({ name: "", artist: "", url: "" })
-
       alert("Musica adicionada com sucesso")
-      this.verplaylist()
+      this. verDetalhesPlaylist(this.state.id)
+      
     }).catch((erro) => {
       console.log(erro.response.data)
       alert("Aconteceu um erro, por favor, verifique todos os campos e tente novamente.")
@@ -148,7 +148,21 @@ class PagLista extends React.Component {
 
   }
 
-
+  // -------------------------DELETAR MUSICA DE UMA PLAYLIST-------------
+  deletarMusica = (id) =>{
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.id}/tracks/${id}`
+    axios.delete(url, {
+      headers: {
+        Authorization: "soraia-aparecida-carver"
+      }
+    }).then(()=>{
+      alert("Musica deletada")
+      this. verDetalhesPlaylist(this.state.id)
+    }).catch((erro)=>{
+      console.log(erro.response.status)
+      alert("A música não podê ser deletada, tente novamente.")
+    })
+  }
 
   render() {
     // ------------------------MAP PLAYLIST -----------------
@@ -167,17 +181,20 @@ class PagLista extends React.Component {
     )
 
     // ---------------------- MAP RENDERIZA MUSICAS DA PLAYLIST ------------
-    const musicas = this.state.musica.map((musica) =>
-      <div key={musica.id}>
-        {/* <h2>Detalhes da Playlist</h2> */}
-
+    const musicas = this.state.musica.map((musica) =>{
+      return (
+        <div key={musica.id}>
         <br />
         Musica:{musica.name}
         <br />
-        Cantor:{musica.artist}
-
+        Cantor:{musica.artist}				
+        <br/>
+        {/* ----------------REPRODUÇÃO DO AUDIO---------- */}
+        <audio ref="audio" src={musica.url} controls/> 
+        <button onClick={()=>{this.deletarMusica(musica.id)}}>Deletar musica</button>
       </div>
-    )
+      )
+    })
 
     return (
 
@@ -196,12 +213,9 @@ class PagLista extends React.Component {
           {musicas}
         </div>
 
-
         <div>
           {this.InputAddmusica()}
         </div>
-
-
 
       </div>
     );
