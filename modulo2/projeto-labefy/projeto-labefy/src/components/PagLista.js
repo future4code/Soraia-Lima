@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import DetalhesInput from "./DetalhesInput";
 
 class PagLista extends React.Component {
   state = {
@@ -9,14 +8,57 @@ class PagLista extends React.Component {
     name: "",
     artist: "",
     url: "",
-    // idMusica: ""
+    addmusica: 0,
+    id: "",
   }
+
 
   //----------------------RENDERIZAÇÃO AUTOMATICA NA TELA--------------
 
   componentDidMount() {
     this.verplaylist()
   }
+
+  // ------------------FUNÇÕES DOS INPUT DE CADASTRAR NOVA MUSICA ---------------------
+
+  nomeMusica = (event) => {
+    this.setState({ name: event.target.value })
+  }
+  artistaMusica = (event) => {
+    this.setState({ artist: event.target.value })
+  }
+  urlMusica = (event) => {
+    this.setState({ url: event.target.value })
+  }
+
+  // ------------------HABILITAR BOTÃO DE ADICIONAR MUSICA----
+  addmusicas = () => {
+    if (this.state.addmusica === 0) {
+      return this.setState({ addmusica: 1 })
+    } else {
+      return this.setState({ addmusica: 0 })
+    }
+  }
+
+  // -----------------MOSTRAR INPUT ---------------
+  InputAddmusica = () => {
+    if (this.state.addmusica === 1) {
+      return (
+        <div>
+          <input placeholder={"Nome da música"} value={this.state.name} onChange={this.nomeMusica} />
+          <input placeholder={"url da música"} value={this.state.url} onChange={this.urlMusica} />
+          <input placeholder={"Cantor"} value={this.state.artist} onChange={this.artistaMusica} />
+          <button onClick={() => { this.adicionarMusica() }}>Adicionar</button>
+
+        </div>
+      )
+
+    } else {
+      return ""
+    }
+  }
+
+
 
   //---------------------- VER AS PLAYLIST --------------------------
 
@@ -38,8 +80,7 @@ class PagLista extends React.Component {
 
   // ----------------------------------DELETAR PLAYLIST----------------------
 
-  deletarPlaylist = (event) => {
-    const id = event.target.value
+  deletarPlaylist = (id) => {
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`
     axios.delete(url,
       {
@@ -58,9 +99,8 @@ class PagLista extends React.Component {
 
   // ----------------------------------VISUALIZAR DETALHES DA PLAYLIST--------------------
 
-  verDetalhesPlaylist = (event) => {
+  verDetalhesPlaylist = (id) => {
 
-    const id = event.target.value
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
     axios.get(url, {
       headers: {
@@ -70,6 +110,7 @@ class PagLista extends React.Component {
       console.log("resposta", resposta)
       console.log("Detalhes playlist", resposta.data.result.tracks)
       this.setState({ musica: resposta.data.result.tracks })
+      this.setState({id:id})
     }).catch((erro) => {
       // console.log(erro.response.data)
       console.log(erro.response.status)
@@ -77,41 +118,35 @@ class PagLista extends React.Component {
 
   }
 
-  // ------------------FUNÇÕES DOS INPUT DE CADASTRAR NOVA MUSICA ---------------------
 
-  nomeMusica = (event) => {
-    this.setState({ name: event.target.value })
-  }
-  artistaMusica = (event) => {
-    this.setState({ artist: event.target.value })
-  }
-  urlMusica = (event) => {
-    this.setState({ url: event.target.value })
-  }
 
   //-----------------------ADICIONAR MUSICA EM UMA PLAYLIST----------------------
 
-  // adicionarMusica = (id) => {
-  
-  //   const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
-  //   const body = {
-  //     name: this.state.name,
-  //     artist: this.state.artist,
-  //     url: this.state.url
-  //   }
+  adicionarMusica = () => {
 
-  //   axios.post(url, body, {
-  //     headers: {
-  //       Authorization: "soraia-aparecida-carver"
-  //     }
-  //   }).then((resposta) => {
-  //     console.log(resposta.data)
-  //     this.setState({nam:"", artist:"", url:""})
-  //   }).catch((erro) => {
-  //     console.log(erro.response.data)
-  //   })
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.state.id}/tracks`
+    const body = {
+      name: this.state.name,
+      artist: this.state.artist,
+      url: this.state.url
+    }
 
-  // }
+    axios.post(url, body, {
+      headers: {
+        Authorization: "soraia-aparecida-carver"
+      }
+    }).then((resposta) => {
+      console.log(resposta.data)
+      this.setState({ name: "", artist: "", url: "" })
+
+      alert("Musica adicionada com sucesso")
+      this.verplaylist()
+    }).catch((erro) => {
+      console.log(erro.response.data)
+      alert("Aconteceu um erro, por favor, verifique todos os campos e tente novamente.")
+    })
+
+  }
 
 
 
@@ -123,21 +158,24 @@ class PagLista extends React.Component {
     const lista = this.state.playlists.map((item) =>
       <div key={item.id}>
         {item.name}
-        <button value={item.id} onClick={this.deletarPlaylist}>x</button> 
-        <button value={item.id} onClick={this.verDetalhesPlaylist}>Detalhes</button>
+        <button onClick={() =>{this.deletarPlaylist(item.id)}}>x</button>
+        <button onClick={() =>{this.verDetalhesPlaylist(item.id)}}>Detalhes</button>
+        <button onClick={this.addmusicas}>Add musica</button>
         {/* <button>Adicionar musica</button> */}
-      
+
       </div>
     )
 
     // ---------------------- MAP RENDERIZA MUSICAS DA PLAYLIST ------------
     const musicas = this.state.musica.map((musica) =>
       <div key={musica.id}>
-        <h2>Detalhes da Playlist</h2>
-        
-         Musica:{musica.name}
-         Cantor:{musica.artist}
-  
+        {/* <h2>Detalhes da Playlist</h2> */}
+
+        <br />
+        Musica:{musica.name}
+        <br />
+        Cantor:{musica.artist}
+
       </div>
     )
 
@@ -148,15 +186,22 @@ class PagLista extends React.Component {
 
           <h1>Playlists disponivés!!</h1>
           {/* <button onClick={this.props.irParaCadastro}>Ir para pagina de cadastro</button> */}
+
           <ul>
             {lista}
           </ul>
-          <br />
-
-            {musicas}
-
-            <DetalhesInput/>
         </div>
+
+        <div>
+          {musicas}
+        </div>
+
+
+        <div>
+          {this.InputAddmusica()}
+        </div>
+
+
 
       </div>
     );
