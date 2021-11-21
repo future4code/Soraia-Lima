@@ -2,6 +2,14 @@ import React from "react";
 import PagCadastro from './components/PagCadastro'
 import PagLista from './components/PagLista'
 import Home from "./components/home";
+import styled from "styled-components";
+
+const Botoes = styled.div `
+display: flex;
+width: 100%;
+height: 50%;
+background-color: red;
+`
 
 class App extends React.Component {
 
@@ -38,11 +46,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-          <div>
+          <Botoes>
             <button onClick={this.irParaHome}>Home</button>
             <button onClick={this.irParaLista}>Lista de musicas</button>
             <button onClick={this.irParaCadastro}>Cadastro</button>
-          </div>
+          </Botoes>
     
         
         {this.mudarDePagina()}

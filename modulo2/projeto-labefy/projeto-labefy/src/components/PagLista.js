@@ -98,9 +98,11 @@ class PagLista extends React.Component {
   }
 
   // ----------------------------------VISUALIZAR DETALHES DA PLAYLIST--------------------
+  
+    
 
   verDetalhesPlaylist = (id) => {
-
+    
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`
     axios.get(url, {
       headers: {
@@ -181,7 +183,7 @@ class PagLista extends React.Component {
     )
 
     // ---------------------- MAP RENDERIZA MUSICAS DA PLAYLIST ------------
-    const musicas = this.state.musica.map((musica) =>{
+    const musicas = this.state.musica.length >0 ? this.state.musica.map((musica) =>{
       return (
         <div key={musica.id}>
         <br />
@@ -194,7 +196,7 @@ class PagLista extends React.Component {
         <button onClick={()=>{this.deletarMusica(musica.id)}}>Deletar musica</button>
       </div>
       )
-    })
+    }): "Sem músicas disponíveis para visuzliação. Adicione uma nova música a sua playlist"
 
     return (
 
