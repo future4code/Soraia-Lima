@@ -7,7 +7,7 @@ Este projeto foi desenvolvido com o intuito de simular um aplicativo de músicas
 A criação/exclusão de playlist e adicionar/deletar músicas a essas playlist.
 
 ### O que não funciona:
-Reprodução de música; finalizar a estilização; não consegui fazer um ternário para que quando não tiver musica ele aparecer uma mensagem informando que aidna não tem música naquela playlist. 
+Não consegui fazer um ternário para que quando não tiver musica ele aparecer uma mensagem informando que ainda não tem música naquela playlist; finalizar a estilização. 
 
 ### Tecnologia utilizada:
 React js.

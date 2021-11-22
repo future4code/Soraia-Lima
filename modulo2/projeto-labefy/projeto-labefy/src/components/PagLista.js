@@ -182,21 +182,16 @@ class PagLista extends React.Component {
     )
 
     // ---------------------- MAP RENDERIZA MUSICAS DA PLAYLIST ------------
-    const musicas = this.state.musica.map((musica) =>
-      
-        <div key={musica.id}>
-        <br />
-        Musica:{musica.name}
-        <br />
-        Cantor:{musica.artist}				
-        <br/>
-        {/* ----------------REPRODUÇÃO DO AUDIO---------- */}
-        <audio ref="audio" src={musica.url} controls/> 
-        {/* <iframe src={musica.url} width="30%" height="50" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> */}
+    const musicas = this.state.musica.map((musica) =>{
+      let src=musica.url + '?utm_source=generator'
 
-        <button onClick={()=>{this.deletarMusica(musica.id)}}>Deletar musica</button>
-      </div>
-      
+     return  <div key={musica.id}>
+        
+     <iframe src={src} width="300" height="100" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+     <button onClick={()=>{this.deletarMusica(musica.id)}}>Deletar musica</button>
+   </div>
+
+    }
     )
 
     return (
