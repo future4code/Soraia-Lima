@@ -141,7 +141,7 @@ class PagLista extends React.Component {
       console.log(resposta.data)
       this.setState({ name: "", artist: "", url: "" })
       alert("Musica adicionada com sucesso")
-      this. verDetalhesPlaylist(this.state.id)
+      this.verDetalhesPlaylist(this.state.id) // Para a tela ser atualizada com cada musica add.
       
     }).catch((erro) => {
       console.log(erro.response.data)
@@ -159,7 +159,7 @@ class PagLista extends React.Component {
       }
     }).then(()=>{
       alert("Musica deletada")
-      this. verDetalhesPlaylist(this.state.id)
+      this. verDetalhesPlaylist(this.state.id) 
     }).catch((erro)=>{
       console.log(erro.response.status)
       alert("A música não podê ser deletada, tente novamente.")
@@ -177,14 +177,13 @@ class PagLista extends React.Component {
         <button onClick={() =>{this.deletarPlaylist(item.id)}}>x</button>
         <button onClick={() =>{this.verDetalhesPlaylist(item.id)}}>Detalhes</button>
         <button onClick={this.addmusicas}>Add musica</button>
-        {/* <button>Adicionar musica</button> */}
 
       </div>
     )
 
     // ---------------------- MAP RENDERIZA MUSICAS DA PLAYLIST ------------
-    const musicas = this.state.musica.length >0 ? this.state.musica.map((musica) =>{
-      return (
+    const musicas = this.state.musica.map((musica) =>
+      
         <div key={musica.id}>
         <br />
         Musica:{musica.name}
@@ -193,10 +192,12 @@ class PagLista extends React.Component {
         <br/>
         {/* ----------------REPRODUÇÃO DO AUDIO---------- */}
         <audio ref="audio" src={musica.url} controls/> 
+        {/* <iframe src={musica.url} width="30%" height="50" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe> */}
+
         <button onClick={()=>{this.deletarMusica(musica.id)}}>Deletar musica</button>
       </div>
-      )
-    }): "Sem músicas disponíveis para visuzliação. Adicione uma nova música a sua playlist"
+      
+    )
 
     return (
 
