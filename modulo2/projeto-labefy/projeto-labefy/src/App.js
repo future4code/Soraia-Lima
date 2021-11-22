@@ -84,14 +84,14 @@ class App extends React.Component {
           <Cebecalho>
             <img src={Logo}/> <p>Labefy</p>
             <button onClick={this.irParaHome}>Home</button>
-            <button onClick={this.irParaLista}>Lista de musicas</button>
             <button onClick={this.irParaCadastro}>Cadastro</button>
+            <button onClick={this.irParaLista}>Playlist</button>
           </Cebecalho>
-          <Rodape>
+          {/* <Rodape>
             <p>Telefone: (61) 3333-3333</p>
             <p>E-mail: labefy@gmail.com</p>
             
-          </Rodape>
+          </Rodape> */}
     
         {this.mudarDePagina()}
 

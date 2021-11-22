@@ -1,5 +1,10 @@
 import React from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const Botao = styled.div`
+margin-right:10px;
+`
 
 class PagCadastro extends React.Component {
     state = {
