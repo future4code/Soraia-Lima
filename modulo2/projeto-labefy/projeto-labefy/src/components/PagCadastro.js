@@ -3,7 +3,7 @@ import axios from "axios";
 
 class PagCadastro extends React.Component {
     state = {
-        nome: ""
+        nome: "",
     }
 
     nomePlaylist = (event) => {
