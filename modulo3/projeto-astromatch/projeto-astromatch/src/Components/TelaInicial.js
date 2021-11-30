@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -29,7 +32,7 @@ border-radius: 5px;
 
 img{
     width: 365px;
-    height:440px;
+    height:410px;
     margin-top: 10px;
 }
 
@@ -78,7 +81,21 @@ overflow: hidden;
 `
 
 function TelaInicial(props) {
-    console.log("oii",props)
+    const [pessoa, setPessoa] = useState({})
+
+    //--------------- RENDERIZAÇÃO --------
+    useEffect(() => {
+        getProfileToChoose()
+    }, [])
+
+    // ------------ VER NOVAS PESSOAS -----------
+    const getProfileToChoose = () => {
+        axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia/person').then((res) => {
+            console.log("certo", res.data.profile)
+            setPessoa(res.data.profile)
+        }).catch((error) => { console.log("error", error.response) })
+    }
+    console.log(pessoa)
 
     const clicouBotao = () => {
         console.log("clicouuu")
@@ -97,7 +114,11 @@ function TelaInicial(props) {
             </Header>
             <hr />
             <div>
-                <img src="https://i1.wp.com/urbiviagens.com.br/wp-content/uploads/2019/07/Aracaju.png" alt="imagem" />
+                <img src={pessoa.photo} alt={pessoa.name} />
+                <br/>
+                <strong>{pessoa.name}{","}</strong> {pessoa.age}
+                <br/>
+                {pessoa.bio}
             </div>
             <div>
                 <BotaoX onClick={clicouBotaoX}>x</BotaoX>
