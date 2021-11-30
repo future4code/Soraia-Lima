@@ -1,4 +1,7 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+
 
 const Header = styled.div`
 display: flex;
@@ -78,7 +81,24 @@ overflow: hidden;
 `
 
 function TelaInicial(props) {
-    console.log("oii",props)
+
+
+    const [pessoa, setPessoa] = useState([])
+
+    // ------------------------VISUALIZAR NOVAS PESSOAS ---------
+    const getProfileToChoose =() =>{
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima-carver/person`).then((res) =>{
+            console.log("certo",res.data.profile)
+            setPessoa(res.data.profile)
+        }).catch((error)=>{
+            console.log("erro",error.response.data)
+        })
+    }
+    
+
+    useEffect(()=>{
+        getProfileToChoose()
+    }, [])
 
     const clicouBotao = () => {
         console.log("clicouuu")
@@ -89,6 +109,8 @@ function TelaInicial(props) {
     }
 
 
+    console.log("PESSOA",pessoa)
+
 
     return (
         <Container>
@@ -97,10 +119,10 @@ function TelaInicial(props) {
             </Header>
             <hr />
             <div>
-                <img src="https://i1.wp.com/urbiviagens.com.br/wp-content/uploads/2019/07/Aracaju.png" alt="imagem" />
+                <img src="" alt="imagem" />
             </div>
             <div>
-                <BotaoX onClick={clicouBotaoX}>x</BotaoX>
+                <BotaoX onClick={clicouBotaoX}>X</BotaoX>
                 <BotaoCoracao onClick={clicouBotao}>♥</BotaoCoracao>
             </div>
         </Container>
