@@ -3,15 +3,15 @@ import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 
-const Header = styled.div`
+const Header = styled.header`
 display: flex;
 justify-content: space-between;
 margin-top:2%;
 margin-bottom:2%;
+align-items: center;
 
-p{
-    font-size: 25px;
-    margin-left:35%;
+h1{
+    margin-left:30%;
 }
 
 button{
@@ -21,7 +21,7 @@ button{
 `
 
 const Container = styled.div`
-width: 400px;
+min-width: 400px;
 height: 600px;
 position: fixed;
 top: 50%;
@@ -32,8 +32,11 @@ border-radius: 5px;
 
 img{
     width: 365px;
-    height:410px;
+    height:450px;
     margin-top: 10px;
+    box-shadow: rgb(205 205 205 / 90%) 5px 5px 10px 5px;
+    border-radius:5px;
+    box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
 }
 
 div{
@@ -41,6 +44,18 @@ div{
 }
 button{
     cursor:pointer;
+}
+`
+const Infomacoes = styled.div`
+div{
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    margin-top:-80px;
+    color: white;
+    width:85%;
+    margin-left:2vw;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
 }
 `
 
@@ -51,11 +66,9 @@ height: 80px;
 border: 1px solid green;
 color: green;
 font-size: 50px;
-transform: scale(0.7);
-transition: all 0.2s ease 0s;
+transform: scale(0.7); // adpatar o tamanho o ♥ no botão
+transition: all 0.3s ease 0s; // para deixar a transição do botão mais sutil
 position: relative;
-box-shadow: rgb(205 205 205 / 73%) 0px 0px 15px 0px;
-overflow: hidden;
 &:hover{
     background-color: green;
     color: white;
@@ -72,8 +85,6 @@ font-size: 50px;
 transform: scale(0.7);
 transition: all 0.2s ease 0s;
 position: relative;
-box-shadow: rgb(205 205 205 / 73%) 0px 0px 15px 0px;
-overflow: hidden;
 &:hover{
     background-color: red;
     color: white;
@@ -83,47 +94,67 @@ overflow: hidden;
 function TelaInicial(props) {
     const [pessoa, setPessoa] = useState({})
 
-    //--------------- RENDERIZAÇÃO --------
+//---------------------- RENDERIZAÇÃO --------------------
     useEffect(() => {
         getProfileToChoose()
     }, [])
 
-    // ------------ VER NOVAS PESSOAS -----------
+// ----------------- VER NOVAS PESSOAS --------------------
     const getProfileToChoose = () => {
-        axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia/person').then((res) => {
+        axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/person').then((res) => {
             console.log("certo", res.data.profile)
-            setPessoa(res.data.profile)
+            setPessoa(res.data.profile || {})
         }).catch((error) => { console.log("error", error.response) })
     }
-    console.log(pessoa)
 
-    const clicouBotao = () => {
-        console.log("clicouuu")
+//--------------------- DAR MATCH ------------------
+
+    const choosePerson = (oii) => {
+        const bady = {
+            id: pessoa.id,
+            choice: oii
+        }
+        axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/choose-person', bady).then((res) => {
+            console.log("match ok", res.data)
+            getProfileToChoose()
+        }).catch((error) => {
+            console.log(error.response)
+        })
     }
 
-    const clicouBotaoX = () => {
-        console.log("clicouuu XXXXX")
-    }
+    // const choosePerson2 = () =>{
+    //     const bady ={
+    //         id: pessoa.id,
+    //         choice: false
+    //     }
+    //     axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/choose-person', bady).then((res)=>{
+    //         console.log(" não match ",res.data)
+    //         getProfileToChoose()
+    //     }).catch((error)=>{
+    //         console.log(error.response)
+    //     })
+    // }
 
 
 
     return (
         <Container>
             <Header>
-                <p>astromatch</p> <button onClick={props.irParaMatch}>Match</button>
+                <h1>astromatch</h1> <button onClick={props.irParaMatch}>Match</button>
             </Header>
             <hr />
-            <div>
+            <Infomacoes>
                 <img src={pessoa.photo} alt={pessoa.name} />
-                <br/>
-                <strong>{pessoa.name}{","}</strong> {pessoa.age}
-                <br/>
-                {pessoa.bio}
-            </div>
+                <div>
+                    <h2>{`${pessoa.name}, ${pessoa.age}`}</h2>
+                    <p>{pessoa.bio}</p>
+                </div>
+            </Infomacoes>
             <div>
-                <BotaoX onClick={clicouBotaoX}>x</BotaoX>
-                <BotaoCoracao onClick={clicouBotao}>♥</BotaoCoracao>
+                <BotaoX onClick={() => { choosePerson(false) }}>X</BotaoX>
+                <BotaoCoracao onClick={() => { choosePerson(true) }}>♥</BotaoCoracao>
             </div>
+
         </Container>
     )
 }

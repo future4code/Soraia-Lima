@@ -1,4 +1,5 @@
-
+import axios from "axios";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -16,13 +17,12 @@ button{
 
 const Header = styled.div`
 display: flex;
-/* justify-content: space-between; */
 margin-top:2%;
 margin-bottom:2%;
+align-items: center;
 
-p{
-    font-size: 25px;
-    margin-left:25%;
+h1{
+    margin-left:19%;
 }
 
 button{
@@ -30,14 +30,62 @@ button{
     height:30px;
 }
 `
+const Matchs = styled.div`
+display: flex;
+flex-direction: row;
+margin-bottom:1vh;
+align-items: center;
+margin-top:3%;
 
-function TelaMatch (props) {
+img{
+    width: 64px;
+    height: 55px;
+    border-radius: 50%;
+    margin-left:1vw;
+    
+}
+
+p{
+    margin-left:1vw;
+    font-size:19px;
+}`
+
+function TelaMatch(props) {
+
+    const [listaDeMatch, setListaDeMatch] = useState([])
+
+    // -------------- RENDERIZAÇÃO -----------------
+    useEffect(() => {
+        getMatches()
+    }, [])
+
+    // -------------------VER QUEM DEU MATCH ----------------
+    const getMatches = () => {
+
+        axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/matches').then((res) => {
+            // const novaLista = [...listaDeMatch, res.data.matches]
+            setListaDeMatch(res.data.matches)
+
+        }).catch((error) => {
+            alert('Ah que pena, aconteceu algo errado, por favor, tente mais tarde :(', error.response)
+        })
+    }
+
+    const mapLista = listaDeMatch.map((item) => {
+        return <Matchs key={item.id}>
+            <img src={item.photo} alt={item.name} /> <p>{item.name}</p>
+        </Matchs>
+    })
+
     return (
         <Container>
             <Header>
-            <button onClick={props.irParaInicio} >Voltar</button><p>astromatch</p>
+                <button onClick={props.irParaInicio} >Voltar</button><h1>astromatch</h1>
             </Header>
             <hr />
+            <div>
+                {mapLista}
+            </div>
         </Container>
     )
 }

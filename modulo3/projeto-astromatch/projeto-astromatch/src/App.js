@@ -2,6 +2,7 @@ import TelaInicial from './Components/TelaInicial'
 import TelaMatch from './Components/TelaMatch'
 import { createGlobalStyle } from 'styled-components';
 import {useState} from 'react'
+import axios from 'axios';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -34,13 +35,24 @@ function App() {
   const irParaInicio = () =>{
     setPagina("TelaInicial")
   }
+
+  // --------------- LIMPAR --------------
+const clear = () =>{
+  axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/clear').then(()=>{
+      console.log('limpou')
+  }).catch((error)=>{
+      console.log(error.response)
+  })
+
+}
   
   return (
     <div >
      <GlobalStyle/>
-     {/* <TelaInicial/> */}
-     {/* <TelaMatch/> */}
     {mudarDePagina()}
+    <div>
+    <button onClick={clear}>Limpar</button>
+    </div>
     </div>
   );
 }
