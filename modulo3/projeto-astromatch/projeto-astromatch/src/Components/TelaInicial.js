@@ -103,7 +103,7 @@ function TelaInicial(props) {
     const getProfileToChoose = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/person').then((res) => {
             console.log("certo", res.data.profile)
-            setPessoa(res.data.profile || {})
+            setPessoa(res.data.profile || "Carregando...")
         }).catch((error) => { console.log("error", error.response) })
     }
 
