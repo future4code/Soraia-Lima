@@ -11,7 +11,7 @@ left: 50%;
 transform: translate(-50%, -50%);
 border: 1px solid black;
 border-radius: 5px;
-overflow: auto;
+overflow: auto; // colocar barra de rolagem, quando o map ultrapassar o tamanho da página
 button{
     cursor:pointer;
 }`
@@ -85,7 +85,7 @@ function TelaMatch(props) {
             </Header>
             <hr />
             <div>
-                {mapLista}
+                {listaDeMatch.length > 0 ?  <div>{mapLista}</div> : <p>sem nada :(</p> }
             </div>
         </Container>
     )

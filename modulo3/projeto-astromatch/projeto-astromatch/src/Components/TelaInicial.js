@@ -103,7 +103,7 @@ function TelaInicial(props) {
     const getProfileToChoose = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/person').then((res) => {
             console.log("certo", res.data.profile)
-            setPessoa(res.data.profile || "Carregando...")
+            setPessoa(res.data.profile)
         }).catch((error) => { console.log("error", error.response) })
     }
 
@@ -135,7 +135,7 @@ function TelaInicial(props) {
     //     })
     // }
 
-
+console.log(pessoa)
 
     return (
         <Container>
@@ -143,6 +143,7 @@ function TelaInicial(props) {
                 <h1>astromatch</h1> <button onClick={props.irParaMatch}>Match</button>
             </Header>
             <hr />
+            {/* {pessoa.length > 0 ?  : <p>Carerregando...</p> } */}
             <Infomacoes>
                 <img src={pessoa.photo} alt={pessoa.name} />
                 <div>
@@ -150,6 +151,7 @@ function TelaInicial(props) {
                     <p>{pessoa.bio}</p>
                 </div>
             </Infomacoes>
+            
             <div>
                 <BotaoX onClick={() => { choosePerson(false) }}>X</BotaoX>
                 <BotaoCoracao onClick={() => { choosePerson(true) }}>♥</BotaoCoracao>

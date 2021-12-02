@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import {useState} from 'react'
 import axios from 'axios';
 
+
 const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
@@ -53,6 +54,7 @@ const clear = () =>{
     <div>
     <button onClick={clear}>Limpar</button>
     </div>
+    
     </div>
   );
 }
