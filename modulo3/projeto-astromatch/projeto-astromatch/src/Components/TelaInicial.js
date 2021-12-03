@@ -16,7 +16,6 @@ h1{
 
 @media screen and  (max-device-width : 667px) {
 h1{
-    /* margin-left:17%; */
     font-size:30px;}
 }
 `
@@ -28,7 +27,7 @@ const SegundaPalavra = styled.span`
 color: purple;`
 
 const Container = styled.div`
-min-width: 400px;
+width: 400px;
 height: 600px;
 position: fixed;
 top: 50%;
@@ -61,6 +60,13 @@ div{
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     border-radius:5px;
 }
+@media screen and  (max-device-width : 667px) {
+    
+    div{
+        width: 80vw;
+        margin-left: 9vw;
+    }
+    }
     
 `
 
@@ -74,8 +80,8 @@ box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
 
 @media screen and  (max-device-width : 667px) {
     height: 70vh;
-    width: 70vw;
-    
+    width: 85vw;
+    margin-left:1vw;
     }
 `
 
@@ -134,7 +140,6 @@ function TelaInicial(props) {
     // ----------------- VER NOVAS PESSOAS --------------------
     const getProfileToChoose = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/person').then((res) => {
-            console.log("certo", res.data.profile)
             setPessoa(res.data.profile || {})
         }).catch((error) => { console.log("error", error.response) })
     }
@@ -149,17 +154,16 @@ function TelaInicial(props) {
         axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/choose-person', bady).then(() => {
             getProfileToChoose()
         }).catch((error) => {
-            console.log(error.response)
+            alert(error.response)
         })
     }
 
     // --------------- LIMPAR --------------
     const clear = () => {
         axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/clear').then(() => {
-            console.log('limpou')
             getProfileToChoose()
         }).catch((error) => {
-            console.log(error.response)
+            alert(error.response)
         })
     }
 

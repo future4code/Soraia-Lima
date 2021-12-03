@@ -60,12 +60,12 @@ margin-bottom:1vh;
 align-items: center;
 margin-top:3%;
 
-img{
+/* img{
     width: 60px;
     height: 58px;
     border-radius: 50%;
     margin-left:0.7vw;
-}
+} */
 
 p{
     margin-left:1vw;
@@ -83,6 +83,15 @@ p{
     font-size:16px;
 }
 }`
+
+const Imagem = styled.div`
+background-image: url(${props => props.imagem});
+background-size: cover;
+border-radius: 50%;
+width: 60px;
+height: 60px;
+margin-left: 1vw;
+`
 
 const Recarregar = styled.img`
 width:40px;
@@ -118,17 +127,16 @@ function TelaMatch(props) {
 
     const mapLista = listaDeMatch.map((item) => {
         return <Matchs key={item.id}>
-            <img src={item.photo} alt={item.name} /> <p>{item.name}</p>
+            <Imagem imagem={item.photo} alt={item.name} /> <p>{item.name}</p>
         </Matchs>
     })
 
     // --------------- LIMPAR --------------
     const clear = () => {
         axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/clear').then(() => {
-            console.log('limpou')
             getMatches()
         }).catch((error) => {
-            console.log(error.response)
+            alert(error.response)
         })
     }
 

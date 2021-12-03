@@ -1,6 +1,5 @@
 import RingLoader from "react-spinners/RingLoader";
 import styled from "styled-components";
-import { useState } from "react";
 
 const Container = styled.div`  
 display: flex;
@@ -11,11 +10,9 @@ margin-top: 50%;
 `
 
 function Loading() {
-    const [carregando] = useState(true)
     return (
         <Container>
             <RingLoader
-                carregando={carregando}
                 color="#993399"
                 size={60}
             />
