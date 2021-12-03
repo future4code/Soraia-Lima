@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Loading from "./Loading";
 
@@ -11,22 +10,18 @@ margin-top:2%;
 margin-bottom:2%;
 align-items: center;
 
-button{
-    width:35px;
-    height:30px;
-    background-color: white;
-    border: 0.5px solid purple;
-    margin-right:5px;
-    border-radius:50%;
-    &:hover{
-    background-color: purple;}
-}
 h1{
     font-size:37px;
 }
+
+@media screen and  (max-device-width : 667px) {
+h1{
+    /* margin-left:17%; */
+    font-size:30px;}
+}
 `
 
-const Letra = styled.span`
+const PrimeiraPlavra = styled.span`
 color: teal;`
 
 const SegundaPalavra = styled.span`
@@ -48,6 +43,11 @@ div{
 button{
     cursor:pointer;
 }
+
+@media screen and  (max-device-width : 667px) {
+    height: 95%;
+    width: 95%;
+    }
 `
 const Infomacoes = styled.div`
 div{
@@ -61,15 +61,22 @@ div{
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     border-radius:5px;
 }
+    
 `
 
-const ImgCard =styled.img`
-    width: 365px;
-    height:445px;
-    margin-top: 10px;
-    box-shadow: rgb(205 205 205 / 90%) 5px 5px 10px 5px;
-    border-radius:5px;
-    box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
+const ImgCard = styled.img`
+width: 365px;
+height:445px;
+margin-top: 10px;
+box-shadow: rgb(205 205 205 / 90%) 5px 5px 10px 5px;
+border-radius:5px;
+box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
+
+@media screen and  (max-device-width : 667px) {
+    height: 70vh;
+    width: 70vw;
+    
+    }
 `
 
 const BotaoCoracao = styled.button`
@@ -85,8 +92,7 @@ position: relative;
 &:hover{
     background-color: green;
     color: white;
-}
-`
+}`
 
 const BotaoX = styled.button`
 border-radius: 50%;
@@ -101,8 +107,8 @@ position: relative;
 &:hover{
     background-color: red;
     color: white;
-}
-`
+}`
+
 const Recarregar = styled.img`
 width:40px;
 height:35px;
@@ -123,6 +129,7 @@ function TelaInicial(props) {
     useEffect(() => {
         getProfileToChoose()
     }, [])
+
 
     // ----------------- VER NOVAS PESSOAS --------------------
     const getProfileToChoose = () => {
@@ -146,11 +153,21 @@ function TelaInicial(props) {
         })
     }
 
+    // --------------- LIMPAR --------------
+    const clear = () => {
+        axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/clear').then(() => {
+            console.log('limpou')
+            getProfileToChoose()
+        }).catch((error) => {
+            console.log(error.response)
+        })
+    }
+
     return (
         <Container>
             <Header>
-            <Recarregar src="https://cdn-icons-png.flaticon.com/512/1998/1998534.png" alt="Recarregar..." onClick={props.clear} />
-                <h1><Letra>astro</Letra><SegundaPalavra>match</SegundaPalavra></h1> <DeuMatch onClick={props.irParaMatch} src="https://media.istockphoto.com/vectors/user-group-icon-vector-line-art-outline-persons-team-silhouette-with-vector-id1069729916?k=20&m=1069729916&s=170667a&w=0&h=HG8U5zkoKNjkk_sXMPpmR6IJi0e-JffPhFxfr9YAvTM=" alt="Deu Match"/>
+                <Recarregar src="https://cdn-icons-png.flaticon.com/512/1998/1998534.png" alt="Recarregar..." onClick={clear} />
+                <h1><PrimeiraPlavra>astro</PrimeiraPlavra><SegundaPalavra>match</SegundaPalavra></h1> <DeuMatch onClick={props.irParaMatch} src="https://media.istockphoto.com/vectors/user-group-icon-vector-line-art-outline-persons-team-silhouette-with-vector-id1069729916?k=20&m=1069729916&s=170667a&w=0&h=HG8U5zkoKNjkk_sXMPpmR6IJi0e-JffPhFxfr9YAvTM=" alt="Deu Match" />
             </Header>
             <hr />
             {pessoa.name ?

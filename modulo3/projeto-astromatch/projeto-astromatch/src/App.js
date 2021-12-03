@@ -1,9 +1,7 @@
 import TelaInicial from './Components/TelaInicial'
 import TelaMatch from './Components/TelaMatch'
 import { createGlobalStyle } from 'styled-components';
-import {useState} from 'react'
-import axios from 'axios';
-
+import { useState } from 'react'
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -14,48 +12,35 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
-  const [pagina, setPagina] = useState ("TelaInicial")
+  const [pagina, setPagina] = useState("TelaInicial")
 
-  const mudarDePagina = () =>{
+  const mudarDePagina = () => {
 
     switch (pagina) {
       case "TelaInicial":
         return <TelaInicial
-        irParaMatch={irParaMatch}
-        clear={clear}
+          irParaMatch={irParaMatch}
         />
       case "TelaMatch":
         return <TelaMatch
-        irParaInicio={irParaInicio}
-        clear={clear}
+          irParaInicio={irParaInicio}
         />
       default:
         return <div>Erro! Tela não enontrada</div>
     }
   }
 
-  const irParaMatch = () =>{
+  const irParaMatch = () => {
     setPagina("TelaMatch")
   }
-  const irParaInicio = () =>{
+  const irParaInicio = () => {
     setPagina("TelaInicial")
   }
 
-  // --------------- LIMPAR --------------
-const clear = () =>{
-  axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/clear').then(()=>{
-      console.log('limpou')
-  }).catch((error)=>{
-      console.log(error.response)
-  })
-
-}
-  
   return (
     <div >
-     <GlobalStyle/>
-    {mudarDePagina()}
-    {/* <button onClick={clear}>Limpar</button> */}
+      <GlobalStyle />
+      {mudarDePagina()}
     </div>
   );
 }
