@@ -21,10 +21,14 @@ function App() {
     switch (pagina) {
       case "TelaInicial":
         return <TelaInicial
-        irParaMatch={irParaMatch}/>
+        irParaMatch={irParaMatch}
+        clear={clear}
+        />
       case "TelaMatch":
         return <TelaMatch
-        irParaInicio={irParaInicio}/>
+        irParaInicio={irParaInicio}
+        clear={clear}
+        />
       default:
         return <div>Erro! Tela não enontrada</div>
     }
@@ -51,10 +55,7 @@ const clear = () =>{
     <div >
      <GlobalStyle/>
     {mudarDePagina()}
-    <div>
-    <button onClick={clear}>Limpar</button>
-    </div>
-    
+    {/* <button onClick={clear}>Limpar</button> */}
     </div>
   );
 }

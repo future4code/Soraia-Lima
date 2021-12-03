@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import Loading from "./Loading";
 
 const Header = styled.header`
 display: flex;
@@ -10,15 +11,26 @@ margin-top:2%;
 margin-bottom:2%;
 align-items: center;
 
-h1{
-    margin-left:30%;
-}
-
 button{
-    width:50px;
+    width:35px;
     height:30px;
+    background-color: white;
+    border: 0.5px solid purple;
+    margin-right:5px;
+    border-radius:50%;
+    &:hover{
+    background-color: purple;}
+}
+h1{
+    font-size:37px;
 }
 `
+
+const Letra = styled.span`
+color: teal;`
+
+const SegundaPalavra = styled.span`
+color: purple;`
 
 const Container = styled.div`
 min-width: 400px;
@@ -29,15 +41,6 @@ left: 50%;
 transform: translate(-50%, -50%);
 border: 1px solid black;
 border-radius: 5px;
-
-img{
-    width: 365px;
-    height:450px;
-    margin-top: 10px;
-    box-shadow: rgb(205 205 205 / 90%) 5px 5px 10px 5px;
-    border-radius:5px;
-    box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
-}
 
 div{
     text-align:center;
@@ -51,18 +54,28 @@ div{
     display:flex;
     flex-direction:column;
     position:fixed;
-    margin-top:-80px;
+    margin-top:-73px;
     color: white;
     width:85%;
     margin-left:2vw;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    border-radius:5px;
 }
+`
+
+const ImgCard =styled.img`
+    width: 365px;
+    height:445px;
+    margin-top: 10px;
+    box-shadow: rgb(205 205 205 / 90%) 5px 5px 10px 5px;
+    border-radius:5px;
+    box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
 `
 
 const BotaoCoracao = styled.button`
 border-radius: 50%;
-width: 80px;
-height: 80px;
+width: 75px;
+height: 72px;
 border: 1px solid green;
 color: green;
 font-size: 50px;
@@ -77,8 +90,8 @@ position: relative;
 
 const BotaoX = styled.button`
 border-radius: 50%;
-width: 80px;
-height: 80px;
+width: 75px;
+height: 72px;
 border: 1px solid red;
 color: red;
 font-size: 50px;
@@ -90,73 +103,72 @@ position: relative;
     color: white;
 }
 `
+const Recarregar = styled.img`
+width:40px;
+height:35px;
+margin-left:10px;
+cursor:pointer;
+`
+
+const DeuMatch = styled.img`
+width:55px;
+height:50px;
+cursor:pointer;
+`
 
 function TelaInicial(props) {
     const [pessoa, setPessoa] = useState({})
 
-//---------------------- RENDERIZAÇÃO --------------------
+    //---------------------- RENDERIZAÇÃO --------------------
     useEffect(() => {
         getProfileToChoose()
     }, [])
 
-// ----------------- VER NOVAS PESSOAS --------------------
+    // ----------------- VER NOVAS PESSOAS --------------------
     const getProfileToChoose = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/person').then((res) => {
             console.log("certo", res.data.profile)
-            setPessoa(res.data.profile)
+            setPessoa(res.data.profile || {})
         }).catch((error) => { console.log("error", error.response) })
     }
 
-//--------------------- DAR MATCH ------------------
+    //--------------------- DAR MATCH ------------------
 
     const choosePerson = (oii) => {
         const bady = {
             id: pessoa.id,
             choice: oii
         }
-        axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/choose-person', bady).then((res) => {
-            console.log("match ok", res.data)
+        axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/choose-person', bady).then(() => {
             getProfileToChoose()
         }).catch((error) => {
             console.log(error.response)
         })
     }
 
-    // const choosePerson2 = () =>{
-    //     const bady ={
-    //         id: pessoa.id,
-    //         choice: false
-    //     }
-    //     axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/choose-person', bady).then((res)=>{
-    //         console.log(" não match ",res.data)
-    //         getProfileToChoose()
-    //     }).catch((error)=>{
-    //         console.log(error.response)
-    //     })
-    // }
-
-console.log(pessoa)
-
     return (
         <Container>
             <Header>
-                <h1>astromatch</h1> <button onClick={props.irParaMatch}>Match</button>
+            <Recarregar src="https://cdn-icons-png.flaticon.com/512/1998/1998534.png" alt="Recarregar..." onClick={props.clear} />
+                <h1><Letra>astro</Letra><SegundaPalavra>match</SegundaPalavra></h1> <DeuMatch onClick={props.irParaMatch} src="https://media.istockphoto.com/vectors/user-group-icon-vector-line-art-outline-persons-team-silhouette-with-vector-id1069729916?k=20&m=1069729916&s=170667a&w=0&h=HG8U5zkoKNjkk_sXMPpmR6IJi0e-JffPhFxfr9YAvTM=" alt="Deu Match"/>
             </Header>
             <hr />
-            {/* {pessoa.length > 0 ?  : <p>Carerregando...</p> } */}
-            <Infomacoes>
-                <img src={pessoa.photo} alt={pessoa.name} />
+            {pessoa.name ?
                 <div>
-                    <h2>{`${pessoa.name}, ${pessoa.age}`}</h2>
-                    <p>{pessoa.bio}</p>
+                    <Infomacoes>
+                        <ImgCard src={pessoa.photo} alt={pessoa.name} />
+                        <div>
+                            <h2>{`${pessoa.name}, ${pessoa.age}`}</h2>
+                            <p>{pessoa.bio}</p>
+                        </div>
+                    </Infomacoes>
+                    <div>
+                        <BotaoX onClick={() => { choosePerson(false) }}>X</BotaoX>
+                        <BotaoCoracao onClick={() => { choosePerson(true) }}>♥</BotaoCoracao>
+                    </div>
                 </div>
-            </Infomacoes>
-            
-            <div>
-                <BotaoX onClick={() => { choosePerson(false) }}>X</BotaoX>
-                <BotaoCoracao onClick={() => { choosePerson(true) }}>♥</BotaoCoracao>
-            </div>
-
+                :
+                <Loading />}
         </Container>
     )
 }

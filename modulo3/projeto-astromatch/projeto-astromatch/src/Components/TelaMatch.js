@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Loading from "./Loading";
 
 const Container = styled.div`
 width: 400px;
@@ -24,13 +25,24 @@ align-items: center;
 
 h1{
     margin-left:19%;
+    color: purple;
+    font-size:37px;
 }
 
-button{
-    width:50px;
-    height:30px;
-}
 `
+const VoltarHome = styled.img`
+    width:32px;
+    height:30px;
+    background-color: white;
+    margin-left: 5px;
+    cursor:pointer;`
+
+const PrimeiraPalavra = styled.span`
+color: teal;`
+
+const SegundaPalavra = styled.span`
+color: purple;`
+
 const Matchs = styled.div`
 display: flex;
 flex-direction: row;
@@ -39,17 +51,23 @@ align-items: center;
 margin-top:3%;
 
 img{
-    width: 64px;
-    height: 55px;
+    width: 60px;
+    height: 58px;
     border-radius: 50%;
-    margin-left:1vw;
-    
+    margin-left:0.7vw;
 }
 
 p{
     margin-left:1vw;
     font-size:19px;
 }`
+
+const Recarregar = styled.img`
+width:40px;
+height:35px;
+margin-left:63px;
+cursor:pointer;
+`
 
 function TelaMatch(props) {
 
@@ -66,6 +84,9 @@ function TelaMatch(props) {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/matches').then((res) => {
             // const novaLista = [...listaDeMatch, res.data.matches]
             setListaDeMatch(res.data.matches)
+           
+            
+
 
         }).catch((error) => {
             alert('Ah que pena, aconteceu algo errado, por favor, tente mais tarde :(', error.response)
@@ -81,11 +102,11 @@ function TelaMatch(props) {
     return (
         <Container>
             <Header>
-                <button onClick={props.irParaInicio} >Voltar</button><h1>astromatch</h1>
+                <VoltarHome src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwkLvzSK9DWD-GXdcl0-Ukej2N0GGDl-QIfOn6-zQFg-GEiEWHFg7w1vHrTquMpZBiRxE&usqp=CAU" alt="Voltar para home" onClick={props.irParaInicio}/><h1><PrimeiraPalavra>astro</PrimeiraPalavra><SegundaPalavra>match</SegundaPalavra></h1> <Recarregar src="https://cdn-icons-png.flaticon.com/512/1998/1998534.png" alt="Recarregar..." onClick={props.clear} />
             </Header>
             <hr />
             <div>
-                {listaDeMatch.length > 0 ?  <div>{mapLista}</div> : <p>sem nada :(</p> }
+                {listaDeMatch.length > 0 ? <div>{mapLista}</div> : <h4>Você ainda não possui nenhum match 😢 </h4>}
             </div>
         </Container>
     )
