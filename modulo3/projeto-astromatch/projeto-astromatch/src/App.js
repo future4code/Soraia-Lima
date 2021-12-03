@@ -7,15 +7,12 @@ const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
   padding:0;
-}
-
-`
+}`
 
 function App() {
   const [pagina, setPagina] = useState("TelaInicial")
 
   const mudarDePagina = () => {
-
     switch (pagina) {
       case "TelaInicial":
         return <TelaInicial

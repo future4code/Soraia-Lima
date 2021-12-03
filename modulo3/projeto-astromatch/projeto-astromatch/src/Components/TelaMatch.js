@@ -12,6 +12,7 @@ transform: translate(-50%, -50%);
 border: 1px solid black;
 border-radius: 5px;
 overflow: auto; // colocar barra de rolagem, quando o map ultrapassar o tamanho da página
+
 button{
     cursor:pointer;
 }
@@ -19,8 +20,7 @@ button{
     height: 95%;
     width: 95%;
     text-align: center;
-}
-`
+}`
 
 const Header = styled.div`
 display: flex;
@@ -41,11 +41,11 @@ h1{
 }`
 
 const VoltarHome = styled.img`
-    width:32px;
-    height:30px;
-    background-color: white;
-    margin-left: 5px;
-    cursor:pointer;`
+width:32px;
+height:30px;
+background-color: white;
+margin-left: 5px;
+cursor:pointer;`
 
 const PrimeiraPalavra = styled.span`
 color: teal;`
@@ -59,13 +59,6 @@ flex-direction: row;
 margin-bottom:1vh;
 align-items: center;
 margin-top:3%;
-
-/* img{
-    width: 60px;
-    height: 58px;
-    border-radius: 50%;
-    margin-left:0.7vw;
-} */
 
 p{
     margin-left:1vw;
@@ -106,9 +99,7 @@ margin-top: 50%;
 margin-left: 7%;
 `
 
-
 function TelaMatch(props) {
-
     const [listaDeMatch, setListaDeMatch] = useState([])
 
     // -------------- RENDERIZAÇÃO -----------------

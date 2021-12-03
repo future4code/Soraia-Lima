@@ -17,8 +17,7 @@ h1{
 @media screen and  (max-device-width : 667px) {
 h1{
     font-size:30px;}
-}
-`
+}`
 
 const PrimeiraPlavra = styled.span`
 color: teal;`
@@ -60,16 +59,12 @@ div{
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     border-radius:5px;
 }
-@media screen and  (max-device-width : 667px) {
-    
-    div{
-        width: 80vw;
-        margin-left: 9vw;
-    }
-    }
-    
-`
-
+@media screen and  (max-device-width : 667px) {   
+div{
+    width: 80vw;
+    margin-left: 9vw;
+}
+}`
 const ImgCard = styled.img`
 width: 365px;
 height:445px;
@@ -79,10 +74,10 @@ border-radius:5px;
 box-sizing: rgb(255 255 255 / 90%) 50px 50px 50px 50px;
 
 @media screen and  (max-device-width : 667px) {
-    height: 70vh;
-    width: 85vw;
-    margin-left:1vw;
-    }
+height: 70vh;
+width: 85vw;
+margin-left:1vw;
+}
 `
 
 const BotaoCoracao = styled.button`
@@ -136,7 +131,6 @@ function TelaInicial(props) {
         getProfileToChoose()
     }, [])
 
-
     // ----------------- VER NOVAS PESSOAS --------------------
     const getProfileToChoose = () => {
         axios.get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/person').then((res) => {
@@ -145,7 +139,6 @@ function TelaInicial(props) {
     }
 
     //--------------------- DAR MATCH ------------------
-
     const choosePerson = (oii) => {
         const bady = {
             id: pessoa.id,
