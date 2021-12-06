@@ -1,9 +1,18 @@
 import axios from "axios";
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> da1c8b8a7fd9af64d7f397b2d3269e085e766a1a
 import styled from "styled-components";
 import Loading from "./Loading";
 
+<<<<<<< HEAD
 const Header = styled.header`
+=======
+
+const Header = styled.div`
+>>>>>>> da1c8b8a7fd9af64d7f397b2d3269e085e766a1a
 display: flex;
 justify-content: space-between;
 margin-top:2%;
@@ -124,10 +133,29 @@ cursor:pointer;
 `
 
 function TelaInicial(props) {
+<<<<<<< HEAD
     const [pessoa, setPessoa] = useState({})
     
     //---------------------- RENDERIZAÇÃO --------------------
     useEffect(() => {
+=======
+
+
+    const [pessoa, setPessoa] = useState([])
+
+    // ------------------------VISUALIZAR NOVAS PESSOAS ---------
+    const getProfileToChoose =() =>{
+        axios.get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima-carver/person`).then((res) =>{
+            console.log("certo",res.data.profile)
+            setPessoa(res.data.profile)
+        }).catch((error)=>{
+            console.log("erro",error.response.data)
+        })
+    }
+    
+
+    useEffect(()=>{
+>>>>>>> da1c8b8a7fd9af64d7f397b2d3269e085e766a1a
         getProfileToChoose()
     }, [])
 
@@ -151,6 +179,7 @@ function TelaInicial(props) {
         })
     }
 
+<<<<<<< HEAD
     // --------------- LIMPAR --------------
     const clear = () => {
         axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/soraia-lima/clear').then(() => {
@@ -159,6 +188,11 @@ function TelaInicial(props) {
             alert(error.response)
         })
     }
+=======
+
+    console.log("PESSOA",pessoa)
+
+>>>>>>> da1c8b8a7fd9af64d7f397b2d3269e085e766a1a
 
     return (
         <Container>
@@ -167,6 +201,7 @@ function TelaInicial(props) {
                 <h1><PrimeiraPlavra>astro</PrimeiraPlavra><SegundaPalavra>match</SegundaPalavra></h1> <DeuMatch onClick={props.irParaMatch} src="https://media.istockphoto.com/vectors/user-group-icon-vector-line-art-outline-persons-team-silhouette-with-vector-id1069729916?k=20&m=1069729916&s=170667a&w=0&h=HG8U5zkoKNjkk_sXMPpmR6IJi0e-JffPhFxfr9YAvTM=" alt="Deu Match" />
             </Header>
             <hr />
+<<<<<<< HEAD
             {pessoa.name ?
                 <div>
                     <Infomacoes>
@@ -183,6 +218,15 @@ function TelaInicial(props) {
                 </div>
                 :
                 <Loading />}
+=======
+            <div>
+                <img src="" alt="imagem" />
+            </div>
+            <div>
+                <BotaoX onClick={clicouBotaoX}>X</BotaoX>
+                <BotaoCoracao onClick={clicouBotao}>♥</BotaoCoracao>
+            </div>
+>>>>>>> da1c8b8a7fd9af64d7f397b2d3269e085e766a1a
         </Container>
     )
 }
