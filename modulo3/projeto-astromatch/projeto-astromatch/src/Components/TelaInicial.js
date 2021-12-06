@@ -125,7 +125,7 @@ cursor:pointer;
 
 function TelaInicial(props) {
     const [pessoa, setPessoa] = useState({})
-
+    
     //---------------------- RENDERIZAÇÃO --------------------
     useEffect(() => {
         getProfileToChoose()
