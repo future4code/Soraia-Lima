@@ -1,13 +1,33 @@
 import{Container, Inscrever} from '../styles'
 import { useHistory } from "react-router-dom";
+import {useState} from "react"
 
 function ApplicationFormPage () {
-
+	//--------------------state----------------
+	const [nome, setNome] = useState("")
+    const [idade, setIdade] = useState("")
+    const [candidatura, setCandidatura] = useState("")
+    const [profissao, setProfissao] = useState("")
+	
     const history = useHistory()
 
     const voltarVerViagens = () => {
         history.goBack()
     }
+// ------------------------- FUNCÃO DOS INPUTS -------------------
+	const inputNome = (e) => {
+        setNome(e.target.value)
+    }
+    const inputIdade = (e) => {
+        setIdade(e.target.value)
+    }
+    const inputCandidatura = (e) => {
+        setCandidatura(e.target.value)
+    }
+    const inputProfissao = (e) => {
+        setProfissao(e.target.value)
+    }
+	
     
     return (
         <Container>
@@ -23,22 +43,22 @@ function ApplicationFormPage () {
             </select>
             <input 
                 placeholder={"Idade"}
-                value={""}
-                onChange={""}/>
+                value={idade}
+                onChange={inputIdade}/>
             <input
                 placeholder={"Nome"}
-                value={""}
-                onChange={""}/>
+                value={nome}
+                onChange={inputNome}/>
             <input
                 placeholder={"Texto da candidatura"}
-                value={""}
-                onChange={""}/>
+                value={candidatura}
+                onChange={inputCandidatura}/>
             <input
                 placeholder={"Profissão"}
-                value={""}
-                onChange={""}/>
+                value={profissao}
+                onChange={inputProfissao}/>
             <select>
-                <option value disabled selected>Escolha um País</option>        
+				<option value disabled selected>Escolha um País</option>        
 	            <option value="Afeganistão">Afeganistão</option>
 	            <option value="África do Sul">África do Sul</option>
 	            <option value="Albânia">Albânia</option>
@@ -92,56 +112,56 @@ function ApplicationFormPage () {
 	            <option value="Costa do Marfim">Costa do Marfim</option>
 	            <option value="Costa Rica">Costa Rica</option>
 	            <option value="Croácia">Croácia</option>
-	<option value="Cuba">Cuba</option>
-	<option value="Dinamarca">Dinamarca</option>
-	<option value="Djibouti">Djibouti</option>
-	<option value="Dominica">Dominica</option>
-	<option value="Egito">Egito</option>
-	<option value="El Salvador">El Salvador</option>
-	<option value="Emirados Árabes Unidos">Emirados Árabes Unidos</option>
-	<option value="Equador">Equador</option>
-	<option value="Eritreia">Eritreia</option>
-	<option value="Escócia">Escócia</option>
-	<option value="Eslováquia">Eslováquia</option>
-	<option value="Eslovênia">Eslovênia</option>
-	<option value="Espanha">Espanha</option>
-	<option value="Estados Federados da Micronésia">Estados Federados da Micronésia</option>
-	<option value="Estados Unidos">Estados Unidos</option>
-	<option value="Estônia">Estônia</option>
-	<option value="Etiópia">Etiópia</option>
-	<option value="Fiji">Fiji</option>
-	<option value="Filipinas">Filipinas</option>
-	<option value="Finlândia">Finlândia</option>
-	<option value="França">França</option>
-	<option value="Gabão">Gabão</option>
-	<option value="Gana">Gana</option>
-	<option value="Geórgia">Geórgia</option>
-	<option value="Gibraltar">Gibraltar</option>
-	<option value="Granada">Granada</option>
-	<option value="Gronelândia">Gronelândia</option>
-	<option value="Grécia">Grécia</option>
-	<option value="Guadalupe">Guadalupe</option>
-	<option value="Guam">Guam</option>
-	<option value="Guatemala">Guatemala</option>
-	<option value="Guernesei">Guernesei</option>
-	<option value="Guiana">Guiana</option>
-	<option value="Guiana Francesa">Guiana Francesa</option>
-	<option value="Guiné">Guiné</option>
-	<option value="Guiné Equatorial">Guiné Equatorial</option>
-	<option value="Guiné-Bissau">Guiné-Bissau</option>
-	<option value="Gâmbia">Gâmbia</option>
-	<option value="Haiti">Haiti</option>
-	<option value="Honduras">Honduras</option>
-	<option value="Hong Kong">Hong Kong</option>
-	<option value="Hungria">Hungria</option>
-	<option value="Ilha Bouvet">Ilha Bouvet</option>
-	<option value="Ilha de Man">Ilha de Man</option>
-	<option value="Ilha do Natal">Ilha do Natal</option>
-	<option value="Ilha Heard e Ilhas McDonald">Ilha Heard e Ilhas McDonald</option>
-	<option value="Ilha Norfolk">Ilha Norfolk</option>
-	<option value="Ilhas Cayman">Ilhas Cayman</option>
-	<option value="Ilhas Cocos (Keeling)">Ilhas Cocos (Keeling)</option>
-	<option value="Ilhas Cook">Ilhas Cook</option>
+				<option value="Cuba">Cuba</option>
+				<option value="Dinamarca">Dinamarca</option>
+				<option value="Djibouti">Djibouti</option>
+				<option value="Dominica">Dominica</option>
+				<option value="Egito">Egito</option>
+				<option value="El Salvador">El Salvador</option>
+				<option value="Emirados Árabes Unidos">Emirados Árabes Unidos</option>
+				<option value="Equador">Equador</option>
+				<option value="Eritreia">Eritreia</option>
+				<option value="Escócia">Escócia</option>
+				<option value="Eslováquia">Eslováquia</option>
+				<option value="Eslovênia">Eslovênia</option>
+				<option value="Espanha">Espanha</option>
+				<option value="Estados Federados da Micronésia">Estados Federados da Micronésia</option>
+				<option value="Estados Unidos">Estados Unidos</option>
+				<option value="Estônia">Estônia</option>
+				<option value="Etiópia">Etiópia</option>
+				<option value="Fiji">Fiji</option>
+				<option value="Filipinas">Filipinas</option>
+				<option value="Finlândia">Finlândia</option>
+				<option value="França">França</option>
+				<option value="Gabão">Gabão</option>
+				<option value="Gana">Gana</option>
+				<option value="Geórgia">Geórgia</option>
+				<option value="Gibraltar">Gibraltar</option>
+				<option value="Granada">Granada</option>
+				<option value="Gronelândia">Gronelândia</option>
+				<option value="Grécia">Grécia</option>
+				<option value="Guadalupe">Guadalupe</option>
+				<option value="Guam">Guam</option>
+				<option value="Guatemala">Guatemala</option>
+				<option value="Guernesei">Guernesei</option>
+				<option value="Guiana">Guiana</option>
+				<option value="Guiana Francesa">Guiana Francesa</option>
+				<option value="Guiné">Guiné</option>
+				<option value="Guiné Equatorial">Guiné Equatorial</option>
+				<option value="Guiné-Bissau">Guiné-Bissau</option>
+				<option value="Gâmbia">Gâmbia</option>
+				<option value="Haiti">Haiti</option>
+				<option value="Honduras">Honduras</option>
+				<option value="Hong Kong">Hong Kong</option>
+				<option value="Hungria">Hungria</option>
+				<option value="Ilha Bouvet">Ilha Bouvet</option>
+				<option value="Ilha de Man">Ilha de Man</option>
+				<option value="Ilha do Natal">Ilha do Natal</option>
+				<option value="Ilha Heard e Ilhas McDonald">Ilha Heard e Ilhas McDonald</option>
+				<option value="Ilha Norfolk">Ilha Norfolk</option>
+				<option value="Ilhas Cayman">Ilhas Cayman</option>
+				<option value="Ilhas Cocos (Keeling)">Ilhas Cocos (Keeling)</option>
+				<option value="Ilhas Cook">Ilhas Cook</option>
 	<option value="Ilhas Feroé">Ilhas Feroé</option>
 	<option value="Ilhas Geórgia do Sul e Sandwich do Sul">Ilhas Geórgia do Sul e Sandwich do Sul</option>
 	<option value="Ilhas Malvinas">Ilhas Malvinas</option>
@@ -288,10 +308,9 @@ function ApplicationFormPage () {
 	<option value="Vietname">Vietname</option>
 	<option value="Wallis e Futuna">Wallis e Futuna</option>
 	<option value="Zimbabwe">Zimbabwe</option>
-	<option value="Zâmbia">Zâmbia</option>
-	
+	<option value="Zâmbia">Zâmbia</option>     
             </select>
-            </form>
+        </form>
 
             <div>
             <button onClick={voltarVerViagens}>Voltar</button>
