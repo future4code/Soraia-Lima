@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import {useState} from "react"
 
 function CreateTripPage () {
+    //--------------------state----------------
     const [nome, setNome] = useState("")
     const [data, setData] = useState("")
     const [descricao, setDescricao] = useState("")
@@ -13,7 +14,7 @@ function CreateTripPage () {
     const voltarPainelAdm = () => {
         history.goBack()
     }
-
+// ------------------------- FUNCÃO DOS INPUTS -------------------
     const inputNome = (e) => {
         setNome(e.target.value)
     }
