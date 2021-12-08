@@ -139,9 +139,21 @@ box-shadow: rgb(0 0 0 / 30%) 0px 4px 8px 0px;
 padding: 10px 20px;
 border-radius: 4px;
 margin: 10px 450px;
-border-radius: 4px;
 
 button{
     width: 3vw;
     height:20px;
 }`
+
+export const InfoViagens = styled.div`
+box-shadow: rgb(0 0 0 / 30%) 0px 4px 8px 0px;
+padding: 10px 20px;
+border-radius: 4px;
+width: 40vw;
+height:30vh;
+margin: 10px 450px;
+p{
+    font-size:20px;
+    margin: 5px;
+}
+`

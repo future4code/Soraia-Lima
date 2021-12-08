@@ -32,7 +32,7 @@ const loguin =() =>{
         history.push("/admin-trips-list")
 
     }).catch((erro)=>{
-        console.log("Por gentileza, verifique todos os campos e tente novamente", erro.response)
+        alert("Por gentileza, verifique todos os campos e tente novamente", erro.response)
     })
 }
 

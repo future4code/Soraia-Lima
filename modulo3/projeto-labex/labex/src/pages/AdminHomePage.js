@@ -8,7 +8,6 @@ function AdminHomePage () {
 
     const voltarHome = () => {
         if(token === null){
-            console.log("Não está logado")
             history.push("/login")
         }else{
             history.push("/")
