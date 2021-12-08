@@ -1,14 +1,19 @@
 import { useEffect} from "react"
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 
 function useProtectedPage () {
-    const history = useHistory();
+    const history = useHistory()
+
     const token = localStorage.getItem("token")
 
     useEffect(()=>{
-        if(token === null){
-            console.log("Não está logado")
-            history.push("/login")
+        const loginAreaAdmin = () => {
+            if (token === null) {
+                console.log("Não está logado")
+                history.push("/login")
+            } else {
+                history.push("/admin-trips-list")
+            }
         }
     }, [])
     return(
