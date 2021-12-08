@@ -4,9 +4,15 @@ import { useHistory } from "react-router-dom";
 function AdminHomePage () {
 
     const history = useHistory()
+    const token = localStorage.getItem("token")
 
     const voltarHome = () => {
-        history.goBack()
+        if(token === null){
+            console.log("Não está logado")
+            history.push("/login")
+        }else{
+            history.push("/")
+        }
     }
 
     const paginaCriarViagem = () => {
