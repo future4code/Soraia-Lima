@@ -4,27 +4,20 @@ import { useHistory } from "react-router-dom";
 function HomePage() {
     const history = useHistory()
 
-    const paginaVerViagem = () => {
+    // PAG VER VIAGEM
+    const pageSeeTrip = () => {
         history.push("/trips/:list")
     }
-
-    const token = localStorage.getItem("token")
-
-    const loginAreaAdmin = () => {
-        if (token === null) {
-            console.log("Não está logado")
-            history.push("/login")
-        } else {
-            history.push("/admin-trips-list")
-        }
+    const areAdmin = () => {
+        history.push("/admin-trips-list")
     }
 
     return (
         <Container>
             <Home>
                 <h1>LabeX</h1>
-                <button onClick={paginaVerViagem}> Ver Viagens</button>
-                <button onClick={loginAreaAdmin}>Área de Admin</button>
+                <button onClick={pageSeeTrip}> Ver Viagens</button>
+                <button onClick={areAdmin}>Área de Admin</button>
             </Home>
         </Container>
     )

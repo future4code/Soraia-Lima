@@ -1,112 +1,39 @@
+// ----------------- INSCREVER-SE PARA UMA NOVA VIAGEM -----------
+
 import { Container, Inscrever } from '../styles'
 import { useHistory } from "react-router-dom";
-import { useState, useEffect } from "react"
-import { useResquestData } from '../hookes/getTrips';
+import { useResquestData } from '../hooks/useResquestData';
 import axios from 'axios';
+import useForm from '../hooks/useForm';
 
 function ApplicationFormPage() {
 
-    //--------------------state----------------
-    const [nome, setNome] = useState("")
-    const [idade, setIdade] = useState("")
-    const [candidatura, setCandidatura] = useState("")
-    const [profissao, setProfissao] = useState("")
-    const [pais, setPais] = useState("")
-    const [viagem2, setViagem2] = useState("")
+    const { form, onChange, cleanFields } = useForm({
+        name: "",
+        age: "",
+        applicationText: "",
+        profession: "",
+        country: "",
+        trip: ""
+    })
+
     const viagem = useResquestData()
-
-
     const history = useHistory()
-
     const voltarVerViagens = () => {
-        history.goBack()
+        history.push("/trips/:list")
     }
 
-    // ------------------------- FUNCÃO DOS INPUTS -------------------
-    const inputViagem = (e) => {
-        setViagem2(e.target.value)
-    }
-    const inputNome = (e) => {
-        setNome(e.target.value)
-    }
-    const inputIdade = (e) => {
-        setIdade(e.target.value)
-    }
-    const inputCandidatura = (e) => {
-        setCandidatura(e.target.value)
-    }
-    const inputProfissao = (e) => {
-        setProfissao(e.target.value)
-    }
-    const inputPais = (e) => {
-        setPais(e.target.value)
-    }
+    const enviarInscricao = (event) => {
+        event.preventDefault()
 
-    // const onChange = (e) =>{
-    //     switch(e.target.nome){
-    //         case 'nome':
-    //             setNome(e.target.value)
-    //             break;
-    //         case 'idade':
-    //             setIdade(e.target.value)
-    //             break
-    //         case 'candidatura':
-    //             setCandidatura(e.target.value)
-    //             break;
-    //         case 'profissao':
-    //             setProfissao(e.target.value)
-    //             break;
-    //         case 'pais':
-    //             setPais(e.target.value)
-    //             break;
-    //         case 'viagem2':
-    //             setViagem2(e.target.value)
-    //             break;
-
-    //         default:
-    //             alert("Verifique com o administrador!")
-    //     }
-    // }
-
-    // //------------------------------ VER TODAS VIAGENS --------------------
-    // const getTrips =() =>{
-    //     axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips').then((res)=>{
-    //         console.log(res.data.trips)
-    //         setViagem(res.data.trips)
-    //     }).catch((error)=>{
-    //         console.log(error.response)
-    //     })
-    // }
-
-    // useEffect(()=>{
-    //     getTrips()
-    // },[])
-
-
-
-    const enviarInscricao = () => {
-        const bady = {
-            name: nome,
-            age: idade,
-            applicationText: candidatura,
-            profession: profissao,
-            country: pais
-        }
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips/${viagem2}/apply`, bady).then((res) => {
-            console.log("Solicitação enviada com sucesso!", res.data)
-
+        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips/${form.country}/apply`, form).then((res) => {
+            alert("Solicitação enviada com sucesso!")
+            cleanFields()
         }).catch((error) => {
-            console.log("Solicitação não enviada, por gentileza, verificar todos os campos", error.response)
+            alert("Solicitação não enviada, por gentileza, verificar todos os campos e tentar novamente")
         })
     }
 
-    // const mapOptions = viagem.map((viagem) => {
-    // 	return (
-    // 		<option key={viagem.id} value={viagem.id}>
-    // 			{viagem.name}
-    // 		</option>
-    // 	)
-    // })
     const mapOpcoes = viagem.map((viagens) => {
 
         return (
@@ -116,33 +43,60 @@ function ApplicationFormPage() {
         )
     })
 
+    console.log(form)
     return (
         <Container>
             <Inscrever>
                 <h1> Inscrever-se para uma viagem </h1>
-                <form>
-                    <select onChange={inputViagem}>
+                <form onSubmit={enviarInscricao}>
+                    <select value={form.trip}
+                        onChange={onChange}
+                        name={"trip"}
+                        required>
                         <option selected disabled>Escolha uma viagem</option>
-
                         {mapOpcoes}
                     </select>
                     <input
                         placeholder={"Idade"}
-                        value={idade}
-                        onChange={inputIdade} />
+                        value={form.age}
+                        onChange={onChange}
+                        name={"age"}
+                        type={"number"}
+                        required
+                        min={18}
+                    />
                     <input
                         placeholder={"Nome"}
-                        value={nome}
-                        onChange={inputNome} />
+                        value={form.name}
+                        onChange={onChange}
+                        name={"name"}
+                        required
+                        pattern={"^.{3,}"}
+                        title={"O nome deve ter no mínimo 3 letras"}
+                    />
                     <input
                         placeholder={"Texto da candidatura"}
-                        value={candidatura}
-                        onChange={inputCandidatura} />
+                        value={form.applicationText}
+                        onChange={onChange}
+                        name={"applicationText"}
+                        required
+                        pattern={"^.{30,}"}
+                        title={"O texto deve ter no mínimo 30 caracteres"}
+                    />
                     <input
                         placeholder={"Profissão"}
-                        value={profissao}
-                        onChange={inputProfissao} />
-                    <select name="pais" value={pais} onChange={inputPais}>
+                        value={form.profession}
+                        onChange={onChange}
+                        name={"profession"}
+                        required
+                        pattern={"^.{10,}"}
+                        title={"O texto deve ter no mínimo 10 caracteres"}
+                    />
+                    <select name={"country"}
+                        value={form.country}
+                        onChange={onChange}
+                        required
+                    >
                         <option value disabled selected>Escolha uma País</option>
                         <option value="África do Sul">África do Sul</option>
                         <option value="Albânia">Albânia</option>
@@ -319,13 +273,13 @@ function ApplicationFormPage() {
                         <option value="Zâmbia">Zâmbia</option>
                         <option value="Zimbábue">Zimbábue</option>
                     </select>
+
+
+                    <div>
+                        <button onClick={voltarVerViagens}>Voltar</button>
+                        <button>Enviar</button>
+                    </div>
                 </form>
-
-                <div>
-                    <button onClick={voltarVerViagens}>Voltar</button>
-                    <button onClick={enviarInscricao}>Enviar</button>
-                </div>
-
             </Inscrever>
         </Container>
     )

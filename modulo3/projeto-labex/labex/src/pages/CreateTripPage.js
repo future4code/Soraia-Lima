@@ -1,78 +1,110 @@
-import{Container, Inscrever} from '../styles'
-import { useHistory } from "react-router-dom";
-import {useState} from "react"
+// ----------------- CRIAR UMA NOVA VIAGEM-----------
 
-function CreateTripPage () {
-    //--------------------state----------------
-    const [nome, setNome] = useState("")
-    const [data, setData] = useState("")
-    const [descricao, setDescricao] = useState("")
-    const [duracao, setDuracao] = useState("")
+import { Container, Inscrever } from '../styles'
+import { useHistory } from "react-router-dom";
+import useProtectedPage from '../hooks/useProtectedPage';
+import useForm from '../hooks/useForm';
+import axios from 'axios';
+
+function CreateTripPage() {
+    useProtectedPage()
+
+    const { form, onChange, cleanFields } = useForm({
+        name: "",
+        planet: "",
+        date: "",
+        description: "",
+        durationInDays: ""
+    })
 
     const history = useHistory()
-
     const voltarPainelAdm = () => {
-        history.goBack()
+        history.push("/admin-trips-list")
     }
-// ------------------------- FUNCÃO DOS INPUTS -------------------
-    const inputNome = (e) => {
-        setNome(e.target.value)
+
+    const createTrip = (event) => {
+
+        const token = localStorage.getItem("token")
+
+        event.preventDefault()
+
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips', form,
+            {
+                headers: {
+                    auth: token
+                }
+            }).then((res) => {
+                console.log("Viagem cadastrada com sucesso", res.data)
+                cleanFields()
+            }).catch((error) => {
+                console.log("Aconteceu algo errado, por gentileza tenta mais tarde", error.response)
+            })
     }
-    const inputData = (e) => {
-        setData(e.target.value)
-    }
-    const inputDescricao = (e) => {
-        setDescricao(e.target.value)
-    }
-    const inputDuracao = (e) => {
-        setDuracao(e.target.value)
-    }
-   
+
     return (
-        
+
         <Container>
-        <Inscrever>
-            <h1> Criar Viagem </h1>
-            <form>
-            <input 
-                placeholder={"Nome"}
-                value={nome}
-                onChange={inputNome}/>
+            <Inscrever>
+                <h1> Criar Viagem </h1>
+                <form onSubmit={createTrip}>
+                    <input
+                        placeholder={"Nome"}
+                        value={form.name}
+                        onChange={onChange}
+                        required
+                        name={"name"}
+                        pattern={"^.{5,}"}
+                        title={"O nome deve ter no mínimo 5 letras"} />
 
-            <select>
-                <option value disabled selected>Escolha um planeta</option>
-                <option>Mercúrio</option>
-                <option>Vênus</option>
-                <option>Terra</option>
-                <option>Marte</option>
-                <option>Júpiter</option>
-                <option>Saturno</option>
-                <option>Urano</option>
-                <option>Netuno</option>
-            </select>
+                    <select value={form.planet}
+                        onChange={onChange}
+                        name={"planet"}
+                        required>
+                        <option value disabled selected>Escolha um planeta</option>
+                        <option value="Mercúrio">Mercúrio</option>
+                        <option value="Vênus">Vênus</option>
+                        <option value="Terra">Terra</option>
+                        <option value="Marte">Marte</option>
+                        <option value="Júpiter">Júpiter</option>
+                        <option value="Saturno">Saturno</option>
+                        <option value="Urano">Urano</option>
+                        <option value="Netuno">Netuno</option>
+                    </select>
 
-            <input
-               type="date"
-               placeholder={"data"}
-                value={data}
-                onChange={inputData}/>
-            <input
-                placeholder={"Descrição"}
-                value={descricao}
-                onChange={inputDescricao}/>
-            <input
-                placeholder={"Duração em dias"}
-                value={duracao}
-                onChange={inputDuracao}/>
+                    <input
+                        type="date"
+                        value={form.date}
+                        onChange={onChange}
+                        required
+                        name={"date"}
+                    />
+                    <input
+                        placeholder={"Descrição"}
+                        value={form.description}
+                        onChange={onChange}
+                        required
+                        name={"description"}
+                        pattern={"^.{30,}"}
+                        title={"A descrição deve ter no mínimo 30 leras"} />
+                    <input
+                        placeholder={"Duração em dias"}
+                        value={form.durationInDays}
+                        onChange={onChange}
+                        required
+                        name={"durationInDays"}
+                        type={"number"}
+                        min={50} />
 
-            </form>
+                    <div>
+                        <button onClick={voltarPainelAdm}>Voltar</button>
+                        <button>Criar</button>
+                    </div>
 
-            <div>
-                <button onClick={voltarPainelAdm}>Voltar</button>
-                <button>Criar</button>
-            </div>
+                </form>
 
-        </Inscrever>
+
+
+            </Inscrever>
         </Container>
     )
 }
