@@ -49,7 +49,7 @@ console.log(infoCandidato)
         const body = {
             approve: decide
         }
-        axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips/${id}/candidates/${candidateId}/decide`, body, {
+        axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trips/${id}/candidates/${candidateId}/decide`, body, {
             headers: {
                 auth: token
             }

@@ -34,7 +34,7 @@ function AdminHomePage() {
     //---------------- DELETELAR UMA VIAGEM -----------------
 
     const deleteTrip = (id) =>{
-        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips/${id}`,{ headers: {
+        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trips/${id}`,{ headers: {
             auth: token
         }        
     }).then((res)=>{

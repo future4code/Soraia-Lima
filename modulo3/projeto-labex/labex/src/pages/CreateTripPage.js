@@ -28,7 +28,7 @@ function CreateTripPage() {
 
         event.preventDefault()
 
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips', form,
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trips', form,
             {
                 headers: {
                     auth: token

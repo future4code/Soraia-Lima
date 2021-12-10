@@ -21,7 +21,7 @@ function LoginPage() {
     const login = (event) => {
         event.preventDefault()
 
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/login', form).then((res) => {
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/login', form).then((res) => {
             localStorage.setItem("token", res.data.token)
             history.push("/admin-trips-list")
         }).catch((erro) => {

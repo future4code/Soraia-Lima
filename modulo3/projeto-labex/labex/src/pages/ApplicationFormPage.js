@@ -26,7 +26,7 @@ function ApplicationFormPage() {
     const enviarInscricao = (event) => {
         event.preventDefault()
 
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trips/${form.country}/apply`, form).then((res) => {
+        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trips/${form.country}/apply`, form).then((res) => {
             alert("Solicitação enviada com sucesso!")
             console.log(res.data)
             cleanFields()
