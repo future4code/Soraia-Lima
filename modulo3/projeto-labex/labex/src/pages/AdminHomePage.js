@@ -1,11 +1,11 @@
 // -----------------PAGINA ADM -----------
 import { Container, PainelAdm, InfoViagem } from '../styles'
 import { useHistory } from "react-router-dom";
-import { useResquestData } from '../hooks/useResquestData';
+import { useResquestData} from '../hooks/useResquestData';
 import useProtectedPage from '../hooks/useProtectedPage';
 import axios from 'axios';
-import {useEffect} from 'react'
-
+import TripDetailsPage from './TripDetailsPage';
+import { useEffect } from 'react';
 
 function AdminHomePage() {
     useProtectedPage()
@@ -13,6 +13,7 @@ function AdminHomePage() {
     
     const history = useHistory()
     const trips = useResquestData()
+    const [atualiza, setAtualiza] = ([])
     
 
     // --------------------------TROCA DE PÁGINA----------------
@@ -56,9 +57,10 @@ function AdminHomePage() {
         return (
             <InfoViagem key={trip.id}  >
                 <p onClick={()=>{ history.push(`/admin/trips/${trip.id}`)}}>{trip.name}</p> <button onClick={() =>{pergunta(trip.id)}} >deletar</button>
-
             </InfoViagem>
+            
         )
+        
     })
 
     const clear = () => {
@@ -66,9 +68,9 @@ function AdminHomePage() {
         history.push("/login")
     }
 
-//   useEffect(()=>{
-//        useResquestData()
-//   },[])
+  useEffect(()=>{
+ 
+  },[])
     return (
         <Container>
             <PainelAdm>

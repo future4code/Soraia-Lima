@@ -13,7 +13,7 @@ function TripDetailsPage() {
     const pathParams = useParams()
     const id = pathParams.id
 
-    console.log("Path", id)
+    console.log("Path", pathParams)
 
     const history = useHistory()
 
@@ -56,7 +56,8 @@ console.log(infoCandidato)
             }
         }).then((res) => {
             setAprovados(res.data.trip.approved)
-            alert("Decisão registrada com sucesso 😀")
+            alert(`Candidato ${decide ? 'aprovado' : 'repovado'} com sucesso!! 😀`)
+            getTripDetail()
 
         }).catch((error) => {
             alert( "Desculpe, tivemos um imprevisto, tente mais tarde!", error.response)
@@ -77,8 +78,8 @@ console.log(infoCandidato)
                 <p><b>Idade:</b> {info.age}</p>
                 <p><b>Texto da candidatura:</b> {info.applicationText}</p>
                 <div>
-                    <button onClick={() => { decideCandidate(true, info.id) }}>Aprovar</button>
-                    <button onClick={() => { decideCandidate(false, info.id) }}>Reprovar</button>
+                    <button onClick={() => {decideCandidate(true, info.id)}}>Aprovar</button>
+                    <button onClick={() => {decideCandidate(false, info.id)}}>Reprovar</button>
                 </div>
                 <br />
                 <hr />

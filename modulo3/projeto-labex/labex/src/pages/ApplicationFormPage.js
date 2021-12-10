@@ -26,7 +26,7 @@ function ApplicationFormPage() {
     const enviarInscricao = (event) => {
         event.preventDefault()
 
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trips/${form.country}/apply`, form).then((res) => {
+        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trips/${form.trip}/apply`, form).then((res) => {
             alert("Solicitação enviada com sucesso!")
             console.log(res.data)
             cleanFields()
@@ -54,7 +54,6 @@ console.log(form)
                         onChange={onChange}
                         name={"trip"}
                         required>
-                        <option selected disabled>Escolha uma viagem</option>
                         {mapOpcoes}
                     </select>
                     <input
