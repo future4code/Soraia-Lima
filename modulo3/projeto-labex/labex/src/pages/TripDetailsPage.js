@@ -13,7 +13,7 @@ function TripDetailsPage() {
     const pathParams = useParams()
     const id = pathParams.id
 
-    console.log("Path", pathParams)
+    console.log("Path", id)
 
     const history = useHistory()
 
@@ -30,7 +30,7 @@ function TripDetailsPage() {
 
     const getTripDetail = () => {
                    
-        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trip/${id}`, {
+        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trip/${id}`, {
             headers: {
                 auth: token
             }
@@ -50,7 +50,7 @@ console.log(infoCandidato)
         const body = {
             approve: decide
         }
-        axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trips/${id}/candidates/${candidateId}/decide`, body, {
+        axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trips/${id}/candidates/${candidateId}/decide`, body, {
             headers: {
                 auth: token
             }

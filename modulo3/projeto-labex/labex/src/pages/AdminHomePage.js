@@ -34,7 +34,7 @@ function AdminHomePage() {
     //---------------- DELETELAR UMA VIAGEM -----------------
 
     const deleteTrip = (id) =>{
-        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trips/${id}`,{ headers: {
+        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trips/${id}`,{ headers: {
             auth: token
         }        
     }).then((res)=>{
