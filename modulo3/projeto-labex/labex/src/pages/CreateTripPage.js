@@ -33,8 +33,8 @@ function CreateTripPage() {
                 headers: {
                     auth: token
                 }
-            }).then((res) => {
-                console.log("Viagem cadastrada com sucesso", res.data)
+            }).then(() => {
+                alert("Viagem cadastrada com sucesso")
                 cleanFields()
             }).catch((error) => {
                 console.log("Aconteceu algo errado, por gentileza tenta mais tarde", error.response)
