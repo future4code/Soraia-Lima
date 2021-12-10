@@ -30,7 +30,7 @@ function TripDetailsPage() {
 
     const getTripDetail = () => {
                    
-        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia-aparecida-carver/trip/${id}`, {
+        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/Soraia/trip/${id}`, {
             headers: {
                 auth: token
             }
