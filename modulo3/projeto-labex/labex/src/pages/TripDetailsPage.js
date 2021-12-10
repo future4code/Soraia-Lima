@@ -1,8 +1,9 @@
-import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom";
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { Container, InfoViagem } from '../styles'
 import useProtectedPage from '../hooks/useProtectedPage';
+
 
 function TripDetailsPage() {
 
