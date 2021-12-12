@@ -2,6 +2,7 @@ import { Container, Login } from '../styles'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import useForm from '../hooks/useForm';
+import { BASE_URL, ALUNO } from '../components/info';
 
 function LoginPage() {
 
@@ -21,7 +22,7 @@ function LoginPage() {
     const login = (event) => {
         event.preventDefault()
 
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/login', form).then((res) => {
+        axios.post(`${BASE_URL}${ALUNO}/login`, form).then((res) => {
             localStorage.setItem("token", res.data.token)
             history.push("/admin-trips-list")
         }).catch((erro) => {

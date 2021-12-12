@@ -8,7 +8,7 @@ function useProtectedPage () {
         const token = localStorage.getItem("token")
 
             if (token === null) {
-                console.log("Não está logado")
+                alert("Para ter acesso a página de Administrador é necessário efetuar login")
                 history.push("/login")
             }        
     }, [history])

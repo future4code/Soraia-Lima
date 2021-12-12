@@ -1,14 +1,14 @@
 import axios from "axios"
 import { useState, useEffect } from "react";
-
+import { BASE_URL, ALUNO } from "../components/info";
 
 export const useGetTripDetail  = () => {
-
+    
     const [informacao, setInformacao] = useState([])
     const getTripDetail = (id) =>{
 
     const token = localStorage.getItem("token")
-    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trip/${id}`, { headers: {
+    axios.get(`${BASE_URL}${ALUNO}/trip/${id}`, { headers: {
         auth: token
     }        
 }).then((res)=>{

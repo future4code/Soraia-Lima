@@ -1,10 +1,10 @@
-// ----------------- INSCREVER-SE PARA UMA NOVA VIAGEM -----------
-
-import { Container, Inscrever } from '../styles'
+import { Container, Inscrever, Footer2 } from '../styles'
 import { useHistory } from "react-router-dom";
 import { useResquestData } from '../hooks/useResquestData';
 import axios from 'axios';
 import useForm from '../hooks/useForm';
+import { BASE_URL, ALUNO } from '../components/info';
+import { H1 } from '../styles';
 
 function ApplicationFormPage() {
 
@@ -25,14 +25,11 @@ function ApplicationFormPage() {
 
     const enviarInscricao = (event) => {
         event.preventDefault()
-
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/soraia/trips/${form.trip}/apply`, form).then((res) => {
+        axios.post(`${BASE_URL}${ALUNO}/trips/${form.trip}/apply`, form).then((res) => {
             alert("Solicitação enviada com sucesso!")
-            console.log(res.data)
             cleanFields()
         }).catch((error) => {
-            console.log(error.response)
-            alert("Solicitação não enviada, por gentileza, verificar todos os campos e tentar novamente")
+            alert("Solicitação não enviada, por gentileza, verificar todos os campos e tentar novamente", error.response)
         })
     }
 
@@ -44,16 +41,17 @@ function ApplicationFormPage() {
             </option>
         )
     })
-console.log(form)
+
     return (
         <Container>
             <Inscrever>
-                <h1> Inscrever-se para uma viagem </h1>
+                <H1> Inscrever-se para uma viagem </H1>
                 <form onSubmit={enviarInscricao}>
                     <select value={form.trip}
                         onChange={onChange}
                         name={"trip"}
                         required>
+                        <option value="" selected disabled>Escolha uma Viagem</option>
                         {mapOpcoes}
                     </select>
                     <input
@@ -97,7 +95,7 @@ console.log(form)
                         onChange={onChange}
                         required
                     >
-                        <option value disabled selected>Escolha uma País</option>
+                        <option value="" selected disabled>Escolha um País</option>
                         <option value="África do Sul">África do Sul</option>
                         <option value="Albânia">Albânia</option>
                         <option value="Alemanha">Alemanha</option>
@@ -273,14 +271,20 @@ console.log(form)
                         <option value="Zâmbia">Zâmbia</option>
                         <option value="Zimbábue">Zimbábue</option>
                     </select>
-
-
                     <div>
                         <button onClick={voltarVerViagens}>Voltar</button>
                         <button>Enviar</button>
                     </div>
                 </form>
             </Inscrever>
+            <Footer2>
+            <p>LabeX © 2021</p>
+            <div>
+                <a href="https://www.facebook.com/" target="blank"><img src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/%C3%8Dcone-Facebook-PNG.png" /></a>
+                <a href="https://www.instagram.com/" target="blank"><img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" /></a>
+                <a href="https://twitter.com/" target="blank"><img src="https://image.flaticon.com/icons/png/512/8/8800.png" /></a>
+            </div>
+        </Footer2>
         </Container>
     )
 }
