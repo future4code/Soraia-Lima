@@ -2,7 +2,6 @@ import { Container, CardsImg } from '../styles'
 import logo from "../imagem/Logo.png"
 import Footers from '../components/Footers';
 
-
 function HomePage() {
     return (
         <Container>

@@ -1,10 +1,9 @@
-import { Container, Inscrever, Footer2 } from '../styles'
+import { Container, Inscrever, Footer2, H1 } from '../styles'
 import { useHistory } from "react-router-dom";
 import { useResquestData } from '../hooks/useResquestData';
 import axios from 'axios';
 import useForm from '../hooks/useForm';
 import { BASE_URL, ALUNO } from '../components/info';
-import { H1 } from '../styles';
 
 function ApplicationFormPage() {
 
@@ -17,13 +16,15 @@ function ApplicationFormPage() {
         trip: ""
     })
 
-    const viagem = useResquestData()
+    const trips = useResquestData()
     const history = useHistory()
-    const voltarVerViagens = () => {
+
+    const returnTrips = () => {
         history.push("/trips/:list")
     }
 
-    const enviarInscricao = (event) => {
+    //-------------- Enviar Inscrição -----------
+    const sendApplication = (event) => {
         event.preventDefault()
         axios.post(`${BASE_URL}${ALUNO}/trips/${form.trip}/apply`, form).then((res) => {
             alert("Solicitação enviada com sucesso!")
@@ -33,11 +34,10 @@ function ApplicationFormPage() {
         })
     }
 
-    const mapOpcoes = viagem.map((viagens) => {
-
+    const mapOption = trips.map((trip) => {
         return (
-            <option key={viagens.id} value={viagens.id}>
-                {viagens.name}
+            <option key={trip.id} value={trip.id}>
+                {trip.name}
             </option>
         )
     })
@@ -45,14 +45,17 @@ function ApplicationFormPage() {
     return (
         <Container>
             <Inscrever>
-                <H1> Inscrever-se para uma viagem </H1>
-                <form onSubmit={enviarInscricao}>
+                <div>
+                    <H1> Inscrever-se para uma viagem</H1><span>👨‍🚀</span>
+                </div>
+                <form onSubmit={sendApplication}>
+
                     <select value={form.trip}
                         onChange={onChange}
                         name={"trip"}
                         required>
                         <option value="" selected disabled>Escolha uma Viagem</option>
-                        {mapOpcoes}
+                        {mapOption}
                     </select>
                     <input
                         placeholder={"Idade"}
@@ -272,19 +275,19 @@ function ApplicationFormPage() {
                         <option value="Zimbábue">Zimbábue</option>
                     </select>
                     <div>
-                        <button onClick={voltarVerViagens}>Voltar</button>
+                        <button onClick={returnTrips}>Voltar</button>
                         <button>Enviar</button>
                     </div>
                 </form>
             </Inscrever>
             <Footer2>
-            <p>LabeX © 2021</p>
-            <div>
-                <a href="https://www.facebook.com/" target="blank"><img src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/%C3%8Dcone-Facebook-PNG.png" /></a>
-                <a href="https://www.instagram.com/" target="blank"><img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" /></a>
-                <a href="https://twitter.com/" target="blank"><img src="https://image.flaticon.com/icons/png/512/8/8800.png" /></a>
-            </div>
-        </Footer2>
+                <p>LabeX © 2021</p>
+                <div>
+                    <a href="https://www.facebook.com/" target="blank"><img src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/%C3%8Dcone-Facebook-PNG.png" /></a>
+                    <a href="https://www.instagram.com/" target="blank"><img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" /></a>
+                    <a href="https://twitter.com/" target="blank"><img src="https://image.flaticon.com/icons/png/512/8/8800.png" /></a>
+                </div>
+            </Footer2>
         </Container>
     )
 }

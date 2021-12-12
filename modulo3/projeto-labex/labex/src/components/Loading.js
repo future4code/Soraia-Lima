@@ -13,7 +13,7 @@ function Loading() {
     return (
         <Container>
             <ClockLoader
-                color="#274360"                
+                color="#274360"
                 size={80}
             />
         </Container>

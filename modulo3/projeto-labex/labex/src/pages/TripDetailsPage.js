@@ -1,11 +1,12 @@
 import { useHistory, useParams } from "react-router-dom";
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { Container, InfoViagem } from '../styles'
+import { Container, H1, DetailTrip, BotãoDetalhes, H2 } from '../styles'
 import useProtectedPage from '../hooks/useProtectedPage';
 import { BASE_URL, ALUNO } from '../components/info';
 import Loading from '../components/Loading';
-import { H1, DetailTrip, Botoes } from "../styles";
+import Footers from "../components/Footers";
+
 
 function TripDetailsPage() {
 
@@ -73,7 +74,6 @@ function TripDetailsPage() {
                     <button onClick={() => { decideCandidate(true, info.id) }}>Aprovar</button>
                     <button onClick={() => { decideCandidate(false, info.id) }}>Reprovar</button>
                 </div>
-                <hr />
             </div>
         )
     })
@@ -94,19 +94,21 @@ function TripDetailsPage() {
                     <p><b>Descrição:</b> {informacao.description}</p>
                     <p><b>Planeta:</b> {informacao.planet}</p>
                     <p><b>Duração:</b> {informacao.durationInDays}</p>
-                    <p><b>Data:</b> {informacao.date}</p>
-                    <div>
-                    <button onClick={voltarPagAdm}>Voltar</button>
-                    </div>
+                    <p><b>Data:</b> {informacao.date}</p>                   
                 </DetailTrip>
+
+                <BotãoDetalhes onClick={voltarPagAdm}>Voltar </BotãoDetalhes>
+
                 <div>
                 <h2>Candidatos Pendentes</h2>
-                {mapTrisp.length > 0 ? <div>{mapTrisp}</div> : <p>Não há candidatos pendentes</p>}
+                {mapTrisp.length > 0 ? <DetailTrip>{mapTrisp}</DetailTrip> : <p>Não há candidatos pendentes</p>}
                 </div>
-                <h2>Candidatos Aprovados</h2>
-                {mapAprovados.length > 0 ? <div>{mapAprovados}</div> : <p>Ainda não temos nenhum candidato aprovado para essa viagem 😔</p>}
+
+                <H2>Candidatos Aprovados</H2>
+                {mapAprovados.length > 0 ? <DetailTrip>{mapAprovados} 
+                </DetailTrip> : <p>Ainda não temos nenhum candidato aprovado para essa viagem 😔</p>}
             </div> : <Loading /> }
-           
+           <Footers/>
         </Container>
     )
 }

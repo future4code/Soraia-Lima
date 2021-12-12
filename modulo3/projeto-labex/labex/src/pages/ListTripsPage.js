@@ -1,18 +1,17 @@
-import { Container, InfoViagens, H1 } from '../styles'
+import { Container, InfoViagens, Botoes, TextoAventuras } from '../styles'
 import { useHistory } from 'react-router-dom'
 import { useResquestData } from '../hooks/useResquestData'
 import Loading from '../components/Loading';
 import Footers from '../components/Footers';
-import { Botoes } from '../styles';
 
 function ListTripsPage() {
 
     const history = useHistory()
+    const trips = useResquestData()
 
     const signUp = () => {
         history.push("/trips-application")
     }
-    const trips = useResquestData()
 
     //-----------------------MAP  VER VIAGENS ----------------------
     const mapTrips = trips.map((trip) => {
@@ -30,8 +29,10 @@ function ListTripsPage() {
     return (
         <Container>
             <div>
-                <H1>Lista de Viagens</H1>
                 <Botoes onClick={signUp}>Inscrever-se</Botoes>
+                <TextoAventuras>
+                    <h1>Aventuras disponíveis</h1><span>🚀</span>
+                </TextoAventuras>
                 <div>
                     {trips.length > 0 ? <div>{mapTrips}<Footers /></div> : <Loading />}
                 </div>

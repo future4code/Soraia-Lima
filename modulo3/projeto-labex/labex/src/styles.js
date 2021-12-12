@@ -9,6 +9,20 @@ export const GlobalStyle = createGlobalStyle`
     button{
       cursor: pointer;
     }
+    input{
+        padding:10px;
+        width:500px;
+        height:40px;
+        border-radius: 10px;
+        border: 0.5px solid black;
+        margin: 10px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    
+}
   }
 `
 
@@ -35,6 +49,13 @@ export const Inscrever = styled.div`
 display:flex;
 flex-direction: column;
 align-items: center;
+div{
+    display:flex;
+    align-items: center
+}
+span{
+    font-size:27px;
+}
 
 button{
     color: white;
@@ -52,19 +73,6 @@ button{
     display:row;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-input{
-    width:500px;
-    height:40px;
-    border-radius: 10px;
-    border: 0.5px solid black;
-    margin: 10px;
-}
 select{
     width:500px;
     height:40px;
@@ -76,17 +84,13 @@ export const Login = styled.div`
 display:flex;
 flex-direction: column;
 align-items: center;
-
-input{
-    width:500px;
-    height:40px;
-    border-radius: 10px;
-    border: 0.5px solid black;
-    margin: 10px;
+h1{
+    margin-top:5vh;
+    margin-bottom:3vh;
 }
 button{
     color: white;
-    background-color: slategray;
+    background-color: #274360;
     border-radius: 20px;
     border: none;
     width: 10vw;
@@ -95,7 +99,7 @@ button{
     margin-left: 20px;
     margin-top: 1.5%;
     &:hover{
-        background-color: gray;
+        background-color: #AAB1BE;
     }
     display:row;
 }`
@@ -118,8 +122,7 @@ button{
     font-size:0.9em;
     &:hover{
         background-color: #AAB1BE;
-        color:white;
-        
+        color:white;       
     }
 }
 `
@@ -219,8 +222,7 @@ background: linear-gradient(#9198e5, #274360);
 p{
     font-size:16px;
     margin: 5px;
-}
-`
+}`
 
 export const H1 = styled.h1`
 margin: 10px; 
@@ -241,15 +243,21 @@ font-size:1em;
 `
 
 export const DetailTrip = styled.div`
-/* width:400px;
-margin-left:39%;
-text-align:left; */
+padding:1em;
+margin-top:5vh;
+width:30vw;
+margin-left:35%;
+text-align:left;
+box-shadow: rgb(0 0 0 / 30%) 0px 4px 8px 0px;
 p{
-    font-size:18px;
-    margin-top:5px;
+   
+    font-size:1.1em;
+    margin-top:1vh;
 }
 button{
-margin: 5px;
+margin-top: 2vh;
+margin-bottom:2vh;
+margin-left:6vw;
 border:none;
 background: #274360;
 height:4.5vh;
@@ -259,6 +267,34 @@ color: white;
 &:hover{
     background-color: #AAB1BE;  
 }
-}
+}`
 
+export const BotãoDetalhes = styled.button`
+margin: 2vw;
+border:none;
+background: #274360;
+height:4.5vh;
+width: 5vw;
+border-radius: 20px;
+color: white;
+&:hover{
+    background-color: #AAB1BE;  
+}
+`
+export const H2 = styled.h2`
+margin-top: 5vh;
+`
+export const TextoAventuras = styled.div`
+margin-left:37%;
+display:flex;
+align-items: center;
+span{
+    font-size:27px;
+    margin-left:1vw;
+}
+h1{
+    font-size:35px;
+    margin-top:3vh;
+    margin-bottom:3vh;
+}
 `

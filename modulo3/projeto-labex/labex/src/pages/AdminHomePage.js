@@ -1,35 +1,40 @@
 import { Container, PainelAdm, InfoViagem, Footer2 } from '../styles'
 import { useHistory } from "react-router-dom";
-import { useResquestData } from '../hooks/useResquestData';
 import useProtectedPage from '../hooks/useProtectedPage';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BASE_URL, ALUNO } from '../components/info';
 import Loading from '../components/Loading';
 
 function AdminHomePage() {
 
     useProtectedPage()
-    //
-    const [deletar, setDeletar] = useState(false)
-
+    const [trips, settrips] = useState([])
     const history = useHistory()
-    const trips = useResquestData(deletar)
-
-
-    // --------------------------TROCA DE PÁGINA----------------
     const token = localStorage.getItem("token")
 
+    // --------------------------TROCA DE PÁGINA----------------
     const backToStart = () => {
         history.push("/")
     }
-
     const createNewTrip = () => {
         history.push("/admin-trips-create")
     }
 
-    //---------------- DELETELAR UMA VIAGEM -----------------
+    useEffect(() => {
+        getTrips()
+    }, [trips])
 
+    //------------- REQUISIÇÃO DE VIAGENS------------
+    const getTrips = () => {
+        axios.get(`${BASE_URL}${ALUNO}/trips`).then((res) => {
+            settrips(res.data.trips)
+        }).catch((error) => {
+            alert("Ah que pena, aconteceu um erro, por gentileza, tente mais tarde", error.response)
+        })
+    }
+
+    //---------------- DELETELAR UMA VIAGEM -----------------
     const deleteTrip = (id) => {
         axios.delete(`${BASE_URL}${ALUNO}/trips/${id}`, {
             headers: {
@@ -41,25 +46,23 @@ function AdminHomePage() {
         }).catch((error) => {
             console.log("NÃO DELETADO", error.response)
         })
-        //
-        setDeletar(!deletar)
-
     }
 
-    const pergunta = (id) => {
+    const question = (id) => {
         if (window.confirm("Tem certeza que deseja excluir essa viagem?")) {
             deleteTrip(id)
         }
     }
-    //console.log("deletarr",deletar)
+
     const mapTrisp = trips.map((trip) => {
         return (
             <InfoViagem key={trip.id}  >
-                <p onClick={() => { history.push(`/admin/trips/${trip.id}`) }}>{trip.name}</p> <div onClick={() => { pergunta(trip.id) }} ><img src="https://st.depositphotos.com/1041273/3860/v/600/depositphotos_38606631-stock-illustration-trash-bin-icon.jpg" alt="lixeira" /></div>
+                <p onClick={() => { history.push(`/admin/trips/${trip.id}`) }}>{trip.name}</p> <div onClick={() => { question(trip.id) }} ><img src="https://st.depositphotos.com/1041273/3860/v/600/depositphotos_38606631-stock-illustration-trash-bin-icon.jpg" alt="lixeira" /></div>
             </InfoViagem>
         )
     })
 
+    //--------- LOGOUT ---------
     const clear = () => {
         localStorage.clear()
         history.push("/login")
@@ -85,8 +88,6 @@ function AdminHomePage() {
                     </Footer2>
                 </div> : <Loading />}
             </PainelAdm>
-
-
         </Container>
     )
 }

@@ -6,25 +6,23 @@ import { BASE_URL, ALUNO } from '../components/info';
 
 function LoginPage() {
 
-    const {form, onChange, cleanFields} = useForm({
+    const history = useHistory()
+    const { form, onChange, cleanFields } = useForm({
         email: "",
         password: ""
     })
 
-    const history = useHistory()
-
-    // VOLTAR AO HOME
     const backToStart = () => {
         history.push("/")
     }
 
-    //------------------------ LOGAR ----------------------------------
+    //------------------------ LOGAR -------------------------------
     const login = (event) => {
         event.preventDefault()
-
         axios.post(`${BASE_URL}${ALUNO}/login`, form).then((res) => {
             localStorage.setItem("token", res.data.token)
             history.push("/admin-trips-list")
+            alert("Seja bem-vindo Adminstrador 👨‍🚀")
         }).catch((erro) => {
             alert("Por gentileza, verifique todos os campos e tente novamente", erro.response)
         })
@@ -42,17 +40,21 @@ function LoginPage() {
                         value={form.email}
                         name={"email"}
                         onChange={onChange}
-                        required />
+                        required
+                    />
                     <input
                         placeholder={'Senha'}
                         type="password"
                         value={form.password}
                         onChange={onChange}
                         required
-                        name={"password"} />
-                    <button>Entrar</button>
-                    <button onClick={backToStart}>Voltar</button>
-                </form>                
+                        name={"password"}
+                    />
+                    <div>
+                        <button>Entrar</button>
+                        <button onClick={backToStart}>Voltar</button>
+                    </div>
+                </form>
             </Login>
         </Container>
     )

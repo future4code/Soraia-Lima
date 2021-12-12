@@ -1,5 +1,3 @@
-// ----------------- CRIAR UMA NOVA VIAGEM-----------
-
 import { Container, Inscrever } from '../styles'
 import { useHistory } from "react-router-dom";
 import useProtectedPage from '../hooks/useProtectedPage';
@@ -18,17 +16,15 @@ function CreateTripPage() {
         durationInDays: ""
     })
 
+    const token = localStorage.getItem("token")
     const history = useHistory()
-    const voltarPainelAdm = () => {
+
+    const backAdminPanel = () => {
         history.push("/admin-trips-list")
     }
 
     const createTrip = (event) => {
-
-        const token = localStorage.getItem("token")
-
         event.preventDefault()
-
         axios.post(`${BASE_URL}${ALUNO}/trips`, form,
             {
                 headers: {
@@ -43,7 +39,6 @@ function CreateTripPage() {
     }
 
     return (
-
         <Container>
             <Inscrever>
                 <h1> Criar Viagem </h1>
@@ -55,14 +50,14 @@ function CreateTripPage() {
                         required
                         name={"name"}
                         pattern={"^.{5,}"}
-                        title={"O nome deve ter no mínimo 5 letras"} />
-
+                        title={"O nome deve ter no mínimo 5 letras"}
+                    />
                     <select value={form.planet}
                         onChange={onChange}
                         name={"planet"}
                         required
                         placeholder={"planet"}>
-                        <option  value="" selected disabled>Escolha um planeta</option>
+                        <option value="" selected disabled>Escolha um planeta</option>
                         <option value="Mercúrio">Mercúrio</option>
                         <option value="Vênus">Vênus</option>
                         <option value="Terra">Terra</option>
@@ -73,7 +68,6 @@ function CreateTripPage() {
                         <option value="Netuno">Netuno</option>
                         <option value="Plutão">Plutão</option>
                     </select>
-
                     <input
                         type="date"
                         value={form.date}
@@ -88,7 +82,8 @@ function CreateTripPage() {
                         required
                         name={"description"}
                         pattern={"^.{30,}"}
-                        title={"A descrição deve ter no mínimo 30 leras"} />
+                        title={"A descrição deve ter no mínimo 30 leras"}
+                    />
                     <input
                         placeholder={"Duração em dias"}
                         value={form.durationInDays}
@@ -96,17 +91,13 @@ function CreateTripPage() {
                         required
                         name={"durationInDays"}
                         type={"number"}
-                        min={50} />
-
+                        min={50}
+                    />
                     <div>
-                        <button onClick={voltarPainelAdm}>Voltar</button>
+                        <button onClick={backAdminPanel}>Voltar</button>
                         <button>Criar</button>
                     </div>
-
                 </form>
-
-
-
             </Inscrever>
         </Container>
     )
