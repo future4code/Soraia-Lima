@@ -10,6 +10,8 @@ Cliente: ele tem acesso a página de "Viagens", onde pode visualizar todas as vi
 
 Administrador: Para que o administrador tenha acesso a página (Área Admin), é preciso que ele efetue login, com e-mail e senha, previamente cadastrados. A parti dai ele pode criar viagens (Criar Viagens) excluir viagens (no ícone de lixeira, ao lado do nome de cada viagem), visualizar os detalhes de cada viagem (clicando em cima do nome da viagem que deseja informações) e dentro da parte de detalhes ainda é possível e aprovar ou não as pessoas interessados em viajar conosco. 
 
+Também é possível ter acesso as nossas redes sociais, clicando nos incones do rodapé ao final de cada página. 
+
 ### Tecnologias utilizadas:
 - Styled-componentes;
 - React-spinners;
