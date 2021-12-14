@@ -14,6 +14,6 @@ export const goToPost = (history) => {
     history.push("/post")
 }
 
-export const oi ()=>{
-    
+export const oi = ()=>{
+
 }
