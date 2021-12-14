@@ -13,3 +13,7 @@ export const goToFeed = (history) => {
 export const goToPost = (history) => {
     history.push("/post")
 }
+
+export const oi ()=>{
+    
+}
