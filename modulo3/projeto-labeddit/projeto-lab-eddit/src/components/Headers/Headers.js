@@ -6,6 +6,7 @@ import { Header } from "./styled"
 function Headers (){
     const history = useHistory()
     const token = localStorage.getItem("token")
+    
     const logout = ()=>{
         localStorage.clear()
         goToLogin(history)
@@ -17,8 +18,8 @@ function Headers (){
             <input
             placeholder="Buscar no amigos"/>
             </div>
-            {/* {token && <button onClick={() => { goToRegister(history) }}>Cadastrar</button>} */}
-            {token && <button onClick={logout}>Logout</button>}
+            {/* {token && <button onClick={logout}>Logout</button>} */}
+            <button onClick={logout}>Logout</button>
         </Header>
     )
 }

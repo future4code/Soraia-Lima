@@ -1,5 +1,4 @@
 import Router from "./router/Router"
-import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components';
 
 
