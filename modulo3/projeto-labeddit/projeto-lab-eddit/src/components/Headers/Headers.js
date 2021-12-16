@@ -18,8 +18,8 @@ function Headers (){
             <input
             placeholder="Buscar no amigos"/>
             </div>
-            {/* {token && <button onClick={logout}>Logout</button>} */}
-            <button onClick={logout}>Logout</button>
+            {localStorage.getItem("token") ? <button onClick={logout}>Logout</button> : ""}
+            {/* <button onClick={logout}>Logout</button> */}
         </Header>
     )
 }

@@ -43,7 +43,8 @@ function LoginPage() {
                     type="password"
                 />
                 <div>
-                    <button >Entrar</button>
+                    <button
+                    type={"submit"}>Entrar</button>
                     <button onClick={() => { goToRegister(history) }}>Cadastrar</button>
                 </div>
             </form>

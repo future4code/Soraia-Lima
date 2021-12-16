@@ -1,66 +1,78 @@
 import React, { useState } from "react"
-
 import { Posts, PostFooter, TextPost } from "./styled"
-import { IconeComContador } from "../../components/InconeContador/InconeContador"
+//  import { IconeComContador } from "../../components/InconeContador/ContadorVotoPost"
+import { ContadorVotoPost } from "../../components/InconeContador/ContadorVotoPost"
 import useForm from "../../hooks/useForm"
 import useProtectedPage from "../../hooks/useProtectedPage"
-import { createComment } from "../../requests/requests"
+import { createComment, useData, createCommentVote, useResquestData } from "../../requests/requests"
+import { goToFeed } from "../../router/coordinatis"
+import { useHistory, useParams } from "react-router-dom"
+
 
 // import { getPosts, getPostComments, createPost, createPostVote, createCommentVote, changePostVote, changeCommentVote, deletePostVote, deleteCommentVote } from "../../requests/requests"
 
 function PostPage() {
     useProtectedPage()
 
-    
-    
+    const posts = useResquestData([])
+    // const [informacao, setInformacao] = useState({})
+    // const [infoPostage, setInfoPostagem] = useState ([])
 
     const { form, onChange, cleanFields } = useForm({
         body: ""
     })
 
+    const history = useHistory()
+
+    const pathParams = useParams()
+    const id = pathParams.id
+
+    const post = posts.filter((post) => {
+        return post.id === id
+    }).map((post) => {
+        return (
+            <div key={post.id}>
+
+                <h3>{post.username}</h3>
+                <TextPost>{post.body}</TextPost>
+                <PostFooter>
+                    <p> ⬆️ {post.voteSum ? post.voteSum : 0} ⬇️</p>
+                    <p>{post.commentCount ? post.commentCount : 0} comentarios</p>
+                </PostFooter>
+
+
+
+            </div>
+
+        )
+    })
+
+
+
+    const comentario = useData(id, history)
+    const mapComentario = comentario.map((item) => {
+        return (
+            <div key={item.id}>
+                <p>{item.username}</p>
+                <p>{item.body}</p>
+                <ContadorVotoPost />
+
+            </div>
+        )
+    })
 
     const onSubmintForm = (event) => {
         event.preventDefault()
-        createComment(form, cleanFields)
+        createComment(id, form, cleanFields)
     }
-
-    // onClickCurtida = () => {
-    //     console.log('Curtiu!')
-
-    //     if (!this.state.curtido){                          // para mudar o coração
-    //         setCurtido(!curtido)
-    //         setNumeroCurtida(+1)
-    //     }
-    //     else{      
-    //                                               // para dar deslike
-    //     this.setState({
-    //       curtido: !this.state.curtido,                  // para mudar a cor do coração
-    //       numeroCurtidas: this.state.numeroCurtidas - 1 // para dar deslike
-
-    //     })
-    //   }
-    //   }
-
-   
 
     return (
         <Posts>
-            <h1>Nome de usuário</h1>
-            <hr />
-            <TextPost>
-                <h3>Texto da postagem</h3>
-            </TextPost>
-            <hr />
-            <PostFooter>
-                <IconeComContador/>
-
-                
-
-            </PostFooter>
-            <br />
-            <br />
-            <br />
-            <br />
+            <div>
+            {post}
+            </div>
+            <hr/>
+            
             <form onSubmit={onSubmintForm}>
                 <input
                     placeholder="Escreva um comentario"
@@ -72,24 +84,12 @@ function PostPage() {
 
                 <button>Comentar</button>
             </form>
-
+            
             <div>
-                <h2>nome dp usuário</h2>
-                <p>Texto da postagem</p>
-                <hr />
-                <IconeComContador/>
+                {mapComentario}
             </div>
-            {/* <button onClick={(getPosts)}>Pegar posts</button>
-            <button onClick={getPostComments}>Ver cometarios</button>
-            <button onClick={createPost}>Criar Post</button>
-           
-            <button onClick={createPostVote}>Votar</button>
-            <button onClick={createCommentVote}> Votar no Comentario</button>
-            <button onClick={changePostVote}>Mudar voto</button>
-            <button onClick={changeCommentVote}>Mudar comentario</button>
-            <button onClick={deletePostVote}>Deletar Voto</button>
-            <button onClick={deleteCommentVote}>Deletar comentario</button> */}
 
+            <button onClick={() => { goToFeed(history) }}>Voltar</button>
         </Posts>
     )
 }

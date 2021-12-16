@@ -1,36 +1,53 @@
 import React from "react"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import useForm from "../../hooks/useForm"
-import { createPost, useResquestData, createPostVote} from "../../requests/requests"
-import { IconeComContador } from "../../components/InconeContador/InconeContador"
+import { createPost, useResquestData, createPostVote, changePostVote } from "../../requests/requests"
+import { ContadorVotoPost } from "../../components/InconeContador/ContadorVotoPost"
+import { useHistory } from "react-router-dom"
+import { goToPost } from "../../router/coordinatis"
 
-function FeedPage (){
+function FeedPage() {
     useProtectedPage()
 
     const postagens = useResquestData()
-
+    // console.log(postagens)
     const { form, onChange, cleanFields } = useForm({
-        title:"",
+        title: "",
         body: ""
     })
+
+    const history = useHistory()
 
     const onSubmintForm = (event) => {
         event.preventDefault()
         createPost(form, cleanFields, postagens)
     }
 
-    const mapPostagens = postagens.map((post)=>{
-        return(
+
+
+    const mapPostagens = postagens.map((post) => {
+        return (
             <div key={post.id}>
-                <p>{post.username}</p>
+
+                <h3>{post.username}</h3>
                 <p>{post.title}</p>
-                <IconeComContador
-                id={post.id}
-                createPostVote={createPostVote}/>
+                <p>{post.body}</p>
+                <ContadorVotoPost
+                    createPostVote={() => createPostVote(post.id)}
+                    voto={post.voteSum}
+                    userVote={post.userVote}
+                    changePostVote={()=>{changePostVote(post.id)}}
+                
+                />
+                <p>comentarios : {post.commentCount ? post.commentCount : 0}</p>
+                <button onClick={() => { goToPost(history, post.id) }}>Detalhes</button>
+
             </div>
+
         )
     })
-    return(
+
+    return (
         <div>
             <form onSubmit={onSubmintForm}>
                 <input
