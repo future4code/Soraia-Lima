@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import { Posts, PostFooter, TextPost } from "./styled"
-//  import { IconeComContador } from "../../components/InconeContador/ContadorVotoPost"
-import { ContadorVotoPost } from "../../components/InconeContador/ContadorVotoPost"
 import useForm from "../../hooks/useForm"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import { createComment, useData, createCommentVote, useResquestData } from "../../requests/requests"
@@ -36,8 +34,9 @@ function PostPage() {
                 <h3>{post.username}</h3>
                 <TextPost>{post.body}</TextPost>
                 <PostFooter>
-                    <p> ⬆️ {post.voteSum ? post.voteSum : 0} ⬇️</p>
-                    <p>{post.commentCount ? post.commentCount : 0} comentarios</p>
+                    {/* <p> ⬆️ {post.voteSum ? post.voteSum : 0} ⬇️</p> */}
+                    
+                    <span>{post.commentCount ? post.commentCount : 0}💬 </span>
                 </PostFooter>
 
 
@@ -55,7 +54,7 @@ function PostPage() {
             <div key={item.id}>
                 <p>{item.username}</p>
                 <p>{item.body}</p>
-                <ContadorVotoPost />
+               
 
             </div>
         )

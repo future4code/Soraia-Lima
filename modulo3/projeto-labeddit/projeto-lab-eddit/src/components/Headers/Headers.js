@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom"
-import logo from "../../image/logo.png"
+import logo from "../../image/novaLogo.png"
 import { goToLogin } from "../../router/coordinatis"
 import { Header } from "./styled"
 

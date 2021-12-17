@@ -132,20 +132,17 @@ export const createComment = (id, bady, cleanFields) => { // id do post
     })
 }
 
-// -------------- VOTAR POSITIVO EM UM POST -----------------
+// -------------- VOTAR  EM UM POST -----------------
 
-export const createPostVote = (id) => { // id do post
+export const createPostVote = (id, body, valor) => { // id do post
 
-
-    const bady = {
-        direction: 1
-    }
-    axios.post(`${BASE_URL}/posts/${id}/votes`, bady, {
+    axios.post(`${BASE_URL}/posts/${id}/votes`, body, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     }).then((res) => {
         console.log("Votadooooooooooo", res.data)
+        console.log(valor)
 
     }).catch((error) => {
         console.log("Não consegui votar :(", error.response)

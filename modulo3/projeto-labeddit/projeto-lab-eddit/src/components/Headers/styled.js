@@ -4,13 +4,13 @@ export const Header = styled.header`
 width: 100%;
 height: 10vh;
 display:flex;
-background-color: orange;
+background-color: #ff8210;
 padding: 10px;
 align-items: center;
 justify-content: space-between;
 img{
     width: 10vw;
-    height:5vh;
+    height:10vh;
     margin-right: 1vw;
 }
 div{

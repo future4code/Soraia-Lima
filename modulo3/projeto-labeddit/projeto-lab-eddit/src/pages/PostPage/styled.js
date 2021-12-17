@@ -44,6 +44,11 @@ justify-content: space-between;
 border: 1px solid black;
 width: 40vw;
 text-align: center;
+span{
+    display:flex;
+    /* height:2vh; */
+    /* width: 3vw; */
+    }
 `
 
 export const TextPost = styled.div`
