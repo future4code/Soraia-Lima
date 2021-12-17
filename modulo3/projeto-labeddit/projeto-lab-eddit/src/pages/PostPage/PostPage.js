@@ -5,6 +5,7 @@ import useProtectedPage from "../../hooks/useProtectedPage"
 import { createComment, useData, createCommentVote, useResquestData } from "../../requests/requests"
 import { goToFeed } from "../../router/coordinatis"
 import { useHistory, useParams } from "react-router-dom"
+import Headers from "../../components/Headers/Headers"
 
 
 // import { getPosts, getPostComments, createPost, createPostVote, createCommentVote, changePostVote, changeCommentVote, deletePostVote, deleteCommentVote } from "../../requests/requests"
@@ -66,6 +67,8 @@ function PostPage() {
     }
 
     return (
+        <div>
+            <Headers/>
         <Posts>
             <div>
             {post}
@@ -90,6 +93,7 @@ function PostPage() {
 
             <button onClick={() => { goToFeed(history) }}>Voltar</button>
         </Posts>
+        </div>
     )
 }
 export default PostPage

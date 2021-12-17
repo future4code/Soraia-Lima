@@ -10,7 +10,7 @@ import RegisterPage from "../pages/RegisterPage/RegisterPage";
 function Router() {
     return (
         <BrowserRouter>
-        <Headers/>
+        {/* <Headers/> */}
             <Switch>
                 <Route exact path={"/"}>
                     <LoginPage />
