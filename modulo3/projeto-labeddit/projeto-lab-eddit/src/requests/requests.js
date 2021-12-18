@@ -60,7 +60,6 @@ export const useResquestData = () => {
 
 // ----- VER O COMENTÁRIO DE UM POST ESPECÍFICO -----
 
-// const token = localStorage.getItem("token")
 export const useData = (id) => {
     const [detalhes, setDetalhes] = useState([])
 
@@ -71,8 +70,6 @@ export const useData = (id) => {
                 Authorization: localStorage.getItem("token")
             }
         }).then((res) => {
-            // console.log("Mostar comentarios", res.data)
-            // goToPost(history, id)
             setDetalhes(res.data)
 
         }).catch((error) => {
@@ -151,35 +148,29 @@ export const createPostVote = (id, body, valor) => { // id do post
 
 // --------- VOTAR EM UM COMENTARIO --------------
 
-export const createCommentVote = (id) => { // id do comentario
-    const body = {
-        "direction": 1
-    }
-
-    axios.post(`${BASE_URL}/comments/${id}/votes`, body, {
+export const createCommentVote = (id, body, valor) => { // id do comentario
+       axios.post(`${BASE_URL}/comments/${id}/votes`, body, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     }).then((res) => {
         console.log("Voto no Comentrioooooooooooo", res.data)
-
+        console.log(valor)
     }).catch((error) => {
         console.log("Não consegui votar no COMENTARIO :(", error.response)
     })
 }
 
 // ----------- MUDAR VOTO DO POST  --------------
-export const changePostVote = (id) => {  // id do post
-    const bady = {
-        direction: -1
-    }
-    axios.put(`${BASE_URL}/posts/${id}/votes`, bady, {
+export const changePostVote = (id, body, valor) => {  // id do post
+    
+    axios.put(`${BASE_URL}/posts/${id}/votes`, body, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     }).then((res) => {
         console.log("DESFEZ O VOTO DO POST", res.data)
-
+        console.log(valor)
     }).catch((error) => {
         console.log("NÃO MUDOU O VOTO DO POST :(", error.response)
     })
@@ -187,17 +178,15 @@ export const changePostVote = (id) => {  // id do post
 }
 
 // ------------- MUDAR VOTO DO COMENTARIO ------------------
-export const changeCommentVote = (id, bady) => {     // id do comentario
-    // const bady = {
-    //         direction: -1
-    //     }
-    axios.put(`${BASE_URL}/comments/${id}/votes`, bady, {
+export const changeCommentVote = (id, body, valor) => {     // id do comentario
+    
+    axios.put(`${BASE_URL}/comments/${id}/votes`, body, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     }).then((res) => {
         console.log("comentario mudado", res.data)
-
+        console.log(valor)
     }).catch((error) => {
         console.log("COMENTARIO não mudado:(", error.response.data)
     })

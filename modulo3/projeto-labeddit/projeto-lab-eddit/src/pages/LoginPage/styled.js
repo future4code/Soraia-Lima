@@ -15,15 +15,17 @@ div{
     align-items: center;
     flex-direction: column;
     button{
-        background-color:orange;
+        background-color:#ff8210;
+        color: white;
+        font-size: 1em;
         border:none;
         margin-bottom: 2vh;
         width: 10vw;
-        height:4vh;
+        height:5vh;
         border-radius:5px;
         &:hover{
-        background-color: gray;
-        color: white;
+        background-color: orange;
+        
     }
     }
 }
@@ -38,5 +40,19 @@ margin-bottom:2vh;
 height:5vh;
 padding:0.5vw;
 }
+`
 
+export const BotaoCadastrar = styled.button`
+color: #ff8210;
+background-color: white;
+font-size: 1.3em;
+border: none;
+margin-top: 3vh;
+&:hover{
+    background-color: orange;
+    color: white;
+    height: 5vh;
+    border-radius: 10px;
+    width: 25vw;
+}
 `

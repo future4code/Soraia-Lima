@@ -5,10 +5,12 @@ text-align:center;
 display:flex;
 flex-direction: column;
 align-items: center;
-margin-top:8vh;
+margin-top:5vh;
 width: 50%;
 margin-left:25%;
-border:1px solid red;
+h1{
+    margin-bottom: 2vh;
+}
 img{
     width: 3vw;
     height:3vh;
@@ -16,43 +18,153 @@ img{
 }
 form{
     display:flex;
-    width: 40vw;
-    /* border: 1px solid green;  */
-    flex-direction: column;
+    width: 91%;
     align-items: center;
-    
+    margin-bottom: 1vh;
+    margin-top: 1vh; 
+    box-shadow: 0px 0px 5px 0px orange;
+       
     input{
-        height: 10vh;
+        height: 6vh;
         width: 100%;
         padding: 7px;
+        border: 1px solid  orange;
 
     }
     button{
-        width: 10vw;
-        height: 4vh;
-        margin-top: 0.5vh;
+        width: 4vw;
+        height: 6vh;
+        background-color: orange;
+        border: none;
+        border-radius: 1px;
+        color:white;
         
+        &:hover{
+        
+        background-color: #ff8210;
+        
+    }  
     }
 }
 `
-export const PostFooter = styled.div`
-height: 4vh;
+
+export const Map = styled.div`
 display: flex;
-align-items: center;
-padding: 0 10px;
-justify-content: space-between;
-border: 1px solid black;
-width: 40vw;
-text-align: center;
-span{
-    display:flex;
-    /* height:2vh; */
-    /* width: 3vw; */
+flex-direction: column;
+width: 45vw;
+align-items: stretch;
+border: 1px solid #ff8210;
+margin: 10px;
+
+h2{
+margin-bottom: 2vh;
+}
+h4{
+    
+    display: flex;
+    align-items: center;
+   text-align: left;
+   border-bottom: 1px solid #ff8210;
+   margin-bottom: 2vh;
+   height: 5vh;
+   
+    
+    img{
+        width: 2.5vw;
+        height: 4vh;
     }
+}
+span{
+    margin-top: 2vh;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    justify-content: space-between;
+    align-items: center;  
+}
 `
 
-export const TextPost = styled.div`
+export const Comment = styled.div`
+display: flex;
+flex-direction: column;
+box-shadow: 0px 0px 5px 0px orange;
+border-radius: 5px;
+width: 45vw;
+margin: 10px;
+
+h4{
+    
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 2vh;
+    height: 5vh;
+   
+    img{
+        width: 2.5vw;
+        height: 4vh;
+    }
+}
+
+span{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+
+    div{
+        display: flex;
+        width: 5.5vw;
+        justify-content: space-between;
+
+    }
+    
+}
+`
+
+export const BotaoLike = styled.button`
+width: 1.8vw;
+height : 3.5vh;
+font-size: 1em;
+border-radius: 3px;
+font-size: 15px;
+border: 1px solid blue;
+color: blue;
+background-color: white;
+&:hover{
+    color: white;
+background-color: blue;
+}
+`
+export const BotaoDeslike = styled.button`
+width: 1.8vw;
+height : 3.5vh;
+font-size: 1em;
+border-radius: 3px;
+font-size: 15px;
 border: 1px solid red;
-width: 40vw;
-height: 10vh;
+color: red;
+background-color: white;
+margin-right: 0.5vw;
+&:hover{
+    color: white;
+background-color: red;
+}
+`
+
+export const BotaoVoltar = styled.button`
+    font-size: 1em;
+    width: 10vw;
+    height: 5vh;
+    background-color: #ff8210;
+    border: none;
+    border-radius: 3px;
+    color:white;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    &:hover{
+        
+        background-color: orange;
+        
+    }
 `

@@ -1,25 +1,20 @@
 import { useHistory } from "react-router-dom"
-import logo from "../../image/novaLogo.png"
+import logo from "../../image/logo.png"
 import { goToLogin } from "../../router/coordinatis"
 import { Header } from "./styled"
 
-function Headers (){
+function Headers() {
     const history = useHistory()
-    const token = localStorage.getItem("token")
-    
-    const logout = ()=>{
+
+    const logout = () => {
         localStorage.clear()
         goToLogin(history)
     }
-    return(
+
+    return (
         <Header>
-            <div>
-            <img src={logo}/>
-            <input
-            placeholder="Buscar no amigos"/>
-            </div>
-            {localStorage.getItem("token") ? <button onClick={logout}>Logout</button> : ""}
-            {/* <button onClick={logout}>Logout</button> */}
+            <img src={logo} />
+            <button onClick={logout}>Logout</button>
         </Header>
     )
 }

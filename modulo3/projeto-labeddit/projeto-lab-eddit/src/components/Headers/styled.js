@@ -9,18 +9,11 @@ padding: 10px;
 align-items: center;
 justify-content: space-between;
 img{
-    width: 10vw;
-    height:10vh;
-    margin-right: 1vw;
+    width: 8vw;
+    height:8vh;
+    margin-right: 2vw;
 }
-div{
-    display:flex;
-    align-items: center;
-}
-input{
-    width: 20vw;
-    height: 4vh;
-}
+
 button{
     background-color: white;
     border: none;

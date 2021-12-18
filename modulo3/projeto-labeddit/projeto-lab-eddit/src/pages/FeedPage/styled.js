@@ -11,61 +11,79 @@ margin-left:25%;
 word-break: break-all;
 `
 
-export const Formulario = styled.div`
-
-    width: 90%;
-    box-shadow: rgb(0 0 0 / 30%) 0px 4px 8px 0px;
-    h2{
-    margin-top: 2vh;
+export const Filtro = styled.div`
+input{
+    width: 44vw;;
+    height: 5.5vh;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom:3vh;
+    border: 1px solid #ff8210;
 }
-    form{
+`
+
+export const Formulario = styled.div`
+margin-bottom: 5vh;
+width: 90%;
+box-shadow: 0px 0px 5px 0px orange;
+h1{
+    margin-top: 3vh;
+}
+form{
     display: flex;
     flex-direction: column;
     text-align:center;
     align-items: center;
-    
+   
     input{
-width: 30vw;
-margin-top:2vh;
-height:5vh;
-padding:0.5vw;
-}
+        width: 35vw;
+        margin-top:2vh;
+        height:5vh;
+        padding:0.5vw;
+    }
 button{
-    width: 5vw;
-    height: 3.5vh;
+    width: 8vw;
+    height: 4.5vh;
     margin: 2vh;   
-}
+    background-color: #ff8210;
+    border: none;
+    border-radius: 3px;
+    color:white;
+    &:hover{
+        background-color: orange;
+        }
+    }
 }`
 
-export const Map = styled.div `
+export const Map = styled.div`
 display: flex;
 flex-direction: column;
 width: 90%;
 align-items: stretch;
-/* 
-height: 5vh;
-border: 1px solid black;
-justify-content: space-between; */
-/* align-items: center; */
-border: 1px solid gray;
+box-shadow: 0px 0px 5px 0px orange;
 margin: 10px;
-
-h5{
-    cursor: pointer;
-         
+p{
+    cursor: pointer;        
 }
-h3{
-    
+h2{
+    margin-bottom: 2vh;
+}
+h4{
     display: flex;
     align-items: center;
-   text-align: left;
-    
+    text-align: left;
+    border-bottom: 1px solid orange;
+    margin-bottom: 2vh;
+    height: 5vh;
+   
     img{
         width: 2.5vw;
         height: 4vh;
-    }
+        }
 }
+
 span{
+    margin-top: 2vh;
     padding: 5px;
     display: flex;
     flex-direction: row;
@@ -74,11 +92,9 @@ span{
     
     div{
         display: flex;
-    flex-direction: row;
-    /* width:5vw; */
-    justify-content: space-between;
-    align-items: center;
-   
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
     p{
         margin-left:5px;
@@ -98,8 +114,8 @@ color: blue;
 background-color: white;
 &:hover{
     color: white;
-background-color: blue;
-}
+    background-color: blue;
+    }
 `
 
 export const BotaoLike2 = styled.button`
@@ -125,8 +141,8 @@ background-color: white;
 margin-right: 0.5vw;
 &:hover{
     color: white;
-background-color: red;
-}
+    background-color: red;
+    }
 `
 
 export const BotaoDeslike2 = styled.button`
@@ -138,5 +154,4 @@ font-size: 15px;
 border: 1px solid red;
 color: white;
 background-color: red;
-
 `

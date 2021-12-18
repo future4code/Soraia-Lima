@@ -9,21 +9,21 @@ margin-top:8vh;
 width: 50%;
 margin-left:25%;
 
-
 div{
     display:flex;
     align-items: center;
     flex-direction: column;
     button{
-        background-color:orange;
-        border:none;
-        margin-bottom: 2vh;
-        width: 10vw;
-        height:5vh;
-        border-radius:5px;
-        &:hover{
-        background-color: gray;
-        color: white;
+    color: white;
+    background-color: #ff8210;
+    font-size: 1.3em;
+    border: none;
+    margin-top: 3vh;
+    height: 5vh;
+    border-radius: 10px;
+    width: 10vw;
+    &:hover{
+        background-color: orange;
     }
     }
 }
@@ -32,6 +32,7 @@ h1{
     margin-bottom: 5vh;
     font-size:3em;
 }
+
 input{
 width: 30vw;
 margin-bottom:2vh;
