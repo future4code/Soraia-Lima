@@ -1,17 +1,17 @@
 import React, { useState } from "react"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import useForm from "../../hooks/useForm"
-import { createPost, useResquestData, createPostVote, changePostVote, deletePostVote } from "../../requests/requests"
+import { createPost} from "../../requests/requests"
 import { useHistory } from "react-router-dom"
 import { goToPost } from "../../router/coordinatis"
-import { Map, BotaoLike, BotaoDeslike, Container, Formulario, BotaoLike2, Filtro } from './styled'
+import { Map, Container, Formulario, Filtro } from './styled'
 import Headers from "../../components/Headers/Headers"
+import ContadorVotosPost from "../../components/ContadorVotoPost/ContadorVotosPost"
+import { useResquestData } from "../../hooks/useResquestData"
+
 
 function FeedPage() {
     useProtectedPage()
-
-    const [like, setLike] = useState(false)
-    const [deslike, setDeslike] = useState(false)
 
     const postagens = useResquestData()
 
@@ -34,34 +34,6 @@ function FeedPage() {
         createPost(form, cleanFields, postagens)
     }
 
-    // ------------------ VOTAR EM UM POST -----------------
-    const vote = (id, valor) => {
-        const body = {
-            direction: valor
-        }
-
-        if (valor === 1 && !like && !deslike) {
-            setLike(true)
-            createPostVote(id, body, valor)
-        } else if (valor === -1 && !like && !deslike) {
-            setDeslike(true)
-            createPostVote(id, body, valor)
-        } else if (valor === 1 && like) {
-            setLike(false)
-            deletePostVote(id)
-        } else if (valor === -1 && deslike) {
-            setDeslike(false)
-            deletePostVote(id)
-        } else if (valor === 1 && deslike) {
-            setLike(true)
-            setDeslike(false)
-            changePostVote(id, body, valor)
-        } else {
-            setLike(false)
-            setDeslike(true)
-            changePostVote(id, body, valor)
-        }
-    }
 
     // --------- RENDERIZA O POST E TAMBÉM A BUSCA DO FILTRO ----------------
 
@@ -75,9 +47,10 @@ function FeedPage() {
                 <p onClick={() => { goToPost(history, post.id) }}>{post.body}</p>
                 <span>
                     <div>
-                        <BotaoLike onClick={() => { vote(post.id, 1) }} > <b>↑</b> </BotaoLike>
-                        <p>{post.voteSum ? post.voteSum : 0}</p>
-                        <BotaoDeslike onClick={() => { vote(post.id, -1) }}><b>↓</b></BotaoDeslike>
+                        <ContadorVotosPost
+                            id={post.id}
+                            votos={post.voteSum}
+                        />
                     </div>
                     <div>|</div>
                     <p onClick={() => { goToPost(history, post.id) }}> {post.commentCount ? post.commentCount : 0}💬</p>
@@ -121,7 +94,6 @@ function FeedPage() {
                     </Formulario>
                     {mapPostagens}
                 </ Container> : <p>Loading...</p>}
-
         </div>
     )
 }

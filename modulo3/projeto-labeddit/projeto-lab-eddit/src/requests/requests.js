@@ -32,31 +32,34 @@ export const signup = (bady, cleanFields, history) => {
 
 }
 
-// -------------- VER TODOS OS POST ---------------
+// // -------------- VER TODOS OS POST ---------------
 
-export const useResquestData = () => {
+// export const useResquestData = () => {
 
-    const [postagens, setPostagens] = useState([])
+//     const [postagens, setPostagens] = useState([])
 
-    const getPosts = () => {
-        axios.get(`${BASE_URL}/posts`, {
-            headers: {
-                Authorization: localStorage.getItem("token")
-            }
-        }).then((res) => {
-            // console.log("Deu certo", res.data)
-            setPostagens(res.data)
-        }).catch((error) => {
-            console.log(error.response)
-        })
-    }
+//     const getPosts = () => {
+//         axios.get(`${BASE_URL}/posts`, {
+//             headers: {
+//                 Authorization: localStorage.getItem("token")
+//             }
+//         }).then((res) => {
+//             // console.log("Deu certo", res.data)
+//             setPostagens(res.data)
+//         }).catch((error) => {
+//             console.log(error.response)
+//         })
+//     }
 
-    useEffect(() => {
-        getPosts()
-    }, [postagens])
+//     useEffect(() => {
+//         getPosts()
+//     }, [postagens])
 
-    return postagens
-}
+//     return postagens
+// }
+
+
+
 
 // ----- VER O COMENTÁRIO DE UM POST ESPECÍFICO -----
 

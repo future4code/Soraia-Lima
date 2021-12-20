@@ -51,37 +51,48 @@ form{
 export const Map = styled.div`
 display: flex;
 flex-direction: column;
-width: 45vw;
+width: 45vw ;
 align-items: stretch;
-border: 1px solid #ff8210;
+box-shadow: 0px 0px 5px 0px orange;
 margin: 10px;
-
+p{
+    cursor: pointer;        
+}
 h2{
-margin-bottom: 2vh;
+    margin-bottom: 2vh;
 }
 h4{
-    
     display: flex;
     align-items: center;
-   text-align: left;
-   border-bottom: 1px solid #ff8210;
-   margin-bottom: 2vh;
-   height: 5vh;
+    text-align: left;
+    border-bottom: 1px solid orange;
+    margin-bottom: 2vh;
+    height: 5vh;
    
-    
     img{
         width: 2.5vw;
         height: 4vh;
-    }
+        }
 }
+
 span{
     margin-top: 2vh;
     padding: 5px;
     display: flex;
     flex-direction: row;
-    width: 100%; 
-    justify-content: space-between;
-    align-items: center;  
+    width: 100%;
+    justify-content: flex-end;
+    
+    div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    p{
+        margin-left:5px;
+        margin-right:5px;
+    }
 }
 `
 
@@ -167,4 +178,15 @@ export const BotaoVoltar = styled.button`
         background-color: orange;
         
     }
+`
+
+export const BotaoLike2 = styled.button`
+width: 1.8vw;
+height : 3.5vh;
+font-size: 1em;
+border-radius: 3px;
+font-size: 15px;
+border: 1px solid blue;
+color: white;
+background-color: blue;
 `
