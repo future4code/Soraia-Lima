@@ -5,7 +5,7 @@ Esse projeto foi desenvolvido com o intuito de simular uma rede social, foi base
 O labEddit é um site responsivo, o que possibilita, ao usuário o acesso ao site pelo computador ou celular. 
 
 ### Como usar: 
-Usuário: para ter acesso a rede social, é necessário fazer loguin, com um e-mail e senha previamente cadastrados, caso não tenha, temos uma página de cadastro, onde a pessoa pode realizar um novo cadastro. 
+Usuário: para ter acesso a rede social, é necessário fazer login, com um e-mail e senha previamente cadastrados, caso não tenha, temos uma página de cadastro, onde a pessoa pode realizar um novo cadastro. 
 Na página de feed, é possível visualizar as postagens dos demais participantes, buscar um post especifico, através do título ou descrição do mesmo, criar um novo post, dar like ou deslike nos posts disponíveis. 
 Podemos visualizar os comentários de um post, clicando em cima da descrição do post, ou clicando no icone 💬, assim  seremos redirecionado para outra página (Post), nessa página, é possível visualizar os comentários de um post, criar um novo comentário, e também dar like ou deslike nesses comentários. 
 
