@@ -1,19 +1,19 @@
 import React, { useState } from "react"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import useForm from "../../hooks/useForm"
-import { createPost} from "../../requests/requests"
+import { createPost } from "../../requests/requests"
 import { useHistory } from "react-router-dom"
 import { goToPost } from "../../router/coordinatis"
 import { Map, Container, Formulario, Filtro } from './styled'
 import Headers from "../../components/Headers/Headers"
-import ContadorVotosPost from "../../components/ContadorVotoPost/ContadorVotosPost"
-import { useResquestData } from "../../hooks/useResquestData"
-
+import { useRequestedData } from "../../hooks/useRequestedData"
+import CountVotesPost from "../../components/CountVotesPosts/CountVotesPost"
+import Loading from "../../components/Loading/Loading"
 
 function FeedPage() {
     useProtectedPage()
 
-    const postagens = useResquestData()
+    const postagens = useRequestedData()
 
     // ----------------- FILTRO --------------
     const [query, setQuery] = useState("")
@@ -36,7 +36,6 @@ function FeedPage() {
 
 
     // --------- RENDERIZA O POST E TAMBÉM A BUSCA DO FILTRO ----------------
-
     const mapPostagens = postagens.filter((post) => {
         return post.title.toLowerCase().includes(query.toLowerCase()) || post.body.toLowerCase().includes(query.toLowerCase())
     }).map((post) => {
@@ -47,7 +46,7 @@ function FeedPage() {
                 <p onClick={() => { goToPost(history, post.id) }}>{post.body}</p>
                 <span>
                     <div>
-                        <ContadorVotosPost
+                        <CountVotesPost
                             id={post.id}
                             votos={post.voteSum}
                         />
@@ -93,7 +92,7 @@ function FeedPage() {
                         </form>
                     </Formulario>
                     {mapPostagens}
-                </ Container> : <p>Loading...</p>}
+                </ Container> : <Loading />}
         </div>
     )
 }

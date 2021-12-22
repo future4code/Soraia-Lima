@@ -46,6 +46,24 @@ form{
     }  
     }
 }
+
+@media screen and  (max-device-width : 667px) {
+width: 85%;
+margin-left:10%;
+
+h1{
+    font-size: 1.8em;
+}
+form{
+    width: 95%;
+    input{
+        width: 85%;
+    }
+    button{
+        width: 15%;
+    }
+}
+}
 `
 
 export const Map = styled.div`
@@ -94,6 +112,15 @@ span{
         margin-right:5px;
     }
 }
+
+@media screen and  (max-device-width : 667px) {
+width: 80vw;
+h4{
+    img{
+        width: 7vw;
+    }
+}
+}
 `
 
 export const Comment = styled.div`
@@ -131,37 +158,28 @@ span{
     }
     
 }
+
+@media screen and  (max-device-width : 667px) {
+width: 80vw;
+word-break: break-all;
+h4{
+    img{
+        width: 7vw;
+    }
+}
+span{
+    margin-left: 1vw;
+    width: 97%;
+    div{
+        width: 13vw;
+        margin-left: 1vw;
+    }
+}
+}
 `
 
-export const BotaoLike = styled.button`
-width: 1.8vw;
-height : 3.5vh;
-font-size: 1em;
-border-radius: 3px;
-font-size: 15px;
-border: 1px solid blue;
-color: blue;
-background-color: white;
-&:hover{
-    color: white;
-background-color: blue;
-}
-`
-export const BotaoDeslike = styled.button`
-width: 1.8vw;
-height : 3.5vh;
-font-size: 1em;
-border-radius: 3px;
-font-size: 15px;
-border: 1px solid red;
-color: red;
-background-color: white;
-margin-right: 0.5vw;
-&:hover{
-    color: white;
-background-color: red;
-}
-`
+
+
 
 export const BotaoVoltar = styled.button`
     font-size: 1em;
@@ -178,15 +196,11 @@ export const BotaoVoltar = styled.button`
         background-color: orange;
         
     }
-`
 
-export const BotaoLike2 = styled.button`
-width: 1.8vw;
-height : 3.5vh;
-font-size: 1em;
-border-radius: 3px;
-font-size: 15px;
-border: 1px solid blue;
-color: white;
-background-color: blue;
+@media screen and  (max-device-width : 667px) {
+font-size: 0.8em;
+width: 20vw;
+height: 4vh;
+margin-bottom: 5vh;
+}
 `

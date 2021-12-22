@@ -2,18 +2,20 @@ import React from "react"
 import { Posts, Map, Comment, BotaoVoltar } from "./styled"
 import useForm from "../../hooks/useForm"
 import useProtectedPage from "../../hooks/useProtectedPage"
-import { createComment, useData } from "../../requests/requests"
+import { createComment } from "../../requests/requests"
 import { goToFeed } from "../../router/coordinatis"
 import { useHistory, useParams } from "react-router-dom"
 import Headers from "../../components/Headers/Headers"
-import ContadorVotosPost from "../../components/ContadorVotoPost/ContadorVotosPost"
-import ContadorComentarios from "../../components/ContadorVotosComentarios/ContadorComentarios"
-import { useResquestData } from "../../hooks/useResquestData"
+import CountVotesComments from "../../components/CountVotesComments/CountVotesComments"
+import { useRequestedData } from "../../hooks/useRequestedData"
+import { useRequestedComent } from "../../hooks/useRequestedComent"
+import CountVotesPost from "../../components/CountVotesPosts/CountVotesPost"
+import Loading from "../../components/Loading/Loading"
 
 function PostPage() {
     useProtectedPage()
 
-    const posts = useResquestData([])
+    const posts = useRequestedData([])
     const history = useHistory()
 
     // --------------- FUNÇÕES DO FORMULARIO----------
@@ -33,13 +35,12 @@ function PostPage() {
     }).map((post) => {
         return (
             <Map key={post.id}>
-
                 <h4><img alt="usuario" src={"https://static.vecteezy.com/ti/vetor-gratis/p1/2318271-icone-do-perfil-do-usuario-gr%C3%A1tis-vetor.jpg"} /> {post.username}</h4>
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
                 <span>
                     <div>
-                        <ContadorVotosPost
+                        <CountVotesPost
                             id={post.id}
                             votos={post.voteSum}
                         />
@@ -52,15 +53,15 @@ function PostPage() {
     })
 
     // -------------- RETORNAR OS COMENTÁRIOS DO POST -----------
-    const comentario = useData(id, history)
-    const mapComentario = comentario.map((item) => {
+    const comment = useRequestedComent(id, history)
+    const mapComment = comment.map((item) => {
         return (
             <Comment key={item.id}>
                 <h4> <img alt="usuario" src={"https://static.vecteezy.com/ti/vetor-gratis/p1/2318271-icone-do-perfil-do-usuario-gr%C3%A1tis-vetor.jpg"} />{item.username}</h4>
                 <span>
                     <p>{item.body}</p>
                     <div>
-                        <ContadorComentarios
+                        <CountVotesComments
                             id={item.id}
                             votos={item.voteSum}
                         />
@@ -75,30 +76,32 @@ function PostPage() {
     return (
         <div>
             <Headers />
-            {posts.length > 0 ? <Posts>
-                <h1>Detalhes do Post</h1>
+            {posts.length > 0 ?
+                <Posts>
+                    <h1>Detalhes do Post</h1>
 
-                <div>
-                    {post}
-                </div>
+                    <div>
+                        {post}
+                    </div>
 
-                <form onSubmit={onSubmintForm}>
-                    <input
-                        placeholder="Novo comentário"
-                        value={form.body}
-                        onChange={onChange}
-                        required
-                        name={"body"}
-                    />
-                    <button>Enviar</button>
-                </form>
+                    <form onSubmit={onSubmintForm}>
+                        <input
+                            placeholder="Novo comentário"
+                            value={form.body}
+                            onChange={onChange}
+                            required
+                            name={"body"}
+                        />
+                        <button>Enviar</button>
+                    </form>
 
-                <div>
-                    {mapComentario}
-                </div>
+                    <div>
+                        {mapComment}
+                    </div>
 
-                <BotaoVoltar onClick={() => { goToFeed(history) }}>Voltar</BotaoVoltar>
-            </Posts> : <p>Loading...</p>}
+                    <BotaoVoltar onClick={() => { goToFeed(history) }}>Voltar</BotaoVoltar>
+                </Posts>
+                : <Loading />}
         </div>
     )
 }

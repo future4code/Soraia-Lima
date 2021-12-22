@@ -9,7 +9,6 @@ margin-top:8vh;
 width: 50%;
 margin-left:25%;
 
-
 div{
     display:flex;
     align-items: center;
@@ -24,9 +23,8 @@ div{
         height:5vh;
         border-radius:5px;
         &:hover{
-        background-color: orange;
-        
-    }
+        background-color: orange;       
+        }
     }
 }
 
@@ -39,6 +37,20 @@ width: 30vw;
 margin-bottom:2vh;
 height:5vh;
 padding:0.5vw;
+}
+
+@media screen and  (max-device-width : 667px) {
+input{
+width: 60vw;
+margin-bottom:2vh;
+height:5vh;
+padding:0.5vw;
+}
+div{
+    button{
+        width: 30vw;
+    }
+}
 }
 `
 
@@ -55,4 +67,5 @@ margin-top: 3vh;
     border-radius: 10px;
     width: 25vw;
 }
+
 `

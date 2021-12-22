@@ -13,6 +13,11 @@ background-color: white;
     color: white;
     background-color: blue;
     }
+
+@media screen and  (max-device-width : 667px) {
+    width: 3.5vw;
+    height : 3vh;
+}
 `
 
 export const BotaoLike2 = styled.button`
@@ -24,6 +29,11 @@ font-size: 15px;
 border: 1px solid blue;
 color: white;
 background-color: blue;
+
+@media screen and  (max-device-width : 667px) {
+    width: 3.5vw;
+    height : 3vh;
+}
 `
 
 export const BotaoDeslike = styled.button`
@@ -40,6 +50,11 @@ margin-right: 0.5vw;
     color: white;
     background-color: red;
     }
+
+@media screen and  (max-device-width : 667px) {
+    width: 3.5vw;
+    height : 3vh;
+}
 `
 
 export const BotaoDeslike2 = styled.button`
@@ -51,4 +66,9 @@ font-size: 15px;
 border: 1px solid red;
 color: white;
 background-color: red;
+
+@media screen and  (max-device-width : 667px) {
+    width: 3.5vw;
+    height : 3vh;
+}
 `

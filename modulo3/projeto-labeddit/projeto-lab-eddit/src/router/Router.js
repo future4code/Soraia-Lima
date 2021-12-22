@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Headers from "../components/Headers/Headers";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
@@ -10,7 +9,6 @@ import RegisterPage from "../pages/RegisterPage/RegisterPage";
 function Router() {
     return (
         <BrowserRouter>
-        {/* <Headers/> */}
             <Switch>
                 <Route exact path={"/"}>
                     <LoginPage />
@@ -29,7 +27,6 @@ function Router() {
                 </Route>
             </Switch>
         </BrowserRouter>
-
     )
 }
 

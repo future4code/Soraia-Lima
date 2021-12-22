@@ -10,6 +10,13 @@ align-items: center;
 img{
     width: 8vw;
     height:8vh;
+    cursor: pointer;
 }
 
+@media screen and  (max-device-width : 667px) {
+img{
+    width:20vw;
+}
+
+}
 `

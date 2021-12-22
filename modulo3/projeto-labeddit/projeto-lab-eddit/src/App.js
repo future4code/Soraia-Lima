@@ -1,7 +1,5 @@
 import Router from "./router/Router"
 import { createGlobalStyle } from 'styled-components';
-import { BrowserRouter } from "react-router-dom";
-
 
 function App() {
 

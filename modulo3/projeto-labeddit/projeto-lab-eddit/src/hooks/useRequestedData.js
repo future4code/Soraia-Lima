@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { BASE_URL } from "../components/url"
 
-export const useResquestData = () => {
+export const useRequestedData = () => {
 
-    const [postagens, setPostagens] = useState([])
+    const [posts, setPosts] = useState([])
 
     const getPosts = () => {
         axios.get(`${BASE_URL}/posts`, {
@@ -12,15 +12,15 @@ export const useResquestData = () => {
                 Authorization: localStorage.getItem("token")
             }
         }).then((res) => {
-            setPostagens(res.data)
+            setPosts(res.data)
         }).catch((error) => {
-            console.log(error.response)
+            alert("Desculpe, tivemos um imprevisto, por gentileza, tente mais tarde...", error.response)
         })
     }
 
     useEffect(() => {
         getPosts()
-    }, [postagens])
+    }, [posts])
 
-    return postagens
+    return posts
 }

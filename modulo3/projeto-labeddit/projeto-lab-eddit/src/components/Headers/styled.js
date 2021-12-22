@@ -12,6 +12,7 @@ img{
     width: 8vw;
     height:8vh;
     margin-right: 2vw;
+    cursor: pointer;
 }
 
 button{
@@ -25,5 +26,17 @@ button{
         background-color: gray;
         color: white;
     }
+}
+
+@media screen and  (max-device-width : 667px) {
+img{
+    width:20vw;
+}
+button{
+    font-size: 0.8em;
+    width: 13vw;
+    height:3.5vh;
+    color: orange;
+}
 }
 `

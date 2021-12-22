@@ -10,7 +10,6 @@ import Headers2 from "../../components/Headers2/Headers2"
 function LoginPage() {
     useUnprotectedPage()
 
-
     const { form, onChange, cleanFields } = useForm({
         email: "",
         password: ""

@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { createPostVote, deletePostVote, changePostVote } from "../../requests/requests";
-import { BotaoLike, BotaoLike2, BotaoDeslike, BotaoDeslike2 } from "./style";
+import { useState } from "react"
+import { createCommentVote, deleteCommentVote, changeCommentVote } from "../../requests/requests";
+import { BotaoLike, BotaoLike2, BotaoDeslike, BotaoDeslike2 } from "./styled";
 
-function ContadorVotosPost(props) {
+function CountVotesComments(props) {
 
+    //-------------- VOTAR EM UM COMENTÁRIO ----------
     const [like, setLike] = useState(false)
     const [deslike, setDeslike] = useState(false)
-
-    // ------------------ VOTAR EM UM POST -----------------
     const vote = (id, valor) => {
         const body = {
             direction: valor
@@ -15,28 +14,26 @@ function ContadorVotosPost(props) {
 
         if (valor === 1 && !like && !deslike) {
             setLike(true)
-            createPostVote(id, body, valor)
-
+            createCommentVote(id, body, valor)
         } else if (valor === -1 && !like && !deslike) {
             setDeslike(true)
-            createPostVote(id, body, valor)
+            createCommentVote(id, body)
         } else if (valor === 1 && like) {
             setLike(false)
-            deletePostVote(id)
+            deleteCommentVote(id)
         } else if (valor === -1 && deslike) {
             setDeslike(false)
-            deletePostVote(id)
+            deleteCommentVote(id)
         } else if (valor === 1 && deslike) {
             setLike(true)
             setDeslike(false)
-            changePostVote(id, body, valor)
+            changeCommentVote(id, body)
         } else {
             setLike(false)
             setDeslike(true)
-            changePostVote(id, body, valor)
+            changeCommentVote(id, body)
         }
     }
-
 
     return (
         <div>
@@ -47,4 +44,4 @@ function ContadorVotosPost(props) {
     )
 }
 
-export default ContadorVotosPost;
+export default CountVotesComments

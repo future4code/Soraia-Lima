@@ -9,6 +9,11 @@ margin-top:3vh;
 width: 50%;
 margin-left:25%;
 word-break: break-all;
+
+@media screen and  (max-device-width : 667px) {
+width: 80%;
+margin-left:10%;
+}
 `
 
 export const Filtro = styled.div`
@@ -19,6 +24,11 @@ input{
     padding: 10px;
     margin-bottom:3vh;
     border: 1px solid #ff8210;
+}
+@media screen and (max-device-width : 667px) {
+    input{
+        width: 72vw;
+    }
 }
 `
 
@@ -53,7 +63,22 @@ button{
         background-color: orange;
         }
     }
-}`
+}
+@media screen and (max-device-width : 667px) {
+    h1{
+        font-size: 1.7em;
+    }
+    form{
+        input{
+            width: 60vw;
+        }
+        button{
+            width: 20vw;
+            height: 3.5vh;
+        }
+    }
+}
+`
 
 export const Map = styled.div`
 display: flex;
@@ -100,5 +125,13 @@ span{
         margin-left:5px;
         margin-right:5px;
     }
+}
+
+@media screen and (max-device-width : 667px) {
+    h4{
+       img{
+           width: 7vw;
+       }
+   }
 }
 `

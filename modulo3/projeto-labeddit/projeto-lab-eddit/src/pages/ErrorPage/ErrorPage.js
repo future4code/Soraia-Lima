@@ -3,7 +3,6 @@ import error from "../../image/error.jpg"
 import Headers2 from "../../components/Headers2/Headers2"
 import { Container } from "./styled"
 
-
 function ErrorPage() {
     return (
         <div>
