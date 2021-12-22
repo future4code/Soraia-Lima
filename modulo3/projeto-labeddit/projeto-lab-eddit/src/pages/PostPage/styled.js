@@ -178,9 +178,6 @@ span{
 }
 `
 
-
-
-
 export const BotaoVoltar = styled.button`
     font-size: 1em;
     width: 10vw;
