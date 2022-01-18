@@ -1,0 +1,11 @@
+{
+  "name": "exercicio-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index-exercicio-1.js",
+  "scripts": {
+    "start": "node ./index-exercicio-1.js"
+  },
+  "author": "Soraia Aparecida",
+  "license": "ISC"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "exercicio-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index-exercicio-2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index-exercicio-2.js"
+  },
+  "author": "Soraia Aparecida",
+  "license": "ISC"
+}
