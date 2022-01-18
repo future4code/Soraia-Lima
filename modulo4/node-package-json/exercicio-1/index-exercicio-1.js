@@ -19,7 +19,7 @@ const novaIdade = Number(idade + 7)
 
 if(nome && idade){
 const frase = `Olá, ${nome}! Você tem ${idade} anos. Em sete anos você tera ${novaIdade} anos`
-console.log(frase)
+console.log("\x1b[31m", frase) // para colocar cor no console
 }else{
-    console.log("Por gentileza informar os dois parametros, nome e idade")
+    console.log("\x1b[36m", "Por gentileza informar os dois parametros, nome e idade")
 }
