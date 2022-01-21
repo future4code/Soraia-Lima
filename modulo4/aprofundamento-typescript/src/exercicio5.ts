@@ -1,0 +1,1 @@
+// Tem várias configurações a mais. E aparti da configuração inicial, nos usar 5, a outDir, rootDir, sourceMap,removeComments, noImplicitAny.
