@@ -13,7 +13,7 @@ const listaDeColaboradores = [
     { name: "Carina", email: "carina@email.com", role: "admin" }
 ]
 
-function retornarEmail(lista2: Colaborador[]): string[] {
+function retornarEmail (lista2: Colaborador[]): string[] {
     return lista2.filter((colaborador) => {
         return colaborador.role === "admin"
     }).map((colaborador) => {
@@ -22,3 +22,4 @@ function retornarEmail(lista2: Colaborador[]): string[] {
 }
 
 console.log(retornarEmail(listaDeColaboradores))
+

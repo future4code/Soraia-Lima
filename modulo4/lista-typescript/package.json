@@ -10,7 +10,10 @@
     "exercicio3Start" : "tsc && node ./build/exercicio3.js",
     "exercicio4Start" : "tsc && node ./build/exercicio4.js",
     "exercicio5Start" : "tsc && node ./build/exercicio5.js",
-    "exercicio6Start" : "tsc && node ./build/exercicio6.js"
+    "exercicio6Start" : "tsc && node ./build/exercicio6.js",
+    "exercicio7Start" : "tsc && node ./build/exercicio7.js",
+    "exercicio8Start" : "tsc && node ./build/exercicio8.js",
+    "exercicio9Start" : "tsc && node ./build/exercicio9.js"
   },
   "keywords": [],
   "author": "Soraia Aparecida",
