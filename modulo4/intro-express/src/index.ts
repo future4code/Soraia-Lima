@@ -1,6 +1,5 @@
 import express from "express"
 import { AddressInfo } from "net"
-import { send } from "process"
 
 const app = express()
 
@@ -27,7 +26,6 @@ type User = {
     phone: string,
     email: string,
     website: string
-
 }
 
 // exercício 3
@@ -61,7 +59,6 @@ const users: User[] = [
         email: "douglas@gmail.com",
         website: "www.douglas.com.br"
     }
-
 ]
 
 // exercício 4
@@ -139,7 +136,6 @@ app.get("/posts", (req, res) => {
 // exercicio 8
 app.get("/post", (req, res) => {
     const id = Number(req.query.id)
-    console.log(id)
     if (!id) res.status(400).send("ID inválido")
 
     const retornarPosts = posts.filter((post: any) => {
@@ -149,4 +145,36 @@ app.get("/post", (req, res) => {
     })
 
     res.status(200).send(retornarPosts)
+})
+
+// DESAFIOS
+
+// Exercício 9
+
+app.delete("/delete/post", (req, res) => {
+    const id = Number(req.query.id)
+
+    if (!id) res.status(400).send("ID inválido")
+    const deletarPost = posts.filter((post) => {
+        if (post.id !== id) {
+            return post
+        }
+    })
+
+    res.status(200).send(deletarPost)
+})
+
+// exercicio 10
+
+app.delete("/delete/user", (req, res) => {
+    const id = Number(req.query.id)
+
+    if (!id) res.status(400).send("ID inválido")
+
+    const deletarUser = users.filter((user) => {
+        if (user.id !== id) {
+            return user
+        }
+    })
+    res.status(200).send(deletarUser)
 })
