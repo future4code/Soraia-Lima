@@ -157,3 +157,6 @@ app.get("/tarefas/:userId", (req: Request, res: Response) => {
     })   
     res.status(200).send(retornarUsuario)
 })
+
+// exercício 9 link da API
+// https://documenter.getpostman.com/view/18384258/UVe9SVZ2
