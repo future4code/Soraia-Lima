@@ -1,5 +1,5 @@
 // exercício 2
-type Produto  = {
+type Produto = {
     id: string,
     name: string,
     price: number
@@ -13,7 +13,7 @@ export const produtos: Produto[] = [
     },
     {
         id: "2",
-        name: "cadeira ",
+        name: "cadeira",
         price: 900.00
     },
     {

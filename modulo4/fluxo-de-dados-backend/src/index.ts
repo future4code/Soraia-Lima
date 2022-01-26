@@ -2,7 +2,6 @@ import express, { Request, Response } from "express"
 import { AddressInfo } from "net"
 import { produtos } from "./data"
 
-
 const app = express()
 
 app.use(express.json())
@@ -21,19 +20,28 @@ app.get("/teste", (req: Request, res: Response) => {
     res.status(200).send("A API está funcionado")
 })
 
-const arrayDeProdutos = produtos
+const arrayProducts = produtos
 
-// exercício 4
+// exercício 4 // desafio 10
 app.get("/produtos", (req: Request, res: Response) => {
-    res.status(200).send(arrayDeProdutos)
+    const nameProduct = req.query.name
+    if (!nameProduct) {
+        res.status(200).send(arrayProducts)
+    } else {
+        const returnProduct = arrayProducts.filter((item) => {
+            if (item.name === nameProduct) {
+                return item
+            }
+        })
+        res.status(200).send(returnProduct)
+    }
 })
 
 // exercício 3 & exercício 7
 app.post("/produtos", (req: Request, res: Response) => {
     try {
         const user = req.headers.authorization
-        const name = req.body.name
-        const price = req.body.price
+        const { name, price } = req.body
 
         if (!user) {
             throw new Error("Header de authorization não informado")
@@ -49,12 +57,12 @@ app.post("/produtos", (req: Request, res: Response) => {
             throw new Error("O preço deve ser maior que 0")
         }
 
-        arrayDeProdutos.push({
+        arrayProducts.push({
             id: Date.now().toString(),
             name,
             price
         })
-        res.status(201).send(arrayDeProdutos)
+        res.status(201).send(arrayProducts)
 
     } catch (error: any) {
         switch (error.message) {
@@ -76,7 +84,6 @@ app.post("/produtos", (req: Request, res: Response) => {
             default:
                 res.status(500)
         }
-
         res.send(error.message)
     }
 })
@@ -87,26 +94,25 @@ app.put("/produtos/:produtoId", (req: Request, res: Response) => {
 
         const user = req.headers.authorization
         const id = req.params.produtoId
-
-        const novoPreco = Number(req.body.price)
+        const newPrice = Number(req.body.price)
         let isProductFound = false // usado para saber se o produto será encontrado, começa com false, pois ainda não temos um  produto
 
         if (!user) {
             throw new Error("header de authorization não informado")
         }
-        else if (!novoPreco && novoPreco !== 0) {
+        else if (!newPrice && newPrice !== 0) {
             throw new Error("O campo price não foi informado")
         }
-        else if (typeof novoPreco !== "number") {
+        else if (typeof newPrice !== "number") {
             throw new Error("O campo price, deve ser informado como number")
         }
-        else if (novoPreco <= 0) {
+        else if (newPrice <= 0) {
             throw new Error("O preço deve ser maior que 0")
         }
 
-        for (let i = 0; i < arrayDeProdutos.length; i++) {
-            if (arrayDeProdutos[i].id === id) {
-                arrayDeProdutos[i].price = novoPreco
+        for (let i = 0; i < arrayProducts.length; i++) {
+            if (arrayProducts[i].id === id) {
+                arrayProducts[i].price = newPrice
                 isProductFound = true // como o produto foi encontrado ele passa a ser true.
             }
         }
@@ -115,7 +121,7 @@ app.put("/produtos/:produtoId", (req: Request, res: Response) => {
             throw new Error("produto não encontrado")
         }
 
-        res.status(200).send({ arrayDeProdutos })
+        res.status(200).send({ arrayProducts })
 
     } catch (error: any) {
         switch (error.message) {
@@ -151,17 +157,19 @@ app.delete("/produtos/:produtoId", (req: Request, res: Response) => {
             throw new Error("header de authorization não informado")
         }
 
-        for (let i = 0; i < arrayDeProdutos.length; i++) {
-            let index = arrayDeProdutos.findIndex((item) => item.id === id)
+        for (let i = 0; i < arrayProducts.length; i++) {
+            let index = arrayProducts.findIndex((item) => item.id === id)
             if (index > -1) {
-                arrayDeProdutos.splice(index, 1)
+                arrayProducts.splice(index, 1)
                 isProductFound = true
             }
         }
+
         if (!isProductFound) {
             throw new Error("produto não encontrado")
         }
-        res.status(200).send(arrayDeProdutos)
+
+        res.status(200).send(arrayProducts)
 
     } catch (error: any) {
         switch (error.message) {
