@@ -1,8 +1,5 @@
-import { errorMonitor } from "events"
 import express, { Request, Response } from "express"
-import { IncomingMessage } from "http"
 import { AddressInfo } from "net"
-import { networkInterfaces } from "os"
 import { produtos } from "./data"
 
 
@@ -97,9 +94,6 @@ app.put("/produtos/:produtoId", (req: Request, res: Response) => {
         if (!user) {
             throw new Error("header de authorization não informado")
         }
-        else if (!id) {
-            throw new Error("ID do produto não informado")
-        }
         else if (!novoPreco && novoPreco !== 0) {
             throw new Error("O campo price não foi informado")
         }
@@ -128,9 +122,6 @@ app.put("/produtos/:produtoId", (req: Request, res: Response) => {
             case "header de authorization não informado":
                 res.status(401)
                 break
-            case "ID do produto não informado":
-                res.status(422)
-                break
             case "O campo price não foi informado":
                 res.status(422)
                 break
@@ -149,11 +140,12 @@ app.put("/produtos/:produtoId", (req: Request, res: Response) => {
     }
 })
 
-// exercício 6
+// exercício 6 e exercício 9
 app.delete("/produtos/:produtoId", (req: Request, res: Response) => {
     try {
         const user = req.headers.authorization
         const id = req.params.produtoId
+        let isProductFound = false
 
         if (!user) {
             throw new Error("header de authorization não informado")
@@ -163,12 +155,24 @@ app.delete("/produtos/:produtoId", (req: Request, res: Response) => {
             let index = arrayDeProdutos.findIndex((item) => item.id === id)
             if (index > -1) {
                 arrayDeProdutos.splice(index, 1)
+                isProductFound = true
             }
+        }
+        if (!isProductFound) {
+            throw new Error("produto não encontrado")
         }
         res.status(200).send(arrayDeProdutos)
 
     } catch (error: any) {
-        res.send("headers não informado")
+        switch (error.message) {
+            case "header de authorization não informado":
+                res.status(401)
+                break
+            case "produto não encontrado":
+                res.status(404)
+            default:
+                res.status(500)
+        }
+        res.send(error.message)
     }
-
 })
