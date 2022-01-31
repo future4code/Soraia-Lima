@@ -27,7 +27,6 @@ export const users1: User[] = [
                 description: "Pagamento da conta luz"
             }
         ]
-
     },
     {
         id: 2,
