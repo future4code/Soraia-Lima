@@ -21,7 +21,6 @@ const users = users1
 app.get("/users", (req: Request, res: Response) => {
     const cpf = req.query.cpf as string
     const name = req.query.name as string
-
     let errorCode: number = 400
 
     try {
@@ -135,7 +134,6 @@ app.post("/users/accounts", (req: Request, res: Response) => {
 
         const currentDate = new Date().toLocaleDateString("pt-BR")
 
-        
         if (dueDate < currentDate) {
             errorCode = 404
             throw new Error("A data de pagamento não pode ser uma data que já passou ")
@@ -209,7 +207,6 @@ app.put("/users/:cpf", (req: Request, res: Response) => {
     } catch (error: any) {
         res.status(errorCode).send({ messagem: error.message })
     }
-
 })
 
 // atualizar saldo
