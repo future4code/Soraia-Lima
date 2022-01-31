@@ -17,6 +17,7 @@ const server = app.listen(process.env.PORT || 3003, () => {
 
 const users = users1
 
+// pegar todas as contas
 app.get("/users", (req: Request, res: Response) => {
     const cpf = req.query.cpf as string
     const name = req.query.name as string
@@ -53,6 +54,7 @@ app.get("/users", (req: Request, res: Response) => {
     }
 })
 
+// adicionar clientes
 app.post("/users", (req: Request, res: Response) => {
     const token = req.headers.authorization
     let errorCode: number = 400
@@ -111,11 +113,12 @@ app.post("/users", (req: Request, res: Response) => {
     }
 })
 
+// pagar contas
 app.post("/users/accounts", (req: Request, res: Response) => {
 
     const token = req.headers.authorization
     const { description, value, cpf } = req.body
-    let dueDate = req.body.dueDate
+    let dueDate = req.body.date
     let errorCode: number = 400
 
     try {
@@ -131,6 +134,12 @@ app.post("/users/accounts", (req: Request, res: Response) => {
         }
 
         const currentDate = new Date().toLocaleDateString("pt-BR")
+
+        
+        if (dueDate < currentDate) {
+            errorCode = 404
+            throw new Error("A data de pagamento não pode ser uma data que já passou ")
+        }
 
         if (!dueDate) {
             dueDate = currentDate
@@ -157,6 +166,7 @@ app.post("/users/accounts", (req: Request, res: Response) => {
     }
 })
 
+// fazer depósito
 app.put("/users/:cpf", (req: Request, res: Response) => {
 
     const { name, valor } = req.body
@@ -202,11 +212,13 @@ app.put("/users/:cpf", (req: Request, res: Response) => {
 
 })
 
+// atualizar saldo
 app.put("/users/balance/:cpf", (req: Request, res: Response) => {
     const cpf = req.params.cpf
     const token = req.headers.authorization
-    let bankStatement
-    let bankBalance: number | undefined
+    let bankStatement // extrato
+    let bankBalance: number | undefined // saldo
+    let updatedBalance // saldo atualizado
     let errorCode: number = 400
 
     if (!token) {
@@ -219,6 +231,8 @@ app.put("/users/balance/:cpf", (req: Request, res: Response) => {
         throw new Error("Para realizar a consulta de saldo, é necessário informar todos o cpf")
     }
 
+    const currentDate = new Date().toLocaleDateString("pt-BR")
+
     try {
         for (let i = 0; i < users.length; i++) {
             if (users[i].cpf === cpf) {
@@ -227,10 +241,20 @@ app.put("/users/balance/:cpf", (req: Request, res: Response) => {
             }
         }
 
-        const returnBalance: any = bankStatement?.map(item => item.value).reduce((prev, curr) => prev + curr, 0)
-        const updatedBalance = bankBalance as number - returnBalance
+        const returnBalance = bankStatement?.filter((item) => {
+            if (item.description !== "Depósito em dinheiro" && item.date < currentDate) {
+                return item.value
+            }
+        })
 
-        res.status(200).send({ saldo: updatedBalance })
+        let contasPagas: any = returnBalance?.map(item => item.value).reduce((prev, curr) => prev + curr, 0)
+        updatedBalance = bankBalance as number - contasPagas
+
+        for (let j = 0; j < users.length; j++) {
+            users[j].balance = updatedBalance
+        }
+
+        res.status(200).send({ saldo: `R$ ${updatedBalance}` })
 
     } catch (error: any) {
         res.status(errorCode).send({ message: error.message })

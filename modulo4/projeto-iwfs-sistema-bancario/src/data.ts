@@ -46,7 +46,7 @@ export const users1: User[] = [
             {
                 value: 50.00,
                 date: "25/01/2022",
-                description: "Pagamento da conta luz"
+                description: "Pagamento da conta água"
             }
         ]
     }
