@@ -214,7 +214,7 @@ app.put("/users/balance/:cpf", (req: Request, res: Response) => {
     const cpf = req.params.cpf
     const token = req.headers.authorization
     let bankStatement // extrato
-    let bankBalance: number | undefined // saldo
+    let bankBalance: number | undefined  // saldo
     let updatedBalance // saldo atualizado
     let errorCode: number = 400
 
@@ -231,24 +231,31 @@ app.put("/users/balance/:cpf", (req: Request, res: Response) => {
     const currentDate = new Date().toLocaleDateString("pt-BR")
 
     try {
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].cpf === cpf) {
-                bankStatement = users[i].extract
-                bankBalance = users[i].balance
+        for (let h = 0; h < users.length; h++) {
+            if (users[h].cpf === cpf) {
+                bankStatement = users[h].extract
+                bankBalance = users[h].balance
             }
         }
 
-        const returnBalance = bankStatement?.filter((item) => {
-            if (item.description !== "Depósito em dinheiro" && item.date < currentDate) {
-                return item.value
+        let returnBalance
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].cpf === cpf) {
+                returnBalance = bankStatement?.filter((item) => {
+                    if (item.description !== "Depósito em dinheiro" && item.date < currentDate) {
+                        return item.value
+                    }
+                })
             }
-        })
+        }
 
         let contasPagas: any = returnBalance?.map(item => item.value).reduce((prev, curr) => prev + curr, 0)
         updatedBalance = bankBalance as number - contasPagas
 
         for (let j = 0; j < users.length; j++) {
-            users[j].balance = updatedBalance
+            if (users[j].cpf === cpf) {
+                users[j].balance = updatedBalance
+            }
         }
 
         res.status(200).send({ saldo: `R$ ${updatedBalance}` })
@@ -258,3 +265,72 @@ app.put("/users/balance/:cpf", (req: Request, res: Response) => {
     }
 })
 
+// realizar transferencia
+app.post("/users/transfer", (req: Request, res: Response) => {
+    const token = req.headers.authorization
+
+    const myName: string = req.body.myName
+    const myCpf: string = req.body.myCpf
+    const recipientName: string = req.body.recipientName
+    const recipientCpf: string = req.body.recipientCpf
+    const recipientValue: number = req.body.recipientValue
+
+    let errorCode: number = 400
+
+    try {
+        if (!token) {
+            errorCode = 404
+            throw new Error("Para realizar essa operação é necesário ter token de autorização")
+        }
+
+        if (!myCpf && !myName && !recipientCpf && !recipientName && !recipientValue) {
+            errorCode = 404
+            throw new Error("Para realizar uma transferência, é necessário informar seu CPF e nome; CPF, nome do destinatário e valor a ser transferido")
+        }
+
+        let foundName: boolean = false
+        let availableValue = false
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].name === myName && users[i].cpf === myCpf) {
+                if (users[i].balance as number >= recipientValue) {
+
+                    for (let j = 0; j < users.length; j++) {
+                        if (users[j].name === recipientName && users[j].cpf === recipientCpf) {
+                            users[j].balance = users[j].balance as number + recipientValue
+                            users[j].extract?.push({
+                                value: recipientValue,
+                                date: new Date().toLocaleDateString("pt-BR"),
+                                description: `Trasnferência recebida de ${users[i].name}`
+                            })
+                            foundName = true
+                        }
+                    }
+
+                    users[i].balance = users[i].balance as number - recipientValue
+                    users[i].extract?.push({
+                        value: recipientValue,
+                        date: new Date().toLocaleDateString("pt-BR"),
+                        description: "Trasnferência enviada"
+                    })
+                    availableValue = true
+                }
+            }
+        }
+
+        if (!availableValue) {
+            errorCode = 404
+            throw new Error("Você não possui saldo suficiente para essa operação")
+        }
+
+        if (!foundName) {
+            errorCode = 404
+            throw new Error("Dados das contas incorretas, por gentileza, verificar e refazer a operação")
+        }
+
+        res.status(200).send("Transferência realizada com sucesso!")
+
+    } catch (error: any) {
+        res.status(errorCode).send({ messagem: error.message })
+    }
+})
