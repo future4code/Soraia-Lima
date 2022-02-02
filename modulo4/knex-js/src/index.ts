@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import { AddressInfo } from "net";
-import { isObjectLiteralElementLike } from "typescript";
 import connection from "./connection";
 
 const app = express();
@@ -15,28 +14,16 @@ const server = app.listen(process.env.PORT || 3003, () => {
     }
 });;
 
-// exercicio 1
-// const getActorById = async (id: string): Promise<any> => {
-//     const result = await connection.raw(`
-//       SELECT * FROM Actor WHERE id = '${id}'
-//     `)
+// EXERCÍCIO 1
+const getActorById = async (id: string): Promise<any> => {
+    const result = await connection.raw(`
+      SELECT * FROM Actor WHERE id = '${id}'
+    `)
 
-//     return result[0][0]
-// }
+    return result[0][0]
+}
 
-// app.get("/users/:id", async (req: Request, res: Response) => {
-//     try {
-//         const id = req.params.id
-//         console.log(await getActorById(id))
-
-//         res.end()
-//     } catch (error: any) {
-//         console.log(error.message)
-//         res.status(500).send("Unexpected error")
-//     }
-// })
-
-// exercicio 1 - b 
+// b)
 const buscarAtorPorNome = async (nome: string): Promise<any> => {
     const resultado = await connection.raw(`
     SELECT * FROM Actor WHERE name = '${nome}'
@@ -44,19 +31,7 @@ const buscarAtorPorNome = async (nome: string): Promise<any> => {
     return resultado[0][0]
 }
 
-// app.get("/usersss/:gender", async (req: Request, res: Response) => {
-//     try {
-//         // const name = req.params.name
-//         // const resposta = await buscarAtorPorNome(name)
-    
-//         res.status(200).send({message: resposta})
-//     } catch (error: any) {
-//         console.log(error.message)
-//         res.status(500).send("Unexpected error")
-//     }
-// })
-
-// exercicio 1 - c
+// c)
 const retornarGender = async (gender: string): Promise<any> => {
     const resultado = await connection.raw(`
     SELECT COUNT(*) as cont FROM Actor WHERE gender = "${gender}"
@@ -65,92 +40,42 @@ const retornarGender = async (gender: string): Promise<any> => {
     return count;
 };
 
-// app.get("/users/:gender", async (req: Request, res: Response) => {
-//     try{
-//         const gender = req.params.gender
-//         const resposta = await retornarGender(gender)
-    
-//         res.status(200).send({message: resposta})
-//     } catch (error: any) {
-//         console.log(error.message)
-//         res.status(500).send("Unexpected error")
-//     }
-// })
-
-// exercicio 2 - a
-const atualizarSalario = async (id: string, salary:number): Promise<void> => {
-    await connection.where({id: id})
-    .update({ salary: salary})
-    .into("Actor");
-} 
-
-// app.put("/users/:id", async (req: Request, res: Response) => {
-//     try {
-//         const id = req.params.id
-//         const salary = req.body.salary
-
-//         const resposta = await atualizarSalario(id,salary)
-    
-//         res.status(200).send({message: `Salario atualizado. ${resposta}`})
-        
-//     } catch (error: any) {
-//         console.log(error.message)
-//         res.status(500).send("Unexpected error")
-//     }
-// }) 
- 
-// b) 
-const deletarAtor = async (id:string):Promise<void> => {
-    await connection("Actor").where({id: id}).del()
+// EXERCÍCIO 2
+// a)
+const atualizarSalario = async (id: string, salary: number): Promise<void> => {
+    await connection.where({ id: id })
+        .update({ salary: salary })
+        .into("Actor");
 }
-// app.delete("/users/:id", async (req: Request, res: Response) => {
-//     try {
-//         const id = req.params.id
-//         const resposta = await deletarAtor(id)
 
-//         res.status(200).send({message: `Ator deletado. ${resposta}`})
-
-//     } catch (error: any) {
-//         console.log(error.message)
-//         res.status(500).send("Unexpected error")
-//     }
-// })
+// b) 
+const deletarAtor = async (id: string): Promise<void> => {
+    await connection("Actor").where({ id: id }).del()
+}
 
 // c)
-const retornarGender2 =async (gender: string):Promise<any> => {
-    const result = await connection("Actor").avg("salary").where({gender});
+const retornarGender2 = async (gender: string): Promise<any> => {
+    const result = await connection("Actor").avg("salary").where({ gender });
     return result[0]
 }
 
-// app.get("/users/:gender", async (req: Request, res: Response) => {
-//     try{
-//         const gender = req.params.gender
-//         const resposta = await retornarGender2(gender)
-    
-//         res.status(200).send({message: resposta})
-//     } catch (error: any) {
-//         console.log(error.message)
-//         res.status(500).send("Unexpected error aaaaaaaaaaa")
-//     }
-// })
 
-// exercicio 3
-
-const getActorById = async (id: string): Promise<any> => {
+// EXERCÍCIO 3
+const retornarGender3 = async (id: string): Promise<any> => {
     const result = await connection.raw(`
       SELECT * FROM Actor WHERE id = '${id}'
     `)
-  
-      return result[0][0]
-  }
-  
-  //a
+
+    return result[0][0]
+}
+
+//a
 app.get("/actor/:id", async (req: Request, res: Response) => {
-    try{
+    try {
         const id = req.params.id
-        const resposta = await retornarGender(id)
-    
-        res.status(200).send({message: resposta})
+        const resposta = await retornarGender3(id)
+
+        res.status(200).send({ message: resposta })
     } catch (error: any) {
         console.log(error.message)
         res.status(500).send("Unexpected error")
@@ -159,27 +84,28 @@ app.get("/actor/:id", async (req: Request, res: Response) => {
 
 //b
 app.get("/actor", async (req: Request, res: Response) => {
-    try{
+    try {
         const gender = req.query.gender
         const resposta = await retornarGender(gender as string)
-    
-        res.status(200).send({quanlity: resposta.cont})
+
+        res.status(200).send({ quanlity: resposta.cont })
     } catch (error: any) {
         console.log(error.message)
         res.status(500).send("Unexpected error")
     }
 })
 
-// 4 a)
+// EXERCÍCIO 4 
+// a)
 app.put("/actor", async (req: Request, res: Response) => {
     try {
-        
-        const {id, salary} = req.body
 
-        const resposta = await atualizarSalario(id,salary)
-    
-        res.status(200).send({message: `Salario atualizado. ${resposta}`})
-        
+        const { id, salary } = req.body
+
+        const resposta = await atualizarSalario(id, salary)
+
+        res.status(200).send({ message: `Salario atualizado. ${resposta}` })
+
     } catch (error: any) {
         console.log(error.message)
         res.status(500).send("Unexpected error")
@@ -192,10 +118,81 @@ app.delete("/actor/:id", async (req: Request, res: Response) => {
         const id = req.params.id
         const resposta = await deletarAtor(id)
 
-        res.status(200).send({message: `Ator deletado. ${resposta}`})
+        res.status(200).send({ message: `Ator deletado. ${resposta}` })
 
     } catch (error: any) {
         console.log(error.message)
         res.status(500).send("Unexpected error")
+    }
+})
+
+// DESAFIOS 
+
+//5
+const criarFilme = async (
+    id: string,
+    nome: string,
+    sinopse: string,
+    dataLancamento: string,
+    avaliacao: number
+): Promise<void> => {
+    await connection("Filmes").insert({
+        id: id,
+        nome: nome,
+        sinopse: sinopse,
+        data_lancamento: dataLancamento,
+        avaliacao: avaliacao
+    })
+}
+
+app.post("/filmes", async (req: Request, res: Response) => {
+    try {
+        await criarFilme(
+            req.body.id,
+            req.body.nome,
+            req.body.sinopse,
+            req.body.dataLancamento,
+            req.body.avaliacao
+        );
+
+        res.status(201).send("Filme criado com sucesso")
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).send("Unexpected error hhhhhhhhhhhhhhhhh")
+    }
+})
+
+// 6 
+const retornarFilmes = async (): Promise<any> => {
+    const result = await connection.select("*").from("Filmes").limit(15);
+    return result
+}
+
+app.get("/filmes", async (req: Request, res: Response) => {
+    try {
+        const resposta = await retornarFilmes()
+        res.status(200).send({ resposta })
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).send("Unexpected error hhhhhhhhhhhhhhhhh")
+    }
+})
+
+// 7
+const retornarFilmes2 = async (palavra: string): Promise<any> => {
+    const result = await connection.raw(`
+    SELECT * FROM Filmes WHERE (nome LIKE "%${palavra}%") OR (sinopse LIKE "%${palavra}%") ORDER BY data_lancamento`
+    )
+    return result[0]
+}
+
+app.get("/filmes/buscar", async (req: Request, res: Response) => {
+    try {
+        const palavra = req.query.palavra
+        const resposta = await retornarFilmes2(palavra as string)
+        res.status(200).send({ resposta })
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).send("Unexpected error hhhhhhhhhhhhhhhhh")
     }
 })
