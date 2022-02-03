@@ -73,6 +73,6 @@ CREATE TABLE Oscar (
 nome VARCHAR(255),
 id VARCHAR(255));
 
-Tabele de premiações, que relaciona o filme com os respectvo premios
+
 
 
