@@ -49,7 +49,7 @@ app.get("/user/:id", async (req: Request, res: Response): Promise<any> => {
             throw new Error("Usuário não encontrado.")
         }
 
-        res.status(201).send({ result })
+        res.status(200).send({ result })
 
     } catch (error: any) {
         res.status(errorCode).send({ message: error.message || error.sqlMessage })
@@ -57,7 +57,7 @@ app.get("/user/:id", async (req: Request, res: Response): Promise<any> => {
 })
 
 // 6º 
-app.get("/user/all", async (req: Request, res: Response): Promise<any> => {
+app.get("/users/all", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     let errorCode: number = 400
 
@@ -166,7 +166,7 @@ app.put("/user/edit/:id", async (req: Request, res: Response): Promise<void> => 
                 email: email
             })
 
-        res.status(200).send(`"Dados alterados com sucesso!"`)
+        res.status(200).send(`Dados alterados com sucesso!`)
 
     } catch (error: any) {
         res.status(errorCode).send({ message: error.message || error.sqlMessage })
@@ -451,7 +451,7 @@ app.put("/task/status/:id/", async (req: Request, res: Response): Promise<any> =
             throw new Error("Tarefa não encontrada, por gentileza informar um id válido")
         }
 
-        res.status(200).send("Status da tarefa alterado com sucesso")
+        res.status(200).send("Status da tarefa alterado com sucesso!")
 
     } catch (error: any) {
         res.status(errorCode).send({ message: error.message || error.sqlMessage })

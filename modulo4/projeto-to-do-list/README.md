@@ -13,3 +13,4 @@
 - Knex
 
 ### Documentação
+https://documenter.getpostman.com/view/18384258/UVeJK5Ep
