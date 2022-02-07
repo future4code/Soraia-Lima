@@ -14,19 +14,18 @@ const server = app.listen(process.env.PORT || 3003, () => {
     }
 })
 
-const corrigirData = (data: string) => {
-    let novaData = data.split('/')
-    return `${novaData[2]}-${novaData[1]}-${novaData[0]}`
+const correctDate = (data: string) => {
+    let newDate = data.split('/')
+    return `${newDate[2]}-${newDate[1]}-${newDate[0]}`
 }
 
-const dataAtualFormatada = (dataa: string) => {
-    let data: Date = new Date(dataa)
-    const dataFormatada: string = ((data.getDate())) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear()
-    return dataFormatada
+const currentDateFormatted = (data: string) => {
+    let newDate: Date = new Date(data)
+    const newFormattedDate: string = ((newDate.getDate())) + "/" + ((newDate.getMonth() + 1)) + "/" + newDate.getFullYear()
+    return newFormattedDate
 }
 
-
-// 2º buscar um usuário pelo id
+// 2º 
 app.get("/user/:id", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     const id: string = req.params.id
@@ -57,7 +56,7 @@ app.get("/user/:id", async (req: Request, res: Response): Promise<any> => {
     }
 })
 
-// 6º Buscar todos os usuários
+// 6º 
 app.get("/user/all", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     let errorCode: number = 400
@@ -76,7 +75,7 @@ app.get("/user/all", async (req: Request, res: Response): Promise<any> => {
     }
 })
 
-// 8º Buscar um usuario através da query
+// 8º 
 app.get("/user", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     const name: string = req.query.query as string
@@ -92,18 +91,18 @@ app.get("/user", async (req: Request, res: Response): Promise<any> => {
             throw new Error("Para buscar por um usuário em especifico é necessário informar a query.")
         }
 
-        const retornarTabelas = await connection.raw(`
+        const returnUser = await connection.raw(`
             SELECT * FROM TodoListUser WHERE (name LIKE "%${name}%") OR (nickname LIKE "%${name}%") OR (email LIKE "%${name}%")
             `)
 
-        res.status(200).send({ users: retornarTabelas[0] })
+        res.status(200).send({ users: returnUser[0] })
 
     } catch (error: any) {
         res.status(errorCode).send({ message: error.message || error.sqlMessage })
     }
 })
 
-// 1º cadastrar novo usuario 
+// 1º 
 app.post("/user", async (req: Request, res: Response): Promise<void> => {
 
     const token = req.headers.authorization
@@ -136,12 +135,11 @@ app.post("/user", async (req: Request, res: Response): Promise<void> => {
     }
 })
 
-// 3º editar usuario
+// 3º 
 app.put("/user/edit/:id", async (req: Request, res: Response): Promise<void> => {
     const token = req.headers.authorization
     const id: string = req.params.id
     const { name, nickname, email }: { name: string, nickname: string, email: string } = req.body
-
     let errorCode: number = 400
 
     try {
@@ -168,7 +166,7 @@ app.put("/user/edit/:id", async (req: Request, res: Response): Promise<void> => 
                 email: email
             })
 
-        res.status(201).send(`"Dados alterados com sucesso!"`)
+        res.status(200).send(`"Dados alterados com sucesso!"`)
 
     } catch (error: any) {
         res.status(errorCode).send({ message: error.message || error.sqlMessage })
@@ -176,10 +174,9 @@ app.put("/user/edit/:id", async (req: Request, res: Response): Promise<void> => 
 
 })
 
-
 // TASKS 
 
-//10º Pegar usuário responsavéis por uma tarefa
+//10º
 app.get("/task/:id/responsible", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     const id: string = req.params.id
@@ -196,29 +193,29 @@ app.get("/task/:id/responsible", async (req: Request, res: Response): Promise<an
             throw new Error("Para buscar usuários responsavéis por um tarefa é necessário informar um id.")
         }
 
-        const pegarTodasTarefas = await connection('TodoListTask').select('TodoListTask.id', 'TodoListTask.title')
+        const getTasks = await connection('TodoListTask').select('TodoListTask.id', 'TodoListTask.title')
 
-        let achouTarefa: boolean = false
-        for (let i = 0; i < pegarTodasTarefas.length; i++) {
+        let foundTask: boolean = false
 
-            if (pegarTodasTarefas[i].id === id) {
+        for (let i = 0; i < getTasks.length; i++) {
+            if (getTasks[i].id === id) {
 
-                const juncaoDeTabela = await connection('TodoListTask')
+                const tableJoin = await connection('TodoListTask')
                     .select('TodoListUser.id', 'TodoListUser.nickname')
                     .innerJoin('TodoListResponsibleUserTaskRelation', 'TodoListTask.id', 'TodoListResponsibleUserTaskRelation.task_id')
                     .innerJoin('TodoListUser', 'TodoListResponsibleUserTaskRelation.responsible_user_id', 'TodoListUser.id')
                     .where('TodoListTask.id', id)
 
-                if (juncaoDeTabela.length === 0) {
+                if (tableJoin.length === 0) {
                     res.status(200).send("Essa terefa ainda não possui ninguém responsável por executá-la")
                 } else {
-                    res.status(200).send({ users: juncaoDeTabela })
+                    res.status(200).send({ users: tableJoin })
                 }
-                achouTarefa = true
+                foundTask = true
             }
         }
 
-        if (!achouTarefa) {
+        if (!foundTask) {
             errorCode = 404
             throw new Error("Tarefa não encontrada")
         }
@@ -228,8 +225,7 @@ app.get("/task/:id/responsible", async (req: Request, res: Response): Promise<an
     }
 })
 
-
-// 5º  e 11º Buscar tarefas por id
+// 5º  e 11º 
 app.get("/task/:id", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     const id: string = req.params.id
@@ -246,7 +242,7 @@ app.get("/task/:id", async (req: Request, res: Response): Promise<any> => {
             throw new Error("Para buscar um usuário é necessário informar um id.")
         }
 
-        const creatorUserN = await connection('TodoListTask')
+        const creatorUser = await connection('TodoListTask')
             .select('TodoListTask.id', 'TodoListTask.title', 'TodoListTask.description', 'TodoListTask.limit_date', 'TodoListTask.status', 'TodoListTask.creator_user_id', 'TodoListUser.name')
             .innerJoin('TodoListUser', 'TodoListUser.id', 'TodoListTask.creator_user_id')
             .where('TodoListTask.id', id)
@@ -256,17 +252,17 @@ app.get("/task/:id", async (req: Request, res: Response): Promise<any> => {
             .innerJoin('TodoListUser', 'TodoListUser.id', 'TodoListResponsibleUserTaskRelation.responsible_user_id')
             .where('TodoListTask.id', id)
 
-        if (creatorUserN.length < 1) {
+        if (creatorUser.length < 1) {
             errorCode = 404
             throw new Error("Tarefa não encontrada")
         }
 
-        const result = creatorUserN.map((item) => {
+        const result = creatorUser.map((item) => {
             return ({
                 taskId: item.id,
                 title: item.title,
                 description: item.description,
-                limitDate: dataAtualFormatada(item.limit_date),
+                limitDate: currentDateFormatted(item.limit_date),
                 status: item.status,
                 creatorUserId: item.creator_user_id,
                 creatorUserNickname: item.name,
@@ -281,20 +277,7 @@ app.get("/task/:id", async (req: Request, res: Response): Promise<any> => {
     }
 })
 
-// 14º Pegar tarefas atrasadas
-app.get("/task/delayed", async (req: Request, res: Response): Promise<any> => {
-    const token = req.headers.authorization
-    const id: string = req.params.id
-    let errorCode: number = 400
-
-    try {
-        
-    } catch (error) {
-        
-    }
-})
-
-// 7º e 13º Buscar tarefas de um ID ou Status especifico
+// 7º e 13º 
 app.get("/task", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     const id: string = req.query.creatorUserId as string
@@ -309,44 +292,32 @@ app.get("/task", async (req: Request, res: Response): Promise<any> => {
         }
 
         if (id) {
-            const buscarTodosUsuario = await connection('TodoListUser').select()
+            const tableJoin = await connection('TodoListTask')
+                .select('TodoListTask.id', 'TodoListTask.title', 'TodoListTask.description', 'TodoListTask.limit_date', 'TodoListTask.status', 'TodoListTask.creator_user_id', 'TodoListUser.name')
+                .innerJoin('TodoListUser', 'TodoListUser.id', 'TodoListTask.creator_user_id')
+                .where('TodoListUser.id', id)
 
-            let achouUsuario: boolean = false
-            for (let i = 0; i < buscarTodosUsuario.length; i++) {
+            const result = tableJoin.map((item) => {
+                return ({
+                    taskId: item.id,
+                    title: item.title,
+                    description: item.description,
+                    limitDate: currentDateFormatted(item.limit_date),
+                    status: item.status,
+                    creatorUserId: item.creator_user_id,
+                    creatorUserNickname: item.name,
+                })
+            })
 
-                if (buscarTodosUsuario[i].id === id) {
-                    const juncaoDeTabela = await connection('TodoListTask')
-                        .select('TodoListTask.id', 'TodoListTask.title', 'TodoListTask.description', 'TodoListTask.limit_date', 'TodoListTask.status', 'TodoListTask.creator_user_id', 'TodoListUser.name')
-                        .innerJoin('TodoListUser', 'TodoListUser.id', 'TodoListTask.creator_user_id')
-                        .where('TodoListUser.id', id)
-
-                    const result = juncaoDeTabela.map((item) => {
-                        return ({
-                            taskId: item.id,
-                            title: item.title,
-                            description: item.description,
-                            limitDate: dataAtualFormatada(item.limit_date),
-                            status: item.status,
-                            creatorUserId: item.creator_user_id,
-                            creatorUserNickname: item.name,
-                            
-                        })
-                    })
-
-                    res.status(200).send({ tasks: result })
-                    achouUsuario = true
-                }
-            }
-
-            if (!achouUsuario) {
+            if (result.length === 0) {
                 errorCode = 404
                 throw new Error("Usuário não encontrado, por gentileza informar um id válido")
             }
+
+            res.status(200).send({ tasks: result })
         }
 
         if (status) {
-
-           
             const buscarStatus = await connection('TodoListTask')
                 .select()
                 .join('TodoListUser', 'TodoListUser.id', 'TodoListTask.creator_user_id')
@@ -357,7 +328,7 @@ app.get("/task", async (req: Request, res: Response): Promise<any> => {
                     taskId: item.id,
                     title: item.title,
                     description: item.description,
-                    limitDate: dataAtualFormatada(item.limit_date),
+                    limitDate: currentDateFormatted(item.limit_date),
                     status: item.status,
                     creatorUserId: item.creator_user_id,
                     creatorUserNickname: item.name
@@ -374,7 +345,7 @@ app.get("/task", async (req: Request, res: Response): Promise<any> => {
 
         if (!id || !status) {
             errorCode = 404
-            throw new Error("Por gentileza informar um id ou status para essa pesquisa")
+            throw new Error("Por gentileza, informar id ou status para essa busca.")
         }
 
     } catch (error: any) {
@@ -382,8 +353,7 @@ app.get("/task", async (req: Request, res: Response): Promise<any> => {
     }
 })
 
-
-// 9º  Atribuir um usuário responsável a uma tarefa
+// 9º 
 app.post("/task/responsible", async (req: Request, res: Response) => {
     const token = req.headers.authorization
     const { task_id, responsible_user_id }: { task_id: string, responsible_user_id: string } = req.body
@@ -412,14 +382,14 @@ app.post("/task/responsible", async (req: Request, res: Response) => {
     }
 })
 
-// 4º criar um tarefa
+// 4º 
 app.post("/tesk", async (req: Request, res: Response): Promise<void> => {
 
     const token = req.headers.authorization
     let { title, description, limitDate, creatorUserId }: { title: string, description: string, limitDate: string, creatorUserId: string } = req.body
     let errorCode: number = 400
 
-    limitDate = corrigirData(limitDate)
+    limitDate = correctDate(limitDate)
 
     try {
         if (!token) {
@@ -449,7 +419,7 @@ app.post("/tesk", async (req: Request, res: Response): Promise<void> => {
     }
 })
 
-// 12º altera status da tarefa
+// 12º
 app.put("/task/status/:id/", async (req: Request, res: Response): Promise<any> => {
     const token = req.headers.authorization
     const id = req.params.id
@@ -472,11 +442,11 @@ app.put("/task/status/:id/", async (req: Request, res: Response): Promise<any> =
             errorCode = 404
             throw new Error("Para alterar o status da tarefa é necessário informar o novo status para a mesma, entre: 'to do', 'doing', 'done'.")
         }
-        const buscarTodasTarefas = await connection('TodoListTask').select().update({
+        const fetchTasks = await connection('TodoListTask').select().update({
             status: status
         }).where({ id: id })
 
-        if (!buscarTodasTarefas) {
+        if (!fetchTasks) {
             errorCode = 404
             throw new Error("Tarefa não encontrada, por gentileza informar um id válido")
         }
