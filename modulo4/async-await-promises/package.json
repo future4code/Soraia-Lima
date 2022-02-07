@@ -1,0 +1,36 @@
+{
+  "name": "async-await-promises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "ts-node-dev ./src/index.ts",
+    "start": "node ./build/index.js",
+    "build": "tsc",
+    "exerc2": "tsc && node build/exercicio2.js",
+    "exerc3": "tsc && node build/exercicio3.js",
+    "exerc4": "tsc && node build/exercicio4.js",
+    "exerc5": "tsc && node build/exercicio5.js",
+    "exerc6": "tsc && node build/exercicio6.js"
+  },
+  "keywords": [],
+  "author": "Soraia Aparecida",
+  "license": "ISC",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/knex": "^0.16.1",
+    "axios": "^0.25.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "knex": "^1.0.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  }
+}
