@@ -1,0 +1,14 @@
+[
+	{
+		"id" : "1",
+		"name": "Soter",
+		"email": "soter@labenu",
+		"type": "Teacher"
+	},
+	{
+		"id" : "2",
+		"name": "João",
+		"email": "joao@labenu",
+		"type": "Teacher"
+	}
+]
