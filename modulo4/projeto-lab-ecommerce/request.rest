@@ -1,0 +1,41 @@
+//1
+
+POST http://localhost:3003/users
+Content-Type: application/json
+Authorization: soraia
+
+{
+    "name": "Soraia",
+    "email": "soraia@gmail.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3003/users
+ 
+###
+POST http://localhost:3003/products
+Content-Type: application/json
+Authorization: soraia
+
+{
+    "name": "Cadeira Gamer",
+    "price": 999.99,
+    "image_url": "https://picsum.photos/200/300.jpg"
+}
+
+
+###
+GET http://localhost:3003/products
+
+###
+POST http://localhost:3003/purchases
+Content-Type: application/json
+Authorization: soraia
+
+{
+    "user_id": "1644524022554",
+    "product_id": "1644528665936",
+    "quantity": 2
+}
