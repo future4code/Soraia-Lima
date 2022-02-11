@@ -1,0 +1,19 @@
+GET http://localhost:3003/users
+Content-Type: application/json
+
+###
+//1- a
+
+GET http://localhost:3003/users/byname?name=dar
+Content-Type: application/json
+
+###
+//1 - b
+GET  http://localhost:3003/users/:type
+Content-Type: application/json
+
+###
+
+// 2
+GET http://localhost:3003/users/page?page=1
+Content-Type: application/json
