@@ -1,11 +1,14 @@
 import { Request, Response } from "express"
 import connection from "../data/connection"
-import { Product, PurchaseRecord } from "../types/types"
+import { getProduct } from "../requisitions/getProduct"
+import { getUser } from "../requisitions/getUser"
+import { Product, User } from "../types/types"
 
 export const pruchaseRecord = async (req: Request, res: Response): Promise<void> => {
     const { user_id, product_id, quantity }: { user_id: string, product_id: string, quantity: number } = req.body
     const token = req.headers.authorization
     let errorCode: number = 400
+
     try {
 
         if (!token) {
@@ -18,9 +21,19 @@ export const pruchaseRecord = async (req: Request, res: Response): Promise<void>
             throw new Error("Para realizar o o resgistro de compras é necessário informar os seguintes campos: user_id, product_id, quantity.")
         }
 
-        const product: Product[] = await connection('labecommerce_products')
-            .select()
-            .where({ id: product_id })
+        const user = await getUser(user_id)
+
+        if (user.length < 1) {
+            errorCode = 404
+            throw new Error("Esse usuário não existe, por gentileza informa um user_id válido")
+        }
+
+        const product = await getProduct(product_id)
+
+        if (product.length < 1) {
+            errorCode = 404
+            throw new Error("Esse produto não existe, por gentileza informa um product_id válido")
+        }
 
         let price = product[0].price
         price = price * quantity
