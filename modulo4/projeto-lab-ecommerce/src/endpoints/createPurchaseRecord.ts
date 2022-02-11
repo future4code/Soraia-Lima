@@ -2,9 +2,8 @@ import { Request, Response } from "express"
 import connection from "../data/connection"
 import { getProduct } from "../requisitions/getProduct"
 import { getUser } from "../requisitions/getUser"
-import { Product, User } from "../types/types"
 
-export const pruchaseRecord = async (req: Request, res: Response): Promise<void> => {
+export const createPruchaseRecord = async (req: Request, res: Response): Promise<void> => {
     const { user_id, product_id, quantity }: { user_id: string, product_id: string, quantity: number } = req.body
     const token = req.headers.authorization
     let errorCode: number = 400

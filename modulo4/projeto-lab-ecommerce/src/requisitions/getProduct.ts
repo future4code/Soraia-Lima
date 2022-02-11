@@ -15,5 +15,4 @@ export const getProduct = async (product_id: string): Promise<Product[]> => {
             image_url: item.image_url
         }
     })
-
 }

@@ -12,10 +12,9 @@ export const getUser = async (user_id: string): Promise<User[]> => {
             id: item.id,
             name: item.name,
             password: item.password,
-            email: item.email
+            email: item.email,
         }
     })
-
 }
 
 

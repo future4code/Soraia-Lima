@@ -28,8 +28,6 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
         res.status(201).end()
 
     } catch (error: any) {
-
         res.status(errorCode).send({ message: error.message || error.sqlMessage })
-
     }
 }
