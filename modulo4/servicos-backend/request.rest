@@ -1,0 +1,10 @@
+//Desafio
+
+POST http://localhost:3003/andress
+Content-Type: application/json
+
+{
+    "cep": "72900414",
+    "email": "soraiadevpratices@gmail.com",
+    "complemento": "casa"
+}
