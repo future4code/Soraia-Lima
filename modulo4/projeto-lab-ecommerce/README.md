@@ -12,5 +12,8 @@
 - MySQL
 - Knex
 
-### Documentação
-https://documenter.getpostman.com/view/18384258/UVeMJjHa
+### Documentação do Postaman
+https://documenter.getpostman.com/view/18384258/UVeMJjH
+
+### Documentação do Heroku
+https://projeto-lab-ecommerce-soraia.herokuapp.com/
