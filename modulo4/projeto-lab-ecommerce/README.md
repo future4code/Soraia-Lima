@@ -13,7 +13,7 @@
 - Knex
 
 ### Documentação do Postaman
-https://documenter.getpostman.com/view/18384258/UVeMJjH
+https://documenter.getpostman.com/view/18384258/UVeMJjHa
 
 ### Documentação do Heroku
 https://projeto-lab-ecommerce-soraia.herokuapp.com/
