@@ -29,3 +29,13 @@ Polimorfismo
     a) class Industry. Como é uma industria, devemos passar a quantiade de máquinas, para saber o valor a pagar.
     b) A Client, pois precisamos dos parêmetros dela, para poder fazer o calculo do valor a pagar. 
     c) porque como vocês não pediram para implementar nehuma interface, temos apenas o número do registro para retornar. 
+
+Desafios  - Herança
+
+6 - 
+    a) 1
+    b) todas. 
+
+7 - 
+    a)  Todas as instâncias do Employee: id, email, name, password, admissionDate:, baseSalary.
+    b) Só não consegui impt

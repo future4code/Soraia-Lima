@@ -212,3 +212,49 @@ export class IndustrialClient extends Industry implements Client {
 const industria1 = new IndustrialClient(10, "bbbbbbbb", 7, 80, 10, "789.558.-98")
 // console.log(industria1.getCep())
 // console.log(industria1.calculateBill())
+
+// DESAFIO
+
+class Employee extends User {
+
+    constructor(
+        id: string,
+        email: string,
+        name: string,
+        password: string,
+        protected admissionDate: Date,
+        protected baseSalary: number
+    ) {
+        super(id, email, name, password)
+        this.admissionDate = admissionDate
+        this.baseSalary = baseSalary
+    }
+
+    public getBaseSalary(): number {
+        return this.baseSalary
+    }
+
+    public getAdmissionDate(): Date {
+        return this.admissionDate
+    }
+
+    // 8 
+    public calculateTotalSalary(): number {
+        return this.baseSalary + 400.00
+    }
+}
+
+const funcionario1 = new Employee("5", "soraia@gmail.com", "Soraia", "04789", new Date("2022-01-08"), 3000)
+// console.log(funcionario1)
+// console.log(funcionario1.calculateTotalSalary())
+
+class Seller extends Employee{}
+
+const vendedor1 = new Seller("6", "keyla@gmail.com", "Keylas", "058798", new Date("2005-08-15"), 2.500)
+console.log(vendedor1.getId())
+console.log(vendedor1.getEmail())
+console.log(vendedor1.getName())
+console.log(vendedor1.getAdmissionDate())
+console.log(vendedor1.getBaseSalary())
+
+
