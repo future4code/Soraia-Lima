@@ -1,0 +1,27 @@
+###
+// 4
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "soraia@gmail.com",
+    "password": "12345"
+}
+
+###
+// 6
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "soraia@gmail.com",
+    "password": "12345"
+}
+
+
+###
+//8
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzMWJlODM0LWM4OGEtNDkyZC05ZGNmLTE3ODEzODIyNDIzOSIsImlhdCI6MTY0NTQ3NDkwOSwiZXhwIjoxNjQ1NDc1NTA5fQ.tNRtAKiKYEM0LH76jfmWl90nPAcguZdKlyLxs1Y9W30
