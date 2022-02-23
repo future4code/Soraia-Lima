@@ -1,0 +1,25 @@
+###
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "soraia2@gmail.com",
+    "password": "123454",
+    "role": "ADMIN"
+
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "soraia2@gmail.com",
+    "password": "123454"
+}
+
+###
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ2MGRkMGE5LTU4MWUtNDMwYy05OThlLWUyZjEwMWUxN2FlYiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NTYyNjY0NywiZXhwIjoxNjQ1NjI3MjQ3fQ.x-mSE_AlvtFlgL253g92em6m6zkaskw3zT4QbGdc8aE
