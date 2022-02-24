@@ -5,13 +5,14 @@ export class RecipeDatabase extends BaseDatebase {
 
     public registerRecipe = async (recipe: Recipe): Promise<void> => {
         try {
-            await BaseDatebase.connection('Cokenu_Recipes').insert({
-                id: recipe.getId(),
-                user_id: recipe.getUserId(),
-                title: recipe.getTitle(),
-                description: recipe.getDescription(),
-                creation_date: recipe.getDate()
-            })
+            await BaseDatebase.connection('Cokenu_Recipes')
+                .insert({
+                    id: recipe.getId(),
+                    user_id: recipe.getUserId(),
+                    title: recipe.getTitle(),
+                    description: recipe.getDescription(),
+                    creation_date: recipe.getDate()
+                })
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)

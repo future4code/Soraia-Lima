@@ -22,7 +22,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         const passwordIsCorrect: boolean = user && await hashManager.compareHash(password, user.getPassword())
 
         if (!password || !passwordIsCorrect) {
-            res.status(422).send("Password inválido.")
+            res.status(422).send({message: "Password inválido."})
         }
         const authentication = new Authentication()
         const token = authentication.gererate({ id: user.getId(), role: user.getRole() })

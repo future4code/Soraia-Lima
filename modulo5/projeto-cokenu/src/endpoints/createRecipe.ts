@@ -11,7 +11,6 @@ export const createRecipe = async (req: Request, res: Response): Promise<void> =
     const { title, description }: { title: string, description: string } = req.body
     const token = req.headers.authorization as string
     const id = GenerateId()
-    // const date = new Date.toString()
 
     try {
 
