@@ -4,9 +4,9 @@ import { UserDatabase } from "../data/UserDatabase"
 import { Follwer } from "../entities/Follwer"
 import { Authentication } from "../services/Authentication"
 
-export const followUser = async (req: Request, res: Response) => {
+export const unfollowUser = async (req: Request, res: Response) => {
     const token = req.headers.authorization as string
-    const id: string = req.body.userToFollowId
+    const id: string = req.body.userToUnfollowId
     try {
 
         if (!token) {
@@ -14,7 +14,7 @@ export const followUser = async (req: Request, res: Response) => {
         }
 
         if (!id) {
-            res.status(401).send("Para segui um usuário é necesário informar o: userToFollowId")
+            res.status(401).send("Para deixar de segui um usuário é necesário informar o: userToUnfollowId")
         }
 
         const authentication = new Authentication()
@@ -24,16 +24,15 @@ export const followUser = async (req: Request, res: Response) => {
         const user = await userDataBase.getUserById(verifyToken.id, res)
         const userId = user.getId()
 
+        const unfollow = await userDataBase.getUserById(id, res)
+        const unfolloweID = unfollow.getId()
 
-        const followedUser = await userDataBase.getUserById(id, res)
-        const followedID = followedUser.getId()
-
-        const newFollwer = new Follwer(userId, followedID)
+        const newUnfollow = new Follwer(userId, unfolloweID)
 
         const followerDatebase = new FollowerDatebase()
-        await followerDatebase.addFollower(newFollwer, res)
+        await followerDatebase.removeFollower(newUnfollow, res)
 
-        res.status(201).send({message: "Seguido com sucesso"})
+        res.status(200).send({message: "Deixou de ser seguido com sucesso"})
 
     } catch (error: any) {
         res.status(200).send(error.message)
