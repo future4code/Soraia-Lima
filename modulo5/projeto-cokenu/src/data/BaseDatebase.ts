@@ -1,4 +1,7 @@
 import knex, { Knex } from "knex";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 export class BaseDatebase {
     
@@ -13,4 +16,5 @@ export class BaseDatebase {
             multipleStatements: true
         }
     })
+
 }

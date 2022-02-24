@@ -7,14 +7,13 @@ export class User {
         protected email: string,
         protected password: string,
         protected role: USER_ROLES,
-        protected following?: object[]
-    ) { }
 
+    ) { }
 
     public getId(): string {
         return this.id
     }
-    
+
     public getName(): string {
         return this.name
     }
@@ -27,11 +26,11 @@ export class User {
         return this.password
     }
 
-    public getRole(): string {
+    public getRole(): USER_ROLES {
         return this.role
     }
 
-    public getFllowing(): object[] | undefined {
-        return this.following
+    static toUserModel(data: User) {
+        return new User(data.id, data.name, data.email, data.password, data.role)
     }
 }
