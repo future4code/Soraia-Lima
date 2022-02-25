@@ -24,7 +24,6 @@ export const followUser = async (req: Request, res: Response) => {
         const user = await userDataBase.getUserById(verifyToken.id, res)
         const userId = user.getId()
 
-
         const followedUser = await userDataBase.getUserById(id, res)
         const followedID = followedUser.getId()
 

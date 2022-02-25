@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { RecipeDatabase } from "../data/RecipeDatabase"
 import { Authentication } from "../services/Authentication"
-import { CorrectDate } from "../services/correctDate"
+import { CorrectDate } from "../services/CorrectDate"
 
 export const getRecipe = async (req: Request, res: Response) => {
     const token = req.headers.authorization as string

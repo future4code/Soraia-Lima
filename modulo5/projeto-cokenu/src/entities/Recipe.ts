@@ -1,10 +1,14 @@
+import { CorrectDate } from "../services/CorrectDate"
+
+const correctDate = new CorrectDate()
+
 export class Recipe {
     constructor(
-        private id: string,
-        private user_id: string,
-        private title: string,
-        private description: string,
-        private creation_date: string
+        protected id: string,
+        protected user_id: string,
+        protected title: string,
+        protected description: string,
+        protected creation_date: string
     ) { }
 
     public getId(): string {
@@ -19,8 +23,13 @@ export class Recipe {
     public getDescription(): string {
         return this.description
     }
+
+    
     public getDate(): string {
         return this.creation_date
+    }
+    public getDate2(): string {
+        return correctDate.currentDateFormatted(this.creation_date)
     }
 
     static toRecipeModel(data: Recipe) {

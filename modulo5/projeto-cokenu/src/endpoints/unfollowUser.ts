@@ -24,15 +24,15 @@ export const unfollowUser = async (req: Request, res: Response) => {
         const user = await userDataBase.getUserById(verifyToken.id, res)
         const userId = user.getId()
 
-        const unfollow = await userDataBase.getUserById(id, res)
-        const unfolloweID = unfollow.getId()
+        const unfollowUser = await userDataBase.getUserById(id, res)
+        const unfollowUserID = unfollowUser.getId()
 
-        const newUnfollow = new Follwer(userId, unfolloweID)
+        const newUnfollow = new Follwer(userId, unfollowUserID)
 
         const followerDatebase = new FollowerDatebase()
         await followerDatebase.removeFollower(newUnfollow, res)
 
-        res.status(200).send({message: "Deixou de ser seguido com sucesso"})
+        res.status(200).send({ message: "Deixou de ser seguido com sucesso" })
 
     } catch (error: any) {
         res.status(200).send(error.message)
