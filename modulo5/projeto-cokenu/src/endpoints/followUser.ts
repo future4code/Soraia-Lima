@@ -32,7 +32,7 @@ export const followUser = async (req: Request, res: Response) => {
         const followerDatebase = new FollowerDatebase()
         await followerDatebase.addFollower(newFollwer, res)
 
-        res.status(201).send({message: "Seguido com sucesso"})
+        res.status(201).send({ message: "Seguido com sucesso" })
 
     } catch (error: any) {
         res.status(200).send(error.message)

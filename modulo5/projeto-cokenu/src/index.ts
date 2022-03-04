@@ -11,16 +11,19 @@ import { feed } from "./endpoints/feed"
 import { editRecipe } from "./endpoints/editRecipe"
 import { deleteRecipe } from "./endpoints/deleteRecipe"
 import { deleteAccount } from "./endpoints/deleteAccount"
+import { changePasswor } from "./endpoints/changePassword"
 
 app.get('/user/feed', feed)
 app.get('/user/profile', getUserProfile)
 app.get('/user/:id', getAnotherUserProfile)
 
-
 app.post('/user/follow', followUser)
 app.post('/user/unfollow', unfollowUser)
 app.post('/signup', signup)
 app.post('/login', login)
+
+app.put('/user/password', changePasswor)
+
 app.delete('/user', deleteAccount)
 
 app.get('/recipe/:id', getRecipe)

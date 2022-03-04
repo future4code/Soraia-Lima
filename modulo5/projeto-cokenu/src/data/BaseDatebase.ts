@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export class BaseDatebase {
-    
+
     protected static connection: Knex = knex({
         client: "mysql",
         connection: {
@@ -16,5 +16,4 @@ export class BaseDatebase {
             multipleStatements: true
         }
     })
-
 }

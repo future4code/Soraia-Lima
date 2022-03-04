@@ -3,7 +3,6 @@ import { RecipeDatabase } from "../data/RecipeDatabase";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authentication } from "../services/Authentication";
 
-
 export const deleteRecipe = async (req: Request, res: Response): Promise<void> => {
     const token = req.headers.authorization as string
     const id = req.params.id
@@ -13,6 +12,7 @@ export const deleteRecipe = async (req: Request, res: Response): Promise<void> =
         if (!token) {
             res.status(401).send("Para realizar essa operação é necessário ter token de autorização")
         }
+
         const authentication = new Authentication()
         const verifyToken = authentication.getTokenData(token)
 
@@ -32,17 +32,17 @@ export const deleteRecipe = async (req: Request, res: Response): Promise<void> =
             const recipeCreator = await recipeDatabase.getRecipeById(id, res)
 
             if (userId !== recipeCreator.getUserId()) {
-                res.status(409).send("Você só pode excluir as receitas que você mesmo criou.")
+                res.status(409).send({ message: "Você só pode excluir as receitas que você mesmo criou." })
                 throw new Error()
             }
 
             await recipeDatabase.deleteRecipe(id)
         }
 
-        res.status(200).send("Receita deletada com sucesso!")
+        res.status(200).send({ message: "Receita deletada com sucesso!" })
 
     } catch (error: any) {
-        res.status(400).send(error.message || error.sqlMessage)
+        res.status(400).send(error.message)
     }
 
 }

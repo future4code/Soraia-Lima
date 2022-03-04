@@ -13,7 +13,7 @@ export const deleteAccount = async (req: Request, res: Response): Promise<void> 
         }
 
         if (!id) {
-            res.status(404).send("Para poder excluir uma conta, é necessário informar o id da mesma")
+            res.status(404).send({ message: "Para poder excluir uma conta, é necessário informar o id da mesma" })
         }
 
         const authentication = new Authentication()
@@ -27,15 +27,16 @@ export const deleteAccount = async (req: Request, res: Response): Promise<void> 
         const userRole = user.getRole()
 
         if (userRole !== "ADMIN") {
-            res.status(401).send("Somente usuários com perfil de ADMIN podem realizar essa requisição")
+            res.status(401).send({ message: "Somente usuários com perfil de ADMIN podem realizar essa requisição" })
+            throw new Error()
         }
 
         await userDataBase.deleteUser(id)
 
-        res.status(200).send("Usuário deletado com sucesso!")
+        res.status(200).send({ message: "Usuário deletado com sucesso!" })
 
     } catch (error: any) {
-        res.status(400).send(error.message || error.sqlMessage)
+        res.status(400).send(error.message)
     }
 
 }

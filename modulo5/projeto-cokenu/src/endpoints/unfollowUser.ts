@@ -7,8 +7,8 @@ import { Authentication } from "../services/Authentication"
 export const unfollowUser = async (req: Request, res: Response) => {
     const token = req.headers.authorization as string
     const id: string = req.body.userToUnfollowId
-    try {
 
+    try {
         if (!token) {
             res.status(401).send("Para realizar essa operação é necessário ter token de autorização")
         }
@@ -32,7 +32,7 @@ export const unfollowUser = async (req: Request, res: Response) => {
         const followerDatebase = new FollowerDatebase()
         await followerDatebase.removeFollower(newUnfollow, res)
 
-        res.status(200).send({ message: "Deixou de ser seguido com sucesso" })
+        res.status(200).send({ message: "Deixou de seguir com sucesso" })
 
     } catch (error: any) {
         res.status(400).send(error.message)

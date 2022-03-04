@@ -13,7 +13,7 @@ export class FollowerDatebase extends BaseDatebase {
                 .andWhere('Cokenu_Fllowers.follower_id', follower.getFollower())
 
             if (result.length === 1) {
-                res?.status(409).send({message: "Você já segue essa pessoa"})
+                res?.status(409).send({ message: "Você já segue essa pessoa" })
                 throw new Error()
             }
 
@@ -29,15 +29,15 @@ export class FollowerDatebase extends BaseDatebase {
         }
     }
 
-    public removeFollower = async(follower: Follwer, res?: Response): Promise<void> =>{
+    public removeFollower = async (follower: Follwer, res?: Response): Promise<void> => {
         try {
-            
+
             const result = await BaseDatebase.connection('Cokenu_Fllowers')
                 .where('Cokenu_Fllowers.followed_id', follower.getFollowed())
                 .andWhere('Cokenu_Fllowers.follower_id', follower.getFollower())
 
             if (result.length === 0) {
-                res?.status(409).send({message: "Você não segue essa pessoa"})
+                res?.status(409).send({ message: "Você não segue essa pessoa" })
                 throw new Error()
             }
 
@@ -46,8 +46,8 @@ export class FollowerDatebase extends BaseDatebase {
                 .where('Cokenu_Fllowers.followed_id', follower.getFollowed())
                 .andWhere('Cokenu_Fllowers.follower_id', follower.getFollower())
 
-        } catch (error) {
-            
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
         }
     }
 }

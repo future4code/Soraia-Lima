@@ -11,23 +11,23 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     const id = GenerateId()
 
     try {
-
         if (!name || !email || !password || !role) {
-            res.status(422).send({message: "Para realizar o cadastro de um novo usuário é necessário informar os seguintes campos: name, email, password, role."})
+            res.status(422).send({ message: "Para realizar o cadastro de um novo usuário é necessário informar os seguintes campos: name, email, password, role." })
         }
+
         if (password.length < 6) {
-            res.status(422).send({message: "A senha deve conter no mímino 6 caracteres"})
+            res.status(422).send({ message: "A senha deve conter no mímino 6 caracteres" })
         }
 
         if (!email.includes('@') || !email.includes('.com')) {
-            res.status(422).send({message: "Formato de email inválido"})
+            res.status(422).send({ message: "Formato de email inválido" })
         }
 
         const userDataBase = new UserDatabase()
         const user = await userDataBase.getUserByEmail(email)
 
         if (user) {
-            res.status(409).send({message: "E-mail já cadastrado no nosso banco de dados"})
+            res.status(409).send({ message: "E-mail já cadastrado no nosso banco de dados" })
         }
 
         const encryptedPassword = await new HashManager().genareHash(password)
@@ -41,7 +41,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
         res.status(201).send({ message: "Novo usuário cadastrado com sucesso!", token })
 
     } catch (error: any) {
-        res.status(400).send(error.message)
+        res.status(400).send(error.message || error.sqlMessage)
     }
 
 }

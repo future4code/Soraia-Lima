@@ -8,7 +8,6 @@ export const getAnotherUserProfile = async (req: Request, res: Response): Promis
     const id = req.params.id
 
     try {
-
         if (!token) {
             res.status(401).send("Para realizar essa operação é necessário ter token de autorização")
         }

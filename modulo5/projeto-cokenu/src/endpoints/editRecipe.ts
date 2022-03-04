@@ -25,7 +25,6 @@ export const editRecipe = async (req: Request, res: Response) => {
         const userId = user.getId()
 
         const recipeDatabase = new RecipeDatabase()
-
         const recipeCreator = await recipeDatabase.getRecipeById(id, res)
 
         if (userId !== recipeCreator.getUserId()) {
@@ -35,9 +34,9 @@ export const editRecipe = async (req: Request, res: Response) => {
 
         await recipeDatabase.chageRecipe(id, title, description)
 
-        res.status(200).send("Receita alterada com sucesso!")
+        res.status(200).send({ message: "Receita alterada com sucesso!" })
 
     } catch (error: any) {
-        res.status(400).send(error.message || error.sqlMessage)
+        res.status(400).send(error.message)
     }
 }

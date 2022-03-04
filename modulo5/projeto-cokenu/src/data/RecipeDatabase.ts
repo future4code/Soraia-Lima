@@ -28,7 +28,7 @@ export class RecipeDatabase extends BaseDatebase {
                 .where('Cokenu_Recipes.id', `${id}`)
 
             if (!recipe) {
-                res?.status(404).send("Essa receita não existe, por gentileza informar um id válido")
+                res?.status(404).send({ message: "Essa receita não existe, por gentileza informar um id válido" })
             }
 
             const newRecipe = recipe && Recipe.toRecipeModel(recipe)
@@ -42,7 +42,6 @@ export class RecipeDatabase extends BaseDatebase {
     public getFeed = async (id: string, res?: Response): Promise<Feed[]> => {
 
         try {
-
             const recipe = await BaseDatebase.connection('Cokenu_Fllowers ')
                 .select('Cokenu_Recipes.id', 'title', 'description', ' creation_date', 'Cokenu_Recipes.user_id', 'Cokenu_User.name')
                 .innerJoin('Cokenu_Recipes', 'Cokenu_Fllowers.followed_id', 'Cokenu_Recipes.user_id')
@@ -67,7 +66,6 @@ export class RecipeDatabase extends BaseDatebase {
 
     public chageRecipe = async (id: string, title?: string, description?: string): Promise<void> => {
         try {
-
             await BaseDatebase.connection('Cokenu_Recipes')
                 .where('Cokenu_Recipes.id', `${id}`)
                 .update({
@@ -82,7 +80,6 @@ export class RecipeDatabase extends BaseDatebase {
 
     public deleteRecipe = async (id: string): Promise<void> => {
         try {
-
             await BaseDatebase.connection('Cokenu_Recipes')
                 .where('Cokenu_Recipes.id', `${id}`)
                 .delete()

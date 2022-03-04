@@ -3,7 +3,7 @@ import { RecipeDatabase } from "../data/RecipeDatabase"
 import { UserDatabase } from "../data/UserDatabase"
 import { Recipe } from "../entities/Recipe"
 import { Authentication } from "../services/Authentication"
-import {CorrectDate} from '../services/CorrectDate'
+import { CorrectDate } from '../services/CorrectDate'
 import { GenerateId } from "../services/GenerateId"
 
 export const createRecipe = async (req: Request, res: Response): Promise<void> => {

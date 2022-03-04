@@ -1,7 +1,3 @@
-import { CorrectDate } from "../services/CorrectDate"
-
-const correctDate = new CorrectDate()
-
 export class Recipe {
     constructor(
         protected id: string,

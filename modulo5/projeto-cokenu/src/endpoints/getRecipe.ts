@@ -8,7 +8,6 @@ export const getRecipe = async (req: Request, res: Response): Promise<void> => {
     const id: string = req.params.id
 
     try {
-
         if (!token) {
             res.status(401).send("Para realizar essa operação é necessário ter token de autorização")
         }
