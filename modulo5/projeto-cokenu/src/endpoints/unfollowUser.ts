@@ -35,6 +35,6 @@ export const unfollowUser = async (req: Request, res: Response) => {
         res.status(200).send({ message: "Deixou de ser seguido com sucesso" })
 
     } catch (error: any) {
-        res.status(200).send(error.message)
+        res.status(400).send(error.message)
     }
 }

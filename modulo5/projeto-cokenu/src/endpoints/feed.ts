@@ -3,6 +3,7 @@ import { RecipeDatabase } from '../data/RecipeDatabase'
 import { UserDatabase } from '../data/UserDatabase'
 import { Authentication } from '../services/Authentication'
 import { CorrectDate } from '../services/CorrectDate'
+import { Feed } from '../types/types'
 
 export const feed = async (req: Request, res: Response) => {
     const token = req.headers.authorization as string
@@ -25,17 +26,18 @@ export const feed = async (req: Request, res: Response) => {
 
         const correctDate = new CorrectDate()
 
-        // const result = recipe.map((item: any) => {
-        //     return ({
-        //         id: recipe.id,
-        //         title: recipe.title,
-        //         description: recipe.description,
-        //         cratedAt: correctDate.currentDateFormatted(recipe.creation_date)
-        //     })
-        // })
+        const result: any = recipe.map((item: Feed) => {
+            return ({
+                id: item.id,
+                title: item.title,
+                description: item.description,
+                createdAt: correctDate.currentDateFormatted(item.creation_date),
+                userId: item.user_id,
+                userName: item.name
+            })
+        })
 
-
-        res.status(200).send({ recipe })
+        res.status(200).send({ result })
 
 
     } catch (error: any) {

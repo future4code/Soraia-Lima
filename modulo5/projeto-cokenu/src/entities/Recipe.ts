@@ -24,12 +24,8 @@ export class Recipe {
         return this.description
     }
 
-    
     public getDate(): string {
         return this.creation_date
-    }
-    public getDate2(): string {
-        return correctDate.currentDateFormatted(this.creation_date)
     }
 
     static toRecipeModel(data: Recipe) {

@@ -1,7 +1,6 @@
 import { Recipe } from "../entities/Recipe"
 import { BaseDatebase } from "./BaseDatebase"
 import { Response } from "express"
-import { CorrectDate } from "../services/CorrectDate"
 import { Feed } from "../types/types"
 
 export class RecipeDatabase extends BaseDatebase {
@@ -22,11 +21,15 @@ export class RecipeDatabase extends BaseDatebase {
         }
     }
 
-    public getRecipeById = async (id: string): Promise<Recipe> => {
+    public getRecipeById = async (id: string, res?: Response): Promise<Recipe> => {
         try {
             const [recipe] = await BaseDatebase.connection('Cokenu_Recipes')
                 .select()
                 .where('Cokenu_Recipes.id', `${id}`)
+
+            if (!recipe) {
+                res?.status(404).send("Essa receita não existe, por gentileza informar um id válido")
+            }
 
             const newRecipe = recipe && Recipe.toRecipeModel(recipe)
             return newRecipe
@@ -51,23 +54,42 @@ export class RecipeDatabase extends BaseDatebase {
                 throw new Error()
             }
 
-            const correctDate = new CorrectDate()
+            function compare(a: any, b: any) {
+                return a.creation_date - b.creation_date
+            }
 
-            const result: any = recipe.map((item: Feed) =>{
-                return ({
-                    id: item.id,
-                    title: item.title,
-                    description: item.description,
-                    cratedAt: correctDate.currentDateFormatted(item.creation_date),
-                    userId: item.user_id,
-                    userName: item.name
-                })
-            })
-
-            return result
+            return recipe.sort(compare)
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+
+    public chageRecipe = async (id: string, title?: string, description?: string): Promise<void> => {
+        try {
+
+            await BaseDatebase.connection('Cokenu_Recipes')
+                .where('Cokenu_Recipes.id', `${id}`)
+                .update({
+                    title: title,
+                    description: description
+                })
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
+    public deleteRecipe = async (id: string): Promise<void> => {
+        try {
+
+            await BaseDatebase.connection('Cokenu_Recipes')
+                .where('Cokenu_Recipes.id', `${id}`)
+                .delete()
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
 }

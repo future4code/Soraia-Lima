@@ -8,16 +8,22 @@ import { getRecipe } from "./endpoints/getRecipe"
 import { followUser } from "./endpoints/followUser"
 import { unfollowUser } from "./endpoints/unfollowUser"
 import { feed } from "./endpoints/feed"
+import { editRecipe } from "./endpoints/editRecipe"
+import { deleteRecipe } from "./endpoints/deleteRecipe"
+import { deleteAccount } from "./endpoints/deleteAccount"
 
 app.get('/user/feed', feed)
 app.get('/user/profile', getUserProfile)
 app.get('/user/:id', getAnotherUserProfile)
 
+
 app.post('/user/follow', followUser)
 app.post('/user/unfollow', unfollowUser)
 app.post('/signup', signup)
 app.post('/login', login)
+app.delete('/user', deleteAccount)
 
 app.get('/recipe/:id', getRecipe)
 app.post('/recipe', createRecipe)
-
+app.put('/recipe/:id', editRecipe)
+app.delete('/recipe/:id', deleteRecipe)

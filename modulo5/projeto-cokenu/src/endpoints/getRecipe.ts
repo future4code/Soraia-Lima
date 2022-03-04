@@ -3,7 +3,7 @@ import { RecipeDatabase } from "../data/RecipeDatabase"
 import { Authentication } from "../services/Authentication"
 import { CorrectDate } from "../services/CorrectDate"
 
-export const getRecipe = async (req: Request, res: Response) => {
+export const getRecipe = async (req: Request, res: Response): Promise<void> => {
     const token = req.headers.authorization as string
     const id: string = req.params.id
 
@@ -17,11 +17,7 @@ export const getRecipe = async (req: Request, res: Response) => {
         authentication.getTokenData(token)
 
         const recipeDatabase = new RecipeDatabase()
-        const recipe = await recipeDatabase.getRecipeById(id)
-
-        if (!recipe) {
-            res.status(404).send("Essa receita não existe, por gentileza informar um id válido")
-        }
+        const recipe = await recipeDatabase.getRecipeById(id, res)
 
         const correctDate = new CorrectDate()
 

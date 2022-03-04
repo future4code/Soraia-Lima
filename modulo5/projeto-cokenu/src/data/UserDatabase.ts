@@ -26,7 +26,7 @@ export class UserDatabase extends BaseDatebase {
                 .select()
                 .where('Cokenu_User.id', `${id}`)
 
-            if(!user){
+            if (!user) {
                 res?.status(404).send('Esse usuáro não existe, por gentileza informar um id válido')
             }
 
@@ -49,6 +49,27 @@ export class UserDatabase extends BaseDatebase {
                     password: user.getPassword(),
                     role: user.getRole()
                 })
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
+    public deleteUser = async (id: string): Promise<void> => {
+        try {
+
+            await BaseDatebase.connection('Cokenu_Fllowers')
+                .where('follower_id', `${id}`)
+                .orWhere('followed_id', `${id}`)
+                .delete()
+
+            await BaseDatebase.connection('Cokenu_Recipes')
+                .where('user_id', `${id}`)
+                .delete()
+
+            await BaseDatebase.connection('Cokenu_User')
+                .where('id', `${id}`)
+                .delete()
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
