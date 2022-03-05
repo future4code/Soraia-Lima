@@ -54,3 +54,4 @@ Para que ele possa excluir uma recita, primeiro faz login, depois, com o token q
 https://documenter.getpostman.com/view/18384258/UVkvJXtT
 
 ### Documentação do Heroku
+https://projeto-cokenu-soraia.herokuapp.com/
