@@ -1,0 +1,32 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "Ana22",
+    "nickname": "Aninha2",
+    "email": "ana22@gmail.com",
+    "password": "123454",
+    "role": "NORMAL"
+}
+
+###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "ana22@gmail.com",
+    "password": "123454"
+}
+
+###
+PUT http://localhost:3003/task/add
+Content-Type: application/json
+
+{
+    "title": "ABC",
+    "description": "AHHHHHHHHHHH",
+    "deadline": "10/05/2022",
+    "authorId": "747435a4-cf1e-4424-b4f8-827991891e48"
+    
+}
