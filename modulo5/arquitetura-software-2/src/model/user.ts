@@ -18,10 +18,12 @@ export type userData = {
 
 export type user = userData & { id: string }
 
-export interface signupInputDTO {
+export type signupInputDTO = {
    name: string,
    nickname: string,
    email: string,
    password: string,
    role: USER_ROLES
 }
+
+export type userDTO = signupInputDTO & { id: string }

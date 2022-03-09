@@ -1,5 +1,5 @@
 import { UserDatabase } from "../data/UserDatabase"
-import { signupInputDTO, userData } from "../model/user";
+import { signupInputDTO, userDTO } from "../model/user";
 import {user} from '../model/user'
 import { HashManager } from "../services/hashManager";
 import { Authenticator } from "../services/authenticator";
@@ -54,7 +54,7 @@ export class UserBusiness {
      
         const cypherPassword = await this.hashManager.hash(userData.password);
      
-        const newUser = {
+        const newUser: userDTO = {
             id: this.idGenerator.generateId(),
             name: userData.name,
             nickname: userData.nickname,

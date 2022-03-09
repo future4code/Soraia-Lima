@@ -14,4 +14,4 @@ const taskController = new TaksController(
 )
 
 taskRouter.put('/add', taskController.createTask)
-taskRouter.get('/task/:id', taskController.getTaskById)
+taskRouter.get('/id', taskController.getTaskById)

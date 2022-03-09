@@ -5,7 +5,8 @@ import BaseDatabase from "./BaseDatabase";
 export class UserDatabase extends BaseDatabase {
 
     public insertUser = async (user: user) => {
-        await BaseDatabase.connection.insert(user).into('to_do_list_users')
+        await BaseDatabase.connection
+            .insert(user).into('to_do_list_users')
     }
 
     public selectUserByEmail = async (email: string): Promise<user> => {

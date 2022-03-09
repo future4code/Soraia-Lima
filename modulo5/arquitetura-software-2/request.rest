@@ -24,9 +24,18 @@ PUT http://localhost:3003/task/add
 Content-Type: application/json
 
 {
-    "title": "ABC",
-    "description": "AHHHHHHHHHHH",
-    "deadline": "10/05/2022",
+    "title": "Abacaxi",
+    "description": "Abacaxi maduro",
+    "deadline": "2022-05-10",
     "authorId": "747435a4-cf1e-4424-b4f8-827991891e48"
     
+}
+
+
+###
+GET http://localhost:3003/task/id
+Content-Type: application/json
+
+{
+    "id": "bb82921f-2bbc-4583-91b4-5141453c2cf4"
 }

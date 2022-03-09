@@ -1,14 +1,14 @@
 import { TaskDatabase } from "../data/TaskDatabase";
-import { taskData } from "../model/task";
+import { taskInputDTO } from "../model/task";
 import { idGenerator } from "../services/generateId";
 
 export class TaskBusiness {
     constructor(
         private idGenerator: idGenerator,
         private taskDatabase: TaskDatabase
-    ){}
+    ) { }
 
-    public createTaskBusiness = async (taskData: taskData) => {
+    public createTaskBusiness = async (taskData: taskInputDTO) => {
         if (
             !taskData.title ||
             !taskData.description ||
@@ -26,23 +26,24 @@ export class TaskBusiness {
         })
     }
 
-    public getTaskByIdBusiness = async (   id: string) => {
+    public getTaskByIdBusiness = async (id: string): Promise<any> => {
+
         const result = await this.taskDatabase.selectTaskById(id)
-     
+
         if (!result) {
-           throw new Error("Tarefa não encontrada")
+            throw new Error("Tarefa não encontrada")
         }
-     
+
+
         const taskWithUserInfo = {
-           id: result.id,
-           title: result.title,
-           description: result.description,
-           deadline: result.deadline,
-           status: result.status,
-           authorId: result.author_id,
-           authorNickname: result.nickname
+            id: result.id,
+            title: result.title,
+            description: result.description,
+            deadline: result.deadline,
+            authorId: result.author_id,
+            authorNickname: result.nickname
         }
-     
+        // console.log(taskWithUserInfo)
         return taskWithUserInfo
-     }
+    }
 }

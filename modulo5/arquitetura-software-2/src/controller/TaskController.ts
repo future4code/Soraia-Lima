@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { TaskBusiness } from "../business/TaskBusiness";
+import { taskInputDTO } from "../model/task";
 
 export class TaksController {
     constructor(
@@ -9,13 +10,17 @@ export class TaksController {
     public createTask = async (req: Request, res: Response) => {
 
         try {
-            const { title, description, deadline, authorId } = req.body
 
-            const a =await this.taskBusiness.createTaskBusiness({
-                title, description, deadline, authorId
-            })
+            const input: taskInputDTO = {
+                title: req.body.title,
+                description: req.body.description,
+                deadline: req.body.deadline,
+                authorId: req.body.authorId,
+            }
 
-            res.status(201).send({a})
+            await this.taskBusiness.createTaskBusiness(input)
+
+            res.status(201).send()
 
         } catch (error: any) {
 
@@ -27,11 +32,12 @@ export class TaksController {
     public getTaskById = async (req: Request, res: Response) => {
 
         try {
-            const { id } = req.params
 
-            const task = this.taskBusiness.getTaskByIdBusiness(id)
+            const id: string = req.body.id
 
-            res.status(200).send(task)
+            const task = await this.taskBusiness.getTaskByIdBusiness(id)
+
+            res.status(200).send({ task })
 
         } catch (error: any) {
             res.status(400).send(error.message)
