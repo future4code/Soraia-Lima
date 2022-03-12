@@ -1,22 +1,23 @@
 import *  as  jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import { AuthenticationData } from '../model/AuthenticationData'
+import { CustomError } from '../error/CustomError'
 
 dotenv.config()
 
 const expiresIn = process.env.EXPIRES_IN
 
 export class Authetication {
-    public generateToken = (payload: string): string => {
-        const token = jwt.sign(
-            {payload},
-            process.env.JWT_KEY as string,
-            { expiresIn }
+    public generateToken = (payload: AuthenticationData): string => {
+        const token = jwt.sign(payload, process.env.JWT_KEY as string,
+            { expiresIn}
         )
         return token
     }
 
-    public getTokenData(token: string): string {
-        const data = jwt.verify(token, process.env.JWT_KEY as string) as string
+    public getTokenData(token: string): AuthenticationData {
+        const data = jwt.verify(token, process.env.JWT_KEY as string) as AuthenticationData
         return data
+
     }
 }
