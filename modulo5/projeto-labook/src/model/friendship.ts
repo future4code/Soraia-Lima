@@ -14,5 +14,19 @@ export class Friendship {
 }
 
 export type FriendshipInputDTO = {
-    friend_followed_id: string
+    friend_id: string
 }
+
+export type UnfriendshipInputDTO = {
+    unfriend_id: string
+}
+
+export interface FeedOutputDTO {
+    id: string,
+    photo_url: string,
+    description: string,
+    creation_date: string,
+    author_id: string,
+    name: string,
+}
+

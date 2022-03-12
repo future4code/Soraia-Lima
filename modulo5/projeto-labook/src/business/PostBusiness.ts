@@ -55,14 +55,14 @@ export class PostBusiness {
         if (!post) {
             throw new CustomError(404, "Post não encontrado, por gentileza informar um id válido")
         }
-
+       
         const user = await userDatabase.getUserById(post.author_id)
 
         const newPost = {
             id: post.id,
             photo_url: post.photo_url,
             description: post.description,
-            create_date: correctDate.currentDateFormatted(post.create_date),
+            creation_date: correctDate.currentDateFormatted(post.creation_date),
             post_type: post.post_type,
             author_id: post.author_id,
             author_name: user.name

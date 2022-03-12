@@ -15,7 +15,7 @@ export class Post {
         protected id: string,
         protected photo_url: string,
         protected description: string,
-        protected create_date: string,
+        protected creation_date: string,
         protected post_type: POST_TYPE,
         protected author_id: string
 
@@ -34,7 +34,7 @@ export class Post {
     }
 
     public getCreate_date(): string {
-        return this.create_date
+        return this.creation_date
     }
 
     public getPostType(): POST_TYPE {
@@ -45,6 +45,6 @@ export class Post {
     }
 
     static toPostModel(data: Post) {
-        return new Post(data.id, data.photo_url, data.description, data.create_date, data.post_type, data.author_id)
+        return new Post(data.id, data.photo_url, data.description, data.creation_date, data.post_type, data.author_id)
     }
 }

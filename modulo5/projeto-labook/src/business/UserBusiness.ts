@@ -59,9 +59,9 @@ export class UserBusiness {
             throw new CustomError(422, "Password inválido.")
         }
 
-        //const id = checkUserExistence.getId()
         const token = authetication.generateToken({id: checkUserExistence.getId() })
 
         return token
     }
+
 }
