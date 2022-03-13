@@ -7,7 +7,6 @@ export const userRouter = express.Router()
 const friendshipController = new FriendshipController()
 const userController = new UserController()
 
-userRouter.get('/feed', friendshipController.getFeedController)
 userRouter.post('/signup', userController.signupController)
 userRouter.post('/login', userController.loginController)
 userRouter.post('/follow', friendshipController.makeFriendshipBusiness)

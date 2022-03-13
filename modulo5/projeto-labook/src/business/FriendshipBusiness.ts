@@ -57,32 +57,4 @@ export class FriendshipBusiness {
         await friendship.deleteFriendship(input)
     }
 
-    public getFeedBusiness = async (token: string) => {
-
-        if (!token) {
-            throw new CustomError(401, "Para realizar essa operação é necessário ter token de autorização")
-        }
-
-        const verifyToken = authentication.getTokenData(token)
-        const user = await userDatabase.getUserById(verifyToken.id)
-        const userId: string = user.getId()
-
-        const feed = await friendship.getFeed(userId)
-
-        if (feed.length < 1) {
-            throw new CustomError(404, "Você ainda não é amigo de ninguém, ou as pessoas que você é amigo ainda não postaram nada :(")
-        }
-
-        const newFeed: any = feed.map((item: FeedOutputDTO) => {
-            return ({
-                id: item.id,
-                photo_url: item.photo_url,
-                description: item.description,
-                createdAt: correctDate.currentDateFormatted(item.creation_date),
-                author_id: item.author_id,
-                author_name: item.name
-            })
-        })
-        return newFeed
-    }
 }

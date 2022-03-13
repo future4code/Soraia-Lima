@@ -49,18 +49,4 @@ export class FriendshipBaseDatabase extends BaseDatabase {
             .andWhere('friend_followed_id', friendship.getFriendFollower())
     }
 
-    public getFeed = async (id: string): Promise<FeedOutputDTO[]> => {
-        const recipe = await BaseDatabase.connection(this.TABLE_NAME)
-            .select('Labook_Post.id', 'photo_url', 'description', 'creation_date', 'Labook_Post.author_id', 'name')
-            .innerJoin('Labook_Post', 'Labook_Friendship.friend_followed_id', 'Labook_Post.author_id')
-            .innerJoin('Labook_User', 'Labook_User.id', 'Labook_Friendship.friend_followed_id')
-            .where('friend_follower_id', `${id}`)
-
-
-        function compare(a: any, b: any) {
-            return b.create_date - a.create_date
-        }
-
-        return recipe.sort(compare)
-    }
 }
