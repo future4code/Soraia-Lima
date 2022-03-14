@@ -4,7 +4,7 @@ import BaseDatabase from "./BaseDatabase";
 export class UserDatabase extends BaseDatabase {
     protected TABLE_NAME = 'Labook_User'
 
-    public insertUser = async (user: User) => {
+    public insertUser = async (user: User): Promise<void> => {
         await BaseDatabase.connection(this.TABLE_NAME)
             .insert(user)
     }

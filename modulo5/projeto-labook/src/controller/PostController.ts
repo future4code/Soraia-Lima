@@ -1,12 +1,14 @@
 import { Request, Response } from "express"
 import { PostBusiness } from "../business/PostBusiness"
+import { CommentInputDTO } from "../model/comment"
+import { LikeInputDTO } from "../model/like"
 import { PostInputDTO } from "../model/post"
 
 const postBusiness = new PostBusiness()
 
 export class PostController {
 
-    public createPostController = async (req: Request, res: Response) => {
+    public createPostController = async (req: Request, res: Response): Promise<void> => {
         try {
 
             const inputCreatePost: PostInputDTO = {
@@ -26,13 +28,61 @@ export class PostController {
         }
     }
 
-    public getPostByIdController = async (req: Request, res: Response) => {
+    public getPostByIdController = async (req: Request, res: Response): Promise<void> => {
         try {
             const token = req.headers.authorization as string
             const id: string = req.params.id
 
             const post = await postBusiness.getPostByIdBusiness(id, token)
             res.status(200).send({ post })
+
+        } catch (error: any) {
+            res.status(error.code || 400).send(error.message || error.sqlMessage)
+        }
+    }
+
+    public likeController = async (req: Request, res: Response): Promise<void> => {
+
+        try {
+            const token = req.headers.authorization as string
+            const post_id: LikeInputDTO = { post_id: req.body.post_id }
+
+            await postBusiness.likeBusiness(token, post_id)
+
+            res.status(200).send("Like com sucesso!")
+
+        } catch (error: any) {
+            res.status(error.code || 400).send(error.message || error.sqlMessage)
+        }
+    }
+
+    public deslikeController = async (req: Request, res: Response): Promise<void> => {
+
+        try {
+            const token = req.headers.authorization as string
+            const post_id: LikeInputDTO = { post_id: req.body.post_id }
+
+            await postBusiness.deslikeBusiness(token, post_id)
+
+            res.status(200).send("Desike com sucesso!")
+
+        } catch (error: any) {
+            res.status(error.code || 400).send(error.message || error.sqlMessage)
+        }
+    }
+
+    public commentController = async (req: Request, res: Response): Promise<void> => {
+
+        try {
+            const token = req.headers.authorization as string
+            const comment: CommentInputDTO = {
+                post_id: req.body.post_id,
+                comment: req.body.comment
+            }
+
+            await postBusiness.commentBusiness(token, comment)
+
+            res.status(200).send("Commentário adicionado com sucesso!")
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)

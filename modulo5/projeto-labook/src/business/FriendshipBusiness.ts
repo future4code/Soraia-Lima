@@ -1,14 +1,12 @@
 import { FriendshipBaseDatabase } from "../data/FriendshipBaseDatabase"
 import { UserDatabase } from "../data/UserDatabase"
 import { CustomError } from "../error/CustomError"
-import { FeedOutputDTO, Friendship, FriendshipInputDTO, UnfriendshipInputDTO } from "../model/friendship"
+import { Friendship, FriendshipInputDTO, UnfriendshipInputDTO } from "../model/friendship"
 import { Authetication } from "../services/Authentication"
-import { CorrectDate } from "../services/CorretDate"
 
 const authentication = new Authetication()
 const userDatabase = new UserDatabase()
 const friendship = new FriendshipBaseDatabase()
-const correctDate = new CorrectDate()
 
 export class FriendshipBusiness {
     public makeFriendshipBusiness = async (token: string, id: FriendshipInputDTO) => {

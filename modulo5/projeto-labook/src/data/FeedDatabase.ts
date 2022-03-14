@@ -20,7 +20,7 @@ export class FeedDatabade extends BaseDatabase {
         return recipe.sort(compare)
     }
 
-    public getFeedByType = async (type: string) => {
+    public getFeedByType = async (type: string): Promise<FeedOutputDTO[]> => {
         const recipe = await BaseDatabase.connection(this.TABLE_NAME_TWO)
             .select('Labook_Post.id', 'photo_url', 'description', 'creation_date', 'post_type', 'Labook_Post.author_id', 'name')
             .innerJoin('Labook_User', 'Labook_User.id', 'Labook_Post.author_id')

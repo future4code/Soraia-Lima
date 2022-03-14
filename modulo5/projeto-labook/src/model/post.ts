@@ -10,6 +10,16 @@ export type PostInputDTO = {
     post_type: POST_TYPE
 }
 
+export type PostData = {
+    id: string,
+    photo_url: string,
+    description: string,
+    creation_date: string,
+    post_type: string,
+    author_id: string,
+    author_name: string
+}
+
 export class Post {
     constructor(
         protected id: string,

@@ -6,7 +6,7 @@ const userBusiness = new UserBusiness()
 
 export class UserController {
 
-    public signupController = async (req: Request, res: Response) => {
+    public signupController = async (req: Request, res: Response): Promise<void>  => {
 
         try {
             const inputSignup: signupInputDTO = {
@@ -31,7 +31,7 @@ export class UserController {
         }
     }
 
-    public loginController = async (req: Request, res: Response) => {
+    public loginController = async (req: Request, res: Response): Promise<void>  => {
 
         try {
 

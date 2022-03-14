@@ -5,7 +5,7 @@ const feedBusiness = new FeedBusiness()
 
 export class FeedController {
 
-    public getFeedController = async (req: Request, res: Response) => {
+    public getFeedController = async (req: Request, res: Response): Promise<void> => {
 
         try {
             const token = req.headers.authorization as string
