@@ -9,8 +9,8 @@ const postBusiness = new PostBusiness()
 export class PostController {
 
     public createPostController = async (req: Request, res: Response): Promise<void> => {
-        try {
 
+        try {
             const inputCreatePost: PostInputDTO = {
                 photo_url: req.body.photo_url,
                 description: req.body.description,
@@ -29,6 +29,7 @@ export class PostController {
     }
 
     public getPostByIdController = async (req: Request, res: Response): Promise<void> => {
+
         try {
             const token = req.headers.authorization as string
             const id: string = req.params.id

@@ -21,7 +21,7 @@ export type UnfriendshipInputDTO = {
     unfriend_id: string
 }
 
-export type FeedOutputDTO = {
+export type FeedData = {
     id: string,
     photo_url: string,
     description: string,

@@ -9,8 +9,8 @@ const userDatabase = new UserDatabase()
 const friendship = new FriendshipBaseDatabase()
 
 export class FriendshipBusiness {
-    public makeFriendshipBusiness = async (token: string, id: FriendshipInputDTO) => {
 
+    public makeFriendshipBusiness = async (token: string, id: FriendshipInputDTO): Promise<void> => {
         if (!token) {
             throw new CustomError(401, "Para realizar essa operação é necessário ter token de autorização.")
         }
@@ -32,8 +32,7 @@ export class FriendshipBusiness {
         await friendship.insertFriendship(input)
     }
 
-    public unfriendBusiness = async (token: string, id: UnfriendshipInputDTO) => {
-
+    public unfriendBusiness = async (token: string, id: UnfriendshipInputDTO): Promise<void> => {
         if (!token) {
             throw new CustomError(401, "Para realizar essa operação é necessário ter token de autorização")
         }
@@ -54,5 +53,4 @@ export class FriendshipBusiness {
         const input = new Friendship(userFollowerId, id.unfriend_id)
         await friendship.deleteFriendship(input)
     }
-
 }

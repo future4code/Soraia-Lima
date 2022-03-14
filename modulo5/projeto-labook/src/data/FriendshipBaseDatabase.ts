@@ -1,12 +1,11 @@
 import BaseDatabase from "./BaseDatabase"
-import { FeedOutputDTO, Friendship } from "../model/friendship"
+import { Friendship } from "../model/friendship"
 import { CustomError } from "../error/CustomError"
 
 export class FriendshipBaseDatabase extends BaseDatabase {
     protected TABLE_NAME = 'Labook_Friendship'
 
     public insertFriendship = async (friendship: Friendship): Promise<void> => {
-
         const result = await BaseDatabase.connection(this.TABLE_NAME)
             .where('friend_follower_id', friendship.getFriendFollower())
             .andWhere('friend_followed_id', friendship.getFriendFollowed())
@@ -29,7 +28,6 @@ export class FriendshipBaseDatabase extends BaseDatabase {
     }
 
     public deleteFriendship = async (friendship: Friendship): Promise<void> => {
-
         const result = await BaseDatabase.connection(this.TABLE_NAME)
             .where('friend_follower_id', friendship.getFriendFollower())
             .andWhere('friend_followed_id', friendship.getFriendFollowed())
@@ -48,5 +46,4 @@ export class FriendshipBaseDatabase extends BaseDatabase {
             .where('friend_follower_id', friendship.getFriendFollowed())
             .andWhere('friend_followed_id', friendship.getFriendFollower())
     }
-
 }

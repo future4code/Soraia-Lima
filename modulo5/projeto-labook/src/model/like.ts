@@ -11,9 +11,6 @@ export class Like {
     public getUserId(): string {
         return this.user_id
     }
-    static toLikeModel(data: Like) {
-        return new Like(data.post_id, data.user_id)
-    }
 }
 
 export type LikeInputDTO = {

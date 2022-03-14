@@ -1,5 +1,5 @@
-import { User } from "../model/user";
-import BaseDatabase from "./BaseDatabase";
+import { User } from "../model/user"
+import BaseDatabase from "./BaseDatabase"
 
 export class UserDatabase extends BaseDatabase {
     protected TABLE_NAME = 'Labook_User'
@@ -9,7 +9,7 @@ export class UserDatabase extends BaseDatabase {
             .insert(user)
     }
 
-    public getUserByEmail = async (email: string) => {
+    public getUserByEmail = async (email: string): Promise<User> => {
         const [user] = await BaseDatabase.connection(this.TABLE_NAME)
             .select()
             .where({ email })
@@ -18,7 +18,7 @@ export class UserDatabase extends BaseDatabase {
         return newUser
     }
 
-    public getUserById = async (id: string) => {
+    public getUserById = async (id: string): Promise<User> => {
         const [user] = await BaseDatabase.connection(this.TABLE_NAME)
             .select()
             .where({ id })
@@ -26,7 +26,4 @@ export class UserDatabase extends BaseDatabase {
         const newUser = user && User.toUserModel(user)
         return newUser
     }
-
-    
-
 }

@@ -1,7 +1,6 @@
 import *  as  jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import { AuthenticationData } from '../model/AuthenticationData'
-import { CustomError } from '../error/CustomError'
 
 dotenv.config()
 
@@ -10,7 +9,7 @@ const expiresIn = process.env.EXPIRES_IN
 export class Authetication {
     public generateToken = (payload: AuthenticationData): string => {
         const token = jwt.sign(payload, process.env.JWT_KEY as string,
-            { expiresIn}
+            { expiresIn }
         )
         return token
     }

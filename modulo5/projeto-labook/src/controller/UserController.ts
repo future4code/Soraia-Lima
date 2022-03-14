@@ -34,7 +34,6 @@ export class UserController {
     public loginController = async (req: Request, res: Response): Promise<void>  => {
 
         try {
-
             const inputLogin: loginInputDTO = {
                 email: req.body.email,
                 password: req.body.password

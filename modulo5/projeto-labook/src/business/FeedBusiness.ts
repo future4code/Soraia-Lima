@@ -1,7 +1,7 @@
 import { FeedDatabade } from "../data/FeedDataBase"
 import { UserDatabase } from "../data/UserDatabase"
 import { CustomError } from "../error/CustomError"
-import { FeedOutputDTO } from "../model/friendship"
+import { FeedData } from "../model/friendship"
 import { Authetication } from "../services/Authentication"
 import { CorrectDate } from "../services/CorretDate"
 
@@ -12,7 +12,7 @@ const feedDatabade = new FeedDatabade()
 
 export class FeedBusiness {
 
-    public getFeedBusiness = async (token: string, page: string, type?: string ) => {
+    public getFeedBusiness = async (token: string, page: string, type?: string): Promise<FeedData> => {
         const limit = 5
         const offset = limit * (Number(page) - 1)
 
@@ -21,7 +21,7 @@ export class FeedBusiness {
         }
 
         if (!page) {
-            throw new CustomError(422, "É necessário passar o valor de 'page'")
+            throw new CustomError(422, "É necessário passar o valor de 'page'.")
         }
 
         const verifyToken = authentication.getTokenData(token)
@@ -40,7 +40,7 @@ export class FeedBusiness {
                 throw new CustomError(404, "Você ainda não é amigo de ninguém, ou as pessoas que você é amigo ainda não postaram nada :(")
             }
 
-            const newFeed: any = feedByType.map((item: FeedOutputDTO) => {
+            const newFeed: any = feedByType.map((item: FeedData) => {
                 return ({
                     id: item.id,
                     photo_url: item.photo_url,
@@ -60,7 +60,7 @@ export class FeedBusiness {
             throw new CustomError(404, "Você ainda não é amigo de ninguém, ou as pessoas que você é amigo ainda não postaram nada :(")
         }
 
-        const newFeed: any = feed.map((item: FeedOutputDTO) => {
+        const newFeed: any = feed.map((item: FeedData) => {
             return ({
                 id: item.id,
                 photo_url: item.photo_url,

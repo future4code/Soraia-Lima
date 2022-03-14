@@ -3,11 +3,12 @@ import { FriendshipBusiness } from "../business/FriendshipBusiness"
 import { FriendshipInputDTO, UnfriendshipInputDTO } from "../model/friendship"
 
 const friendshipBusiness = new FriendshipBusiness()
+
 export class FriendshipController {
 
-    public makeFriendshipBusiness = async (req: Request, res: Response): Promise<void>  => {
-        try {
+    public makeFriendshipBusiness = async (req: Request, res: Response): Promise<void> => {
 
+        try {
             const inputCreateFriendship: FriendshipInputDTO = {
                 friend_id: req.body.friend_id
             }
@@ -23,10 +24,9 @@ export class FriendshipController {
         }
     }
 
-    public unfriendBusiness = async (req: Request, res: Response): Promise<void>  => {
+    public unfriendBusiness = async (req: Request, res: Response): Promise<void> => {
 
         try {
-
             const inputDeleteFriendship: UnfriendshipInputDTO = {
                 unfriend_id: req.body.unfriend_id
             }

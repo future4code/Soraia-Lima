@@ -1,12 +1,12 @@
-import { PostDatabase } from "../data/PostDatabase";
-import { UserDatabase } from "../data/UserDatabase";
-import { CustomError } from "../error/CustomError";
-import { Comment, CommentInputDTO } from "../model/comment";
-import { Like, LikeInputDTO } from "../model/like";
-import { Post, PostInputDTO } from "../model/post";
-import { Authetication } from "../services/Authentication";
-import { CorrectDate } from "../services/CorretDate";
-import { IdGenerator } from "../services/IdGenerator";
+import { PostDatabase } from "../data/PostDatabase"
+import { UserDatabase } from "../data/UserDatabase"
+import { CustomError } from "../error/CustomError"
+import { Comment, CommentInputDTO } from "../model/comment"
+import { Like, LikeInputDTO } from "../model/like"
+import { Post, PostData, PostInputDTO } from "../model/post"
+import { Authetication } from "../services/Authentication"
+import { CorrectDate } from "../services/CorretDate"
+import { IdGenerator } from "../services/IdGenerator"
 
 const authentication = new Authetication()
 const userDatabase = new UserDatabase()
@@ -45,7 +45,7 @@ export class PostBusiness {
         await postDatabase.insertPost(newPost)
     }
 
-    public getPostByIdBusiness = async (id: string, token: string) => {
+    public getPostByIdBusiness = async (id: string, token: string): Promise<PostData> => {
 
         if (!token) {
             throw new CustomError(401, "Para realizar essa operação é necessário ter token de autorização")
@@ -67,7 +67,7 @@ export class PostBusiness {
             creation_date: correctDate.currentDateFormatted(post.getCreate_date()),
             post_type: post.getPostType(),
             author_id: post.getAuthorId(),
-            author_name: user.name
+            author_name: user.getName()
         }
 
         return newPost
@@ -148,5 +148,4 @@ export class PostBusiness {
 
         await postDatabase.insertCommentPost(newComment)
     }
-
 }

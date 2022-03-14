@@ -1,6 +1,6 @@
-import express from "express";
-import { FriendshipController } from "../controller/FriendsController";
-import { UserController } from "../controller/UserController";
+import express from "express"
+import { FriendshipController } from "../controller/FriendsController"
+import { UserController } from "../controller/UserController"
 
 export const userRouter = express.Router()
 

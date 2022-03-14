@@ -1,8 +1,8 @@
-import { CustomError } from "../error/CustomError";
-import { Comment } from "../model/comment";
-import { Like } from "../model/like";
-import { Post } from "../model/post";
-import BaseDatabase from "./BaseDatabase";
+import { CustomError } from "../error/CustomError"
+import { Comment } from "../model/comment"
+import { Like } from "../model/like"
+import { Post } from "../model/post"
+import BaseDatabase from "./BaseDatabase"
 
 export class PostDatabase extends BaseDatabase {
     protected TABLE_NAME_POST = 'Labook_Post'
@@ -55,5 +55,4 @@ export class PostDatabase extends BaseDatabase {
         await BaseDatabase.connection(this.TABLE_NAME_COMMENT)
             .insert(comment)
     }
-
 }

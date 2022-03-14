@@ -1,9 +1,9 @@
-import { UserDatabase } from "../data/UserDatabase";
-import { CustomError } from "../error/CustomError";
-import { loginInputDTO, signupInputDTO, User } from "../model/user";
-import { Authetication } from "../services/Authentication";
-import { HasManager } from "../services/HashManager";
-import { IdGenerator } from "../services/IdGenerator";
+import { UserDatabase } from "../data/UserDatabase"
+import { CustomError } from "../error/CustomError"
+import { loginInputDTO, signupInputDTO, User } from "../model/user"
+import { Authetication } from "../services/Authentication"
+import { HasManager } from "../services/HashManager"
+import { IdGenerator } from "../services/IdGenerator"
 
 const userDatabase = new UserDatabase()
 const idGenerator = new IdGenerator()
@@ -12,8 +12,8 @@ const authetication = new Authetication()
 
 export class UserBusiness {
 
-    public signupBusiness = async (user: signupInputDTO) => {
-       
+    public signupBusiness = async (user: signupInputDTO): Promise<void> => {
+
         if (!user.name || !user.password || !user.email) {
             throw new CustomError(422, "Para realizar o cadastro de um novo usuário é necessário informar os seguintes campos: name, email, password.")
         }
@@ -41,7 +41,7 @@ export class UserBusiness {
         await userDatabase.insertUser(newUser)
     }
 
-    public loginBusiness = async (user: loginInputDTO) => {
+    public loginBusiness = async (user: loginInputDTO): Promise<string> => {
 
         if (!user.email || !user.password) {
             throw new CustomError(422, "Para realizar login é necessário informar os seguintes campos:  email, password.")
@@ -59,9 +59,7 @@ export class UserBusiness {
             throw new CustomError(422, "Password inválido.")
         }
 
-        const token = authetication.generateToken({id: checkUserExistence.getId() })
-
+        const token = authetication.generateToken({ id: checkUserExistence.getId() })
         return token
     }
-
 }
