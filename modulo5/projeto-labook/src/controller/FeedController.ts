@@ -10,7 +10,8 @@ export class FeedController {
         try {
             const token = req.headers.authorization as string
             const type = req.query.type as string
-            const feed = await feedBusiness.getFeedBusiness(token, type)
+            const page = req.query.page as string
+            const feed = await feedBusiness.getFeedBusiness(token, page, type,)
            
             res.status(200).send({feed})
 

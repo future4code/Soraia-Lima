@@ -145,7 +145,6 @@ export class PostBusiness {
         }
 
         const newComment = new Comment(userId, comment.post_id, comment.comment)
-        console.log(newComment)
 
         await postDatabase.insertCommentPost(newComment)
     }

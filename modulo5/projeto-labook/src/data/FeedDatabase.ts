@@ -5,32 +5,30 @@ export class FeedDatabade extends BaseDatabase {
     protected TABLE_NAME_ONE = 'Labook_Friendship'
     protected TABLE_NAME_TWO = 'Labook_Post'
 
-    public getFeed = async (id: string): Promise<FeedOutputDTO[]> => {
+    public getFeed = async (id: string, offset: number, limit: number): Promise<FeedOutputDTO[]> => {
         const recipe = await BaseDatabase.connection(this.TABLE_NAME_ONE)
             .select('Labook_Post.id', 'photo_url', 'description', 'creation_date', 'post_type', 'Labook_Post.author_id', 'name')
             .innerJoin('Labook_Post', 'Labook_Friendship.friend_followed_id', 'Labook_Post.author_id')
             .innerJoin('Labook_User', 'Labook_User.id', 'Labook_Friendship.friend_followed_id')
+            .orderBy("creation_date", "DESC")
             .where('friend_follower_id', `${id}`)
+            .limit(limit)
+            .offset(offset)
 
-
-        function compare(a: any, b: any) {
-            return b.creation_date - a.creation_date
-        }
-
-        return recipe.sort(compare)
+        return recipe
     }
 
-    public getFeedByType = async (type: string): Promise<FeedOutputDTO[]> => {
+    public getFeedByType = async (type: string, offset: number, limit: number): Promise<FeedOutputDTO[]> => {
+
         const recipe = await BaseDatabase.connection(this.TABLE_NAME_TWO)
             .select('Labook_Post.id', 'photo_url', 'description', 'creation_date', 'post_type', 'Labook_Post.author_id', 'name')
             .innerJoin('Labook_User', 'Labook_User.id', 'Labook_Post.author_id')
+            .orderBy("creation_date", "DESC")
             .where('Labook_Post.post_type', 'like', `%${type}%`)
+            .limit(limit)
+            .offset(offset)
 
-        function compare(a: any, b: any) {
-            return b.creation_date - a.creation_date
-        }
-
-        return recipe.sort(compare)
+        return recipe
     }
 
 }

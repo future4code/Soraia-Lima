@@ -12,10 +12,16 @@ const feedDatabade = new FeedDatabade()
 
 export class FeedBusiness {
 
-    public getFeedBusiness = async (token: string, type?: string) => {
+    public getFeedBusiness = async (token: string, page: string, type?: string ) => {
+        const limit = 5
+        const offset = limit * (Number(page) - 1)
 
         if (!token) {
             throw new CustomError(401, "Para realizar essa operação é necessário ter token de autorização")
+        }
+
+        if (!page) {
+            throw new CustomError(422, "É necessário passar o valor de 'page'")
         }
 
         const verifyToken = authentication.getTokenData(token)
@@ -28,7 +34,7 @@ export class FeedBusiness {
                 throw new CustomError(422, "Por gentileza, informa um type valido: 'NORMAL' ou 'EVENTO'.")
             }
 
-            const feedByType = await feedDatabade.getFeedByType(type)
+            const feedByType = await feedDatabade.getFeedByType(type, offset, limit)
 
             if (feedByType.length < 1) {
                 throw new CustomError(404, "Você ainda não é amigo de ninguém, ou as pessoas que você é amigo ainda não postaram nada :(")
@@ -48,7 +54,7 @@ export class FeedBusiness {
             return newFeed
         }
 
-        const feed = await feedDatabade.getFeed(userId)
+        const feed = await feedDatabade.getFeed(userId, offset, limit)
 
         if (feed.length < 1) {
             throw new CustomError(404, "Você ainda não é amigo de ninguém, ou as pessoas que você é amigo ainda não postaram nada :(")
