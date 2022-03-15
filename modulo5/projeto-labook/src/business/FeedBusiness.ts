@@ -1,4 +1,4 @@
-import { FeedDatabade } from "../data/FeedDataBase"
+import { FeedDatabade } from "../data/FeedDatabase"
 import { UserDatabase } from "../data/UserDatabase"
 import { CustomError } from "../error/CustomError"
 import { FeedData } from "../model/friendship"

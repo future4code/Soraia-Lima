@@ -17,7 +17,7 @@ export class FriendshipController {
 
             await friendshipBusiness.makeFriendshipBusiness(token, inputCreateFriendship)
 
-            res.status(200).send("Nova amizade criada com sucesso!")
+            res.status(201).send({message: "Nova amizade criada com sucesso!"})
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)
@@ -35,7 +35,7 @@ export class FriendshipController {
 
             await friendshipBusiness.unfriendBusiness(token, inputDeleteFriendship)
 
-            res.status(200).send("Amizade desfeita com sucesso!")
+            res.status(200).send({message: "Amizade desfeita com sucesso!"})
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)

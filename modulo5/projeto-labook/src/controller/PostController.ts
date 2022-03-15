@@ -21,7 +21,7 @@ export class PostController {
 
             await postBusiness.createPostBusiness(inputCreatePost, token)
 
-            res.status(200).send({ message: "Post criado com sucesso!" })
+            res.status(201).send({ message: "Post criado com sucesso!" })
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)
@@ -50,7 +50,7 @@ export class PostController {
 
             await postBusiness.likeBusiness(token, post_id)
 
-            res.status(200).send("Like com sucesso!")
+            res.status(201).send({message: "Like com sucesso!"})
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)
@@ -65,7 +65,7 @@ export class PostController {
 
             await postBusiness.deslikeBusiness(token, post_id)
 
-            res.status(200).send("Desike com sucesso!")
+            res.status(200).send({message: "Desike com sucesso!"})
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)
@@ -83,7 +83,7 @@ export class PostController {
 
             await postBusiness.commentBusiness(token, comment)
 
-            res.status(200).send("Commentário adicionado com sucesso!")
+            res.status(201).send({message: "Commentário adicionado com sucesso!"})
 
         } catch (error: any) {
             res.status(error.code || 400).send(error.message || error.sqlMessage)
