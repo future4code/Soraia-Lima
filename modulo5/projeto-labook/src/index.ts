@@ -15,6 +15,6 @@ app.use('/user', userRouter)
 app.use('/post', postRouter)
 app.use('/feed', feedRouter)
 
-app.listen( 3003, () => {
+app.listen(process.env.PORT || 3003, () => {
     console.log('Servidor rodando na porta 3003')
 })
