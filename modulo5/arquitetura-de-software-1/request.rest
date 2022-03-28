@@ -1,0 +1,31 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Ana",
+    "email": "ana@gmail.com",
+    "password": "123454",
+    "role": "NORMAL"
+}
+
+###
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "soraia@gmail.com",
+    "password": "123454"
+}
+
+###
+
+GET http://localhost:3003/all
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwODlhYjhkLTA4NGEtNDk5Yi04NjYyLTY3ZmNiZWExMzUxNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NjY5MDY2OSwiZXhwIjoxNjQ2NjkxMjY5fQ.D1MSjT9yJ9-K4IyO98MUdcjB2tNW1y5sMu_PdY_Tzbo
+
+###
+# Essas requisição não funciona aqui no resquest, mas no postaman, funciona ok
+DELETE http://localhost:3003/user/delete/{id}
+id = 22810109-892d-4f9c-af59-63ad2b245ea4
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwODlhYjhkLTA4NGEtNDk5Yi04NjYyLTY3ZmNiZWExMzUxNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NjY5MDEzOCwiZXhwIjoxNjQ2NjkwNzM4fQ.2hb6HCQWq67wZ8U8fNMhj7t8amH1Ej6M8_GhSPabm0k
