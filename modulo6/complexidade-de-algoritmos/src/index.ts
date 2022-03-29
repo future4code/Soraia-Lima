@@ -12,3 +12,15 @@
 
 // Exercício 5
 // 3, 1, 2, 4. 
+
+// DESAFIOS
+
+// Exercício 6
+// Como o nosso loop depende to tamanho de b. Fica O(b).
+
+// Exercício 7
+// Como não tem loop que depende da entrada, acho que é O(1)
+
+// Exercício 8
+// O primeiro é O(n²), pois ele executa o loop, e dentro do loop, executa a outra função que também é um loop. 
+// O segundo é O(n), pois ele tem um único loop simples. 
