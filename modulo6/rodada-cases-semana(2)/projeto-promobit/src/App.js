@@ -1,10 +1,26 @@
+import GlobalState from './context/GlobalState';
 import Router from './router/Router'
+import { createGlobalStyle } from 'styled-components'
 
-function App() {
+
+const App = () =>{
+
+  const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Times New Roman" !important;
+    button{
+      cursor: pointer;
+    }
+  }`
+
   return (
-    <div >
-      <Router/>
-    </div>
+    <GlobalState>
+      <GlobalStyle/>
+      <Router />
+    </GlobalState>
   );
 }
 
