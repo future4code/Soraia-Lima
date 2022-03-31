@@ -1,0 +1,19 @@
+{
+  "name": "recursividade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev ./src/index.ts",
+    "start": "node ./build/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Soraia Aparecida",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  }
+}
