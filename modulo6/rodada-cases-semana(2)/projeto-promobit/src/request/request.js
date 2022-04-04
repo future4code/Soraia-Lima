@@ -20,6 +20,6 @@ export const getDetaillMovei = (id, setDetalhes) => {
     request.then((res) => {
         setDetalhes(res.data)
     }).catch((err) => {
-        alert(err.response.data)
+        console.log(err)
     })
 }

@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
-import {GlobalContext} from './GlobalContext'
+import React, { useState } from 'react'
+import { GlobalContext } from './GlobalContext'
 
-const GlobalState= (props) => {
+const GlobalState = (props) => {
     const [moveis, setMoveis] = useState([])
-    const [detail, setDetail]  = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const states = {moveis, detail, currentPage}
-    const setters = {setMoveis, setDetail, setCurrentPage}
+    // const [detail, setDetail] = useState([])
+
    
-    return(
-        <GlobalContext.Provider value={{states, setters}}>
+    // const states = { moveis, detail }
+    // const setters = { setMoveis, setDetail }
+
+    return (
+        <GlobalContext.Provider value={[ moveis, setMoveis ]}>
             {props.children}
         </GlobalContext.Provider>
     )

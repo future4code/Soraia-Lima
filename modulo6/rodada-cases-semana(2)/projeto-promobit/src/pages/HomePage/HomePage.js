@@ -7,26 +7,25 @@ import Stack from '@mui/material/Stack';
 import { corretDate } from '../../services/CorretDate'
 import { BASE_URL_MOVEIS } from '../../constants/url'
 import { Container, MapMoveis } from './styled'
-
 import Pagination from '@mui/material/Pagination'
 import { goToDetail } from '../../router/coodinator'
 import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
 
-    const { states, setters } = useContext(GlobalContext)
+    const [ moveis, setMoveis ] = useContext(GlobalContext)
     const [page, setPage] = React.useState(1);
     const navigate = useNavigate()
 
     useEffect(() => {
-        getMoveis(page, setters.setMoveis)
+        getMoveis(page, setMoveis)
     }, [page])
 
     const handleChange = (event, value) => {
         setPage(value);
     };
 
-    const mapMoveis = states.moveis.results?.map((item) => {
+    const mapMoveis = moveis.results?.map((item) => {
         const newDate = corretDate(item.release_date)
         return (
             <MapMoveis key={item.id}>
@@ -37,6 +36,8 @@ const HomePage = () => {
         )
     })
 
+    
+    console.log(moveis)
     return (
         <Container>
             <header>
@@ -51,7 +52,7 @@ const HomePage = () => {
 
             <footer>
                 <Stack spacing={2}>
-                    <Pagination count={states.moveis.total_pages} page={page} onChange={handleChange} color="secondary" />
+                    <Pagination count={moveis.total_pages} page={page} onChange={handleChange} color="secondary" />
                 </Stack>
             </footer>
         </Container>
