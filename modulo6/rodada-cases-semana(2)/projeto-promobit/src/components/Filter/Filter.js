@@ -1,27 +1,28 @@
+import { useState } from "react";
 import { Container, ContainerMap } from "./styled"
 
 const Filter = () => {
 
     const availableFilters = [
-        { id: 1, name: "Ação" },
-        { id: 2, name: "Aventura" },
-        { id: 3, name: "Animação" },
-        { id: 4, name: "Comédia" },
-        { id: 5, name: "Crime" },
-        { id: 6, name: "Documentário" },
-        { id: 7, name: "Drama" },
-        { id: 8, name: "Família" },
-        { id: 9, name: "Fantasia" },
-        { id: 10, name: "História" },
-        { id: 11, name: "Terror" },
-        { id: 12, name: "Musica" },
-        { id: 13, name: "Mistério" },
-        { id: 14, name: "Romance" },
-        { id: 15, name: "Ficção Científica" },
-        { id: 16, name: "Cinema TV" },
-        { id: 17, name: "Thiller" },
-        { id: 18, name: "Guerra" },
-        { id: 19, name: "Faroeste" }
+        { id: 28, name: "Ação" },
+        { id: 12, name: "Aventura" },
+        { id: 16, name: "Animação" },
+        { id: 35, name: "Comédia" },
+        { id: 80, name: "Crime" },
+        { id: 99, name: "Documentário" },
+        { id: 18, name: "Drama" },
+        { id: 10751, name: "Família" },
+        { id: 14, name: "Fantasia" },
+        { id: 36, name: "História" },
+        { id: 27, name: "Terror" },
+        { id: 10402, name: "Musica" },
+        { id: 9846, name: "Mistério" },
+        { id: 10749, name: "Romance" },
+        { id: 878, name: "Ficção Científica" },
+        // { id: 16, name: "Cinema TV" },
+        { id: 53, name: "Thiller" },
+        { id: 10752, name: "Guerra" },
+        { id: 37, name: "Faroeste" }
     ]
 
     const mapFilter = availableFilters.map((item) => {

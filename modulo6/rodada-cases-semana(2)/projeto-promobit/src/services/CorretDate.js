@@ -39,4 +39,8 @@ export function corretDate(date) {
     return newDate.join(" ")
 }
 
-
+export function releaseYear(date) {
+    const formattedDate = date.split("-").reverse()
+    const year = formattedDate[2]
+    return year
+}

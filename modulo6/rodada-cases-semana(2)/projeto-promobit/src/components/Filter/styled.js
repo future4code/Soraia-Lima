@@ -9,7 +9,6 @@ span{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    /* background-color: red; */
     max-width: 60%;
     margin-left: 20vw;
 }
