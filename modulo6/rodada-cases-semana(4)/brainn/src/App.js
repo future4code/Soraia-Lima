@@ -1,8 +1,9 @@
+import Router from './router/Router'
 
-function App() {
+const App = () => {
   return (
     <div>
-     <h1>Oiiiiii</h1>
+     <Router/>
     </div>
   );
 }
